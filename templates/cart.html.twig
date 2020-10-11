@@ -1,0 +1,191 @@
+{% extends"base.html.twig" %}
+{% block title %}Корзина | Wheels-shop{% endblock %}
+{% block cart %}<li><a href="{{ path('cart')}}" class="active"><i class="fa fa-shopping-cart"></i>Корзина</a></li>{% endblock %}
+{% block body %}
+	<section id="cart_items">
+		<div class="container">
+			<div class="table-responsive cart_info">
+				<table class="table table-condensed">
+					<thead>
+					<tr class="cart_menu">
+						<td class="image">Модель</td>
+						<td class="description">Информация</td>
+						<td class="price">Цена</td>
+						<td class="quantity">Количество</td>
+						<td class="total">Стоимость</td>
+						<td></td>
+					</tr>
+					</thead>
+					<tbody>
+					<tr>
+
+						<td class="cart_product">
+							<a href=""><img src="images/cart/one.png" alt=""></a>
+						</td>
+						<td class="cart_description">
+							<h4><a href="">Colorblock Scuba</a></h4>
+							<p>Web ID: 1089772</p>
+						</td>
+						<td class="cart_price">
+							<p>$59</p>
+						</td>
+						<td class="cart_quantity">
+							<div class="cart_quantity_button">
+								<a class="cart_quantity_up" href=""> + </a>
+								<input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
+								<a class="cart_quantity_down" href=""> - </a>
+							</div>
+						</td>
+						<td class="cart_total">
+							<p class="cart_total_price">$59</p>
+						</td>
+						<td class="cart_delete">
+							<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
+						</td>
+					</tr>
+
+					<tr>
+
+						<td class="cart_product">
+							<a href=""><img src="images/cart/two.png" alt=""></a>
+						</td>
+						<td class="cart_description">
+							<h4><a href="">Colorblock Scuba</a></h4>
+							<p>Web ID: 1089772</p>
+						</td>
+						<td class="cart_price">
+							<p>$59</p>
+						</td>
+						<td class="cart_quantity">
+							<div class="cart_quantity_button">
+								<a class="cart_quantity_up" href=""> + </a>
+								<input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
+								<a class="cart_quantity_down" href=""> - </a>
+							</div>
+						</td>
+						<td class="cart_total">
+							<p class="cart_total_price">$59</p>
+						</td>
+						<td class="cart_delete">
+							<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
+						</td>
+					</tr>
+					<tr>
+						<td class="cart_product">
+							<a href=""><img src="images/cart/three.png" alt=""></a>
+						</td>
+						<td class="cart_description">
+							<h4><a href="">Colorblock Scuba</a></h4>
+							<p>Web ID: 1089772</p>
+						</td>
+						<td class="cart_price">
+							<p>$59</p>
+						</td>
+						<td class="cart_quantity">
+							<div class="cart_quantity_button">
+								<a class="cart_quantity_up" href=""> + </a>
+								<input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
+								<a class="cart_quantity_down" href=""> - </a>
+							</div>
+						</td>
+						<td class="cart_total">
+							<p class="cart_total_price">$59</p>
+						</td>
+						<td class="cart_delete">
+							<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="4">&nbsp;</td>
+						<td colspan="2">
+							<table class="table table-condensed total-result">
+								<tr>
+									<td>Стоимость товаров</td>
+									<td>$59</td>
+								</tr>
+								<tr>
+									<td>Скидка</td>
+									<td>$2</td>
+								</tr>
+								<tr class="shipping-cost">
+									<td>Доставка</td>
+									<td>Free</td>
+								</tr>
+								<tr>
+									<td>Итого</td>
+									<td><span>$61</span></td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="checkout-options">
+				<h3>Вы можете продолжить как Гость или Зарегистрироваться, если Вы зарегистрированы, можете авторизаваться:</h3>
+						<a class="btn btn-primary" href="#">Авторизация/регистрация</a>
+			</div><!--/checkout-options-->
+
+			<div class="register-req">
+				<p>Заполните пожалуйста все необходимые поля</p>
+			</div><!--/register-req-->
+
+			<div class="shopper-informations">
+				<div class="row">
+					<div class="col-sm-3">
+						<div class="shopper-info">
+							<p>Информация о покупателе</p>
+							<form>
+								<input type="text" placeholder="Имя">
+								<input type="text" placeholder="Фамилия">
+								<input type="password" placeholder="Адрес доставки">
+								<input type="password" placeholder="Индекс">
+								<input type="password" placeholder="Телефон">
+							</form>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="order-message">
+							<p>Примечание к заказу</p>
+							<textarea name="message"  placeholder="Примечания к Вашему заказу" rows="16"></textarea>
+						</div>
+					</div>
+
+					<div class="col-sm-4">
+						<div class="order-message">
+							<p>Доставка и оплата заказа</p>
+							<p>Доставка</p>
+							<span>
+						<label><input type="checkbox"> Самовывоз</label>
+					</span>
+							<span>
+						<label><input type="checkbox"> Доставка курьером</label>
+					</span>
+							<p>Оплата</p>
+							<span>
+						<label><input type="checkbox">Наличными при приеме заказа</label>
+					</span>
+							<span>
+						<label><input type="checkbox">Картой при приеме заказа</label>
+					</span>
+							<span>
+						<label><input type="checkbox">Безналичный рассчет</label>
+					</span>
+						</div>
+						<a class="btn btn-primary" href="">Оформить заказ</a>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</section> <!--/#cart_items-->
+
+{% endblock %}
+
+	{% block javascripts %}
+		<script src="js/jquery.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/jquery.scrollUp.min.js"></script>
+		<script src="js/jquery.prettyPhoto.js"></script>
+		<script src="js/main.js"></script>
+	{% endblock %}
