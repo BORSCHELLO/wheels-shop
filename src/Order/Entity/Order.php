@@ -67,6 +67,11 @@ class Order
      */
     private $createdAt;
 
+    /**
+     * @ORM\Column(type="string", length=30)
+     */
+    private $status;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -176,6 +181,18 @@ class Order
     public function setCreatedAt($createdAt): self
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    public function setStatus($status): self
+    {
+        $this->status = $status;
 
         return $this;
     }

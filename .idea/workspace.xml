@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="56b36591-f836-4b43-834e-6ee5b7cb01de" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Controller/PageController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/home.html.twig" afterDir="false" />
-    </list>
+    <list default="true" id="56b36591-f836-4b43-834e-6ee5b7cb01de" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -157,7 +154,7 @@
       <option name="presentableId" value="Default" />
       <updated>1602352931032</updated>
       <workItem from="1602352932116" duration="5564000" />
-      <workItem from="1602419875954" duration="10480000" />
+      <workItem from="1602419875954" duration="11065000" />
     </task>
     <servers />
   </component>
