@@ -8,9 +8,9 @@
 
 body {
   font-family: 'Roboto', sans-serif;
-  background:;
+  background:none;
   position: relative;
-  font-weight:400px;
+  font-weight: 400;
 }
 
 ul li {
@@ -204,7 +204,6 @@ a#scrollUp i{
   font-size: 14px;
   font-weight: 300;
   padding:0;
-  padding-right: 0;
   margin-top: 10px;
 }
 
@@ -952,7 +951,7 @@ h2.title {
 }
 
 .add-to-cart:hover {
-  background: #FE980F;
+  background: #fe980f;
   border: 0 none;
   border-radius: 0;
   color: #FFFFFF;
@@ -2553,4 +2552,15 @@ h2.title {
 {
   font-size: 30px;
   color: #fe980f;
+}
+
+.overlay-info
+{
+  color: #696763;
+}
+
+.home-cart
+{
+  color: #fe980f;
+  background-color: whitesmoke;
 }
