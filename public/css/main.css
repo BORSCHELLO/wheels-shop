@@ -1165,8 +1165,6 @@ h2.title {
   margin-top: 10px;
 }
 
-
-
 .view-product {
   position: relative;
 }
@@ -1217,7 +1215,7 @@ h2.title {
 .product-information {
   border: 1px solid #F7F7F0;
   overflow: hidden;
-  padding-bottom: 60px;
+  padding-bottom: 5px;
   padding-left: 60px;
   padding-top: 60px;
   position: relative;
@@ -1289,7 +1287,6 @@ h2.title {
   font-family: 'Roboto', sans-serif;
   font-size: 15px;
   margin-bottom: 10px;
-  margin-left: 20px;
 }
 
 
@@ -2520,4 +2517,40 @@ h2.title {
   color: #FE980F;
 }
 
+/*************************
+******* Filters CSS ********
+**************************/
+.filter-text
+{
+  color: #696763;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  padding: 5px 25px;
+  font-weight: normal;
+}
+.margin-li-style
+{
+  margin-right: 5%;
+}
+.check-size
+{
+  width: 18px;
+  height: 18px;
+}
 
+.brend
+{
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.product-info
+{
+  padding-top: 5px;
+}
+
+.price
+{
+  font-size: 30px;
+  color: #fe980f;
+}

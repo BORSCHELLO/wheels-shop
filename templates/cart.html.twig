@@ -4,6 +4,60 @@
 {% block body %}
 	<section id="cart_items">
 		<div class="container">
+
+			<div class="checkout-options">
+				<h3>Вы можете продолжить как Гость или Зарегистрироваться, если Вы зарегистрированы, можете авторизаваться:</h3>
+						<a class="btn btn-primary" href="#">Авторизация/регистрация</a>
+			</div><!--/checkout-options-->
+
+			<div class="register-req">
+				<p>Заполните пожалуйста все необходимые поля</p>
+			</div><!--/register-req-->
+
+			<div class="shopper-informations">
+				<div class="row">
+					<div class="col-sm-3">
+						<div class="shopper-info">
+							<p>Информация о покупателе</p>
+							<form>
+								<input type="text" placeholder="Имя">
+								<input type="text" placeholder="Фамилия">
+								<input type="password" placeholder="Адрес доставки">
+								<input type="password" placeholder="Индекс">
+								<input type="password" placeholder="Телефон">
+							</form>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="order-message">
+							<p>Примечание к заказу</p>
+							<textarea name="message"  placeholder="Примечания к Вашему заказу" rows="16"></textarea>
+						</div>
+					</div>
+
+					<div class="col-sm-4">
+						<div class="order-message">
+							<p>Доставка и оплата заказа</p>
+							<p>Доставка</p>
+							<span>
+						<label><input type="checkbox"> Самовывоз</label>
+					</span>
+							<span>
+						<label><input type="checkbox"> Доставка курьером</label>
+					</span>
+							<p>Оплата</p>
+							<span>
+						<label><input type="checkbox">Наличными при приеме заказа</label>
+					</span>
+							<span>
+						<label><input type="checkbox">Картой при приеме заказа</label>
+					</span>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!--/Корзина-->
 			<div class="table-responsive cart_info">
 				<table class="table table-condensed">
 					<thead>
@@ -116,67 +170,12 @@
 									<td><span>$61</span></td>
 								</tr>
 							</table>
+							<a class="btn btn-primary" href="">Оформить заказ</a>
 						</td>
 					</tr>
 					</tbody>
 				</table>
 			</div>
-			<div class="checkout-options">
-				<h3>Вы можете продолжить как Гость или Зарегистрироваться, если Вы зарегистрированы, можете авторизаваться:</h3>
-						<a class="btn btn-primary" href="#">Авторизация/регистрация</a>
-			</div><!--/checkout-options-->
-
-			<div class="register-req">
-				<p>Заполните пожалуйста все необходимые поля</p>
-			</div><!--/register-req-->
-
-			<div class="shopper-informations">
-				<div class="row">
-					<div class="col-sm-3">
-						<div class="shopper-info">
-							<p>Информация о покупателе</p>
-							<form>
-								<input type="text" placeholder="Имя">
-								<input type="text" placeholder="Фамилия">
-								<input type="password" placeholder="Адрес доставки">
-								<input type="password" placeholder="Индекс">
-								<input type="password" placeholder="Телефон">
-							</form>
-						</div>
-					</div>
-					<div class="col-sm-4">
-						<div class="order-message">
-							<p>Примечание к заказу</p>
-							<textarea name="message"  placeholder="Примечания к Вашему заказу" rows="16"></textarea>
-						</div>
-					</div>
-
-					<div class="col-sm-4">
-						<div class="order-message">
-							<p>Доставка и оплата заказа</p>
-							<p>Доставка</p>
-							<span>
-						<label><input type="checkbox"> Самовывоз</label>
-					</span>
-							<span>
-						<label><input type="checkbox"> Доставка курьером</label>
-					</span>
-							<p>Оплата</p>
-							<span>
-						<label><input type="checkbox">Наличными при приеме заказа</label>
-					</span>
-							<span>
-						<label><input type="checkbox">Картой при приеме заказа</label>
-					</span>
-							<span>
-						<label><input type="checkbox">Безналичный рассчет</label>
-					</span>
-						</div>
-						<a class="btn btn-primary" href="">Оформить заказ</a>
-					</div>
-				</div>
-			</div>
-
 		</div>
 	</section> <!--/#cart_items-->
 
