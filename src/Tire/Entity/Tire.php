@@ -5,6 +5,7 @@ namespace App\Tire\Entity;
 use App\Tire\Repository\TireRepository;
 use Doctrine\ORM\Mapping as ORM;
 use App\Category\Entity\Category;
+use App\Image\Entity\Image;
 
 /**
  * @ORM\Entity(repositoryClass=TireRepository::class)
@@ -27,6 +28,13 @@ class Tire
      * @ORM\Column(type="string", length=60)
      */
     private $brand;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Image::class)
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $image;
+
 
     /**
      * @ORM\OneToOne(targetEntity=Category::class)
@@ -328,6 +336,18 @@ class Tire
     public function setCategory(Category $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    public function setImage($image): self
+    {
+        $this->image = $image;
 
         return $this;
     }
