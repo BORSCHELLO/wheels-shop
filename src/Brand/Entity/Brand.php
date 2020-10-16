@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Image\Entity;
+namespace App\Entity;
 
-use App\Image\Repository\ImageRepository;
+use App\Repository\BrandRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=ImageRepository::class)
+ * @ORM\Entity(repositoryClass=BrandRepository::class)
  */
-class Image
+class Brand
 {
     /**
      * @ORM\Id
@@ -18,14 +18,14 @@ class Image
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=30)
+     * @ORM\Column(type="string", length=50)
      */
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="boolean")
      */
-    private $source;
+    private $enabled;
 
     public function getId(): ?int
     {
@@ -44,14 +44,14 @@ class Image
         return $this;
     }
 
-    public function getSource(): ?string
+    public function getEnabled(): ?bool
     {
-        return $this->source;
+        return $this->enabled;
     }
 
-    public function setSource(string $source): self
+    public function setEnabled(bool $enabled): self
     {
-        $this->source = $source;
+        $this->enabled = $enabled;
 
         return $this;
     }
