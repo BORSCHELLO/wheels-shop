@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Entity;
+namespace App\Brand\Entity;
 
-use App\Repository\BrandRepository;
+use App\Brand\Repository\BrandRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -30,6 +30,11 @@ class Brand
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function __toString()
+    {
+        return $this->getName();
     }
 
     public function getName(): ?string

@@ -2504,7 +2504,7 @@ h2.title {
 }
 
 .social-networks ul li a {
-  color: #999;
+  color: #999999;
   font-size: 25px;
 }
 
@@ -2513,7 +2513,7 @@ h2.title {
 }
 
 .contact-info .social-networks ul li a:hover{
-  color: #FE980F;
+  color: #fe980f;
 }
 
 /*************************
@@ -2526,6 +2526,7 @@ h2.title {
   font-size: 14px;
   padding: 5px 25px;
   font-weight: normal;
+  cursor: pointer;
 }
 .margin-li-style
 {
@@ -2535,12 +2536,14 @@ h2.title {
 {
   width: 18px;
   height: 18px;
+  cursor: pointer;
 }
 
 .brend
 {
   font-size: 15px;
   font-weight: bold;
+  cursor: pointer;
 }
 
 .product-info
@@ -2563,4 +2566,35 @@ h2.title {
 {
   color: #fe980f;
   background-color: whitesmoke;
+}
+
+.category-name
+{
+  text-decoration: none;
+  color: #696763;
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.category-name:hover
+{
+  text-decoration: none;
+  color: #fe980f;
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+.category-name:active
+{
+  text-decoration: none;
+  color: #fe980f;
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  margin-left: 10px;
 }

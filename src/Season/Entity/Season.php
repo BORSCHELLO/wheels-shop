@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Entity;
+namespace App\Season\Entity;
 
-use App\Repository\SeasonRepository;
+use App\Season\Repository\SeasonRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -21,6 +21,11 @@ class Season
      * @ORM\Column(type="string", length=20)
      */
     private $name;
+
+    public function __toString()
+    {
+        return $this->getName();
+    }
 
     public function getId(): ?int
     {

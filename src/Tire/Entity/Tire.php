@@ -5,7 +5,11 @@ namespace App\Tire\Entity;
 use App\Tire\Repository\TireRepository;
 use Doctrine\ORM\Mapping as ORM;
 use App\Category\Entity\Category;
-use App\Image\Entity\Image;
+use App\Brand\Entity\Brand;
+use App\Season\Entity\Season;
+use App\Design\Entity\Design;
+use App\Sealing\Entity\Sealing;
+use App\Thorns\Entity\Thorns;
 
 /**
  * @ORM\Entity(repositoryClass=TireRepository::class)
@@ -25,25 +29,20 @@ class Tire
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=60)
+     * @ORM\ManyToOne(targetEntity=Brand::class)
+     * @ORM\JoinColumn(nullable=false)
      */
     private $brand;
 
     /**
-     * @ORM\OneToOne(targetEntity=Image::class)
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $image;
-
-
-    /**
-     * @ORM\OneToOne(targetEntity=Category::class)
+     * @ORM\ManyToOne(targetEntity=Category::class)
      * @ORM\JoinColumn(nullable=false)
      */
     private $category;
 
     /**
-     * @ORM\Column(type="string", length=30)
+     * @ORM\ManyToOne(targetEntity=Season::class)
+     * @ORM\JoinColumn(nullable=false)
      */
     private $season;
 
@@ -63,37 +62,40 @@ class Tire
     private $diameter;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\ManyToOne(targetEntity=Design::class)
+     * @ORM\JoinColumn(nullable=false)
      */
     private $design;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\ManyToOne(targetEntity=Sealing::class)
+     * @ORM\JoinColumn(nullable=false)
      */
     private $sealing_method;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(name="speed_index", type="integer")
      */
-    private $speed_index;
+    private $speedIndex;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(name="load_index", type="integer")
      */
-    private $load_index;
+    private $loadIndex;
 
     /**
-     * @ORM\Column(type="string", length=30)
+     * @ORM\ManyToOne(targetEntity=Thorns::class)
+     * @ORM\JoinColumn(nullable=false)
      */
     private $thorns;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(name="market_launch_date", type="integer")
      */
-    private $market_launch_date;
+    private $marketLaunchDate;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="float")
      */
     private $price;
 
@@ -103,7 +105,7 @@ class Tire
     private $quantity;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="float")
      */
     private $rating;
 
@@ -117,7 +119,11 @@ class Tire
      */
     private $enabled;
 
-    public function getId(): ?int
+    public function __toString()
+    {
+        return $this->brand.' '.$this->getName();
+    }
+        public function getId(): ?int
     {
         return $this->id;
     }
@@ -134,24 +140,24 @@ class Tire
         return $this;
     }
 
-    public function getBrand(): ?string
+    public function getBrand(): ?Brand
     {
         return $this->brand;
     }
 
-    public function setBrand(string $brand): self
+    public function setBrand(Brand $brand): self
     {
         $this->brand = $brand;
 
         return $this;
     }
 
-    public function getSeason(): ?string
+    public function getSeason(): ?Season
     {
         return $this->season;
     }
 
-    public function setSeason(string $season): self
+    public function setSeason(Season $season): self
     {
         $this->season = $season;
 
@@ -194,24 +200,24 @@ class Tire
         return $this;
     }
 
-    public function getDesign(): ?string
+    public function getDesign(): ?Design
     {
         return $this->design;
     }
 
-    public function setDesign(string $design): self
+    public function setDesign(Design $design): self
     {
         $this->design = $design;
 
         return $this;
     }
 
-    public function getSealingMethod(): ?string
+    public function getSealingMethod(): ?Sealing
     {
         return $this->sealing_method;
     }
 
-    public function setSealingMethod(string $sealing_method): self
+    public function setSealingMethod(Sealing $sealing_method): self
     {
         $this->sealing_method = $sealing_method;
 
@@ -220,34 +226,34 @@ class Tire
 
     public function getSpeedIndex(): ?int
     {
-        return $this->speed_index;
+        return $this->speedIndex;
     }
 
-    public function setSpeedIndex(int $speed_index): self
+    public function setSpeedIndex(int $speedIndex): self
     {
-        $this->speed_index = $speed_index;
+        $this->speedIndex = $speedIndex;
 
         return $this;
     }
 
     public function getLoadIndex(): ?int
     {
-        return $this->load_index;
+        return $this->loadIndex;
     }
 
-    public function setLoadIndex(int $load_index): self
+    public function setLoadIndex(int $loadIndex): self
     {
-        $this->load_index = $load_index;
+        $this->loadIndex = $loadIndex;
 
         return $this;
     }
 
-    public function getThorns(): ?string
+    public function getThorns(): ?Thorns
     {
         return $this->thorns;
     }
 
-    public function setThorns(string $thorns): self
+    public function setThorns(Thorns $thorns): self
     {
         $this->thorns = $thorns;
 
@@ -256,12 +262,12 @@ class Tire
 
     public function getMarketLaunchDate(): ?int
     {
-        return $this->market_launch_date;
+        return $this->marketLaunchDate;
     }
 
-    public function setMarketLaunchDate(int $market_launch_date): self
+    public function setMarketLaunchDate(int $marketLaunchDate): self
     {
-        $this->market_launch_date = $market_launch_date;
+        $this->marketLaunchDate = $marketLaunchDate;
 
         return $this;
     }
@@ -327,7 +333,7 @@ class Tire
     }
 
 
-    public function getCategory()
+    public function getCategory(): ?Category
     {
         return $this->category;
     }
@@ -340,15 +346,4 @@ class Tire
         return $this;
     }
 
-    public function getImage()
-    {
-        return $this->image;
-    }
-
-    public function setImage($image): self
-    {
-        $this->image = $image;
-
-        return $this;
-    }
 }

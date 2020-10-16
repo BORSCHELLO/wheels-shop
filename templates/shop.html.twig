@@ -15,47 +15,16 @@
 					<div class="left-sidebar">
 						<h2>Категории</h2>
 						<div class="panel-group category-products" id="accordian"><!--category-productsr-->
+							<ul class="nav nav-pills nav-stacked" id="category-container"><!--Вставка категорий--></ul>
 
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">Легковые авто</a></h4>
-								</div>
-							</div>
-
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">Внедорожники</a></h4>
-								</div>
-							</div>
-
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">Трактора</a></h4>
-								</div>
-							</div>
-
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">Грузовые авто</a></h4>
-								</div>
-							</div>
-
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">Строительной техника</a></h4>
-								</div>
-							</div>
 						</div><!--/category-productsr-->
 					
 						<div class="brands_products"><!--brands_products-->
 							<h2>Бренды</h2>
 							<div class="brands-name">
-								<ul class="nav nav-pills nav-stacked">
-									<li class="margin-li-style"><label for="summer" class="filter-text brend">Hankook<span class="pull-right">(21)</span></label><input type="checkbox" id="summer" name="summer" class="pull-right check-size"></li>
-									<li class="margin-li-style"><label for="summer" class="filter-text brend">Белшина<span class="pull-right">(1)</span></label><input type="checkbox" id="summer" name="summer" class="pull-right check-size"></li>
-									<li class="margin-li-style"><label for="summer" class="filter-text brend">Michelin<span class="pull-right">(27)</span></label><input type="checkbox" id="summer" name="summer" class="pull-right check-size"></li>
-									<li class="margin-li-style"><label for="summer" class="filter-text brend">Kama<span class="pull-right">(31)</span></label><input type="checkbox" id="summer" name="summer" class="pull-right check-size"></li>
-									<li class="margin-li-style"><label for="summer" class="filter-text brend">TOYO<span class="pull-right">(51)</span></label><input type="checkbox" id="summer" name="summer" class="pull-right check-size"></li>
+								<ul class="nav nav-pills nav-stacked" id="brand-container">
+									<li class="margin-li-style"><label for="summer" class="filter-text brend">Hankook<span class="pull-right">(21)</span></label>
+										<input type="checkbox" id="summer" name="summer" class="pull-right check-size"></li>
 								</ul>
 							</div>
 						</div><!--/brands_products-->
@@ -86,8 +55,8 @@
 							<div class="brands-name">
 								<ul class="nav nav-pills nav-stacked">
 									<li class="single_field">
-										<label class="filter-text">Выберите ширину шины:</label>
-										<select>
+										<label class="filter-text" for="width-tire">Выберите ширину шины:</label>
+										<select id="width-tire">
 											<option>180</option>
 											<option>185</option>
 											<option>190</option>
@@ -102,8 +71,8 @@
 							<br/>
 								<ul class="nav nav-pills nav-stacked">
 									<li class="single_field">
-										<label class="filter-text">Выберите высоту шины:</label>
-										<select>
+										<label class="filter-text" for="height-tire">Выберите высоту шины:</label>
+										<select id="height-tire">
 											<option>40</option>
 											<option>45</option>
 											<option>50</option>
@@ -124,8 +93,8 @@
 							<div class="brands-name">
 								<ul class="nav nav-pills nav-stacked">
 									<li class="single_field">
-										<label class="filter-text">Посадочный диаметр:</label>
-										<select>
+										<label class="filter-text" for="diameter-tire">Посадочный диаметр:</label>
+										<select id="diameter-tire">
 											<option>13"</option>
 											<option>14"</option>
 											<option>15"</option>
@@ -168,8 +137,8 @@
 							<div class="brands-name">
 								<ul class="nav nav-pills nav-stacked">
 									<li class="single_field">
-										<label class="filter-text">Выбрать:</label>
-										<select>
+										<label class="filter-text" for="speed-index">Выбрать:</label>
+										<select id="speed-index">
 											<option>A2 (до 10 км/ч)</option>
 											<option>S (до 180 км/ч)</option>
 											<option>T (до 190 км/ч)</option>
@@ -190,8 +159,8 @@
 							<div class="brands-name">
 								<ul class="nav nav-pills nav-stacked">
 									<li class="single_field">
-										<label class="filter-text">Выбрать:</label>
-										<select>
+										<label class="filter-text" for="load-index">Выбрать:</label>
+										<select id="load-index">
 											<option>91</option>
 											<option>92</option>
 											<option>93</option>
@@ -224,8 +193,8 @@
 							<div class="brands-name">
 								<ul class="nav nav-pills nav-stacked">
 									<li class="single_field">
-										<label class="filter-text">Выбрать:</label>
-										<select>
+										<label class="filter-text" for="market_launch_date">Выбрать:</label>
+										<select id="market_launch_date">
 											<option>2009</option>
 											<option>2014</option>
 											<option>2015</option>
@@ -628,4 +597,5 @@
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/jquery.prettyPhoto.js"></script>
 		<script src="js/main.js"></script>
+		<script src="js/shop-filter.js"></script>
 	{% endblock %}

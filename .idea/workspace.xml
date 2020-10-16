@@ -2,14 +2,67 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="56b36591-f836-4b43-834e-6ee5b7cb01de" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Entity/Image.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/Version20201015063042.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/Version20201015115250.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/Version20201016072946.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/Version20201016080300.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Brand/Collection/BrandCollection.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Brand/Entity/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Brand/Repository/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/Admin/BrandCrudController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/Admin/CategoryCrudController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/Admin/DashboardController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/Admin/DesignCrudController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/Admin/ImageCrudController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/Admin/OrderCrudController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/Admin/SealingCrudController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/Admin/SeasonCrudController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/Admin/ThornsCrudController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/Admin/TireCrudController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/Admin/UserCrudController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Design/Entity/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Design/Entity/Design.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Design/Repository/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Design/Repository/DesignRepository.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Image/Entity/Image.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/Image/Repository/ImageRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Response/Filter/CategoryJsonResponse.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Response/Filter/Normalizer/CategoryNormalizer.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Sealing/Entity/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Sealing/Entity/Sealing.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Sealing/Repository/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Sealing/Repository/SealingRepository.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Season/Entity/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Season/Repository/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Season/Repository/SeasonRepository.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Thorns/Entity/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Thorns/Entity/Thorns.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Thorns/Repository/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Thorns/Repository/ThornsRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/b2e8ba5c-fb43-4dec-9201-f39ed8ca1f47.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/b2e8ba5c-fb43-4dec-9201-f39ed8ca1f47.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/wheels-shop.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/wheels-shop.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/bundles.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/doctrine.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/doctrine.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/shop-filter.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/shop-filter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Brand/Entity/Brand.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Brand/Entity/Brand.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Brand/Repository/BrandRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Brand/Repository/BrandRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Brand/Repository/BrandRepositoryInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Brand/Repository/BrandRepositoryInterface.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Category/Collection/CategoryCollection.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Category/Collection/CategoryCollection.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Category/Entity/Category.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Category/Entity/Category.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Order/Entity/Order.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Order/Entity/Order.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Category/Repository/CategoryRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Category/Repository/CategoryRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Category/Repository/CategoryRepositoryInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Category/Repository/CategoryRepositoryInterface.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/ShopController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ShopController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Response/Filter/Normalizer/BrandNormalizer.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Response/Filter/Normalizer/BrandNormalizer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Response/Serializer/JsonSerializer.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Response/Serializer/JsonSerializer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Season/Entity/Season.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Season/Entity/Season.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Tire/Entity/Tire.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tire/Entity/Tire.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/User/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/shop.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/shop.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +77,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -134,6 +188,11 @@
       <path value="$PROJECT_DIR$/vendor/symfony/process" />
       <path value="$PROJECT_DIR$/vendor/symfony/doctrine-bridge" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-normalizer" />
+      <path value="$PROJECT_DIR$/vendor/symfony/uid" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-uuid" />
+      <path value="$PROJECT_DIR$/vendor/easycorp/easyadmin-bundle" />
+      <path value="$PROJECT_DIR$/vendor/vich/uploader-bundle" />
+      <path value="$PROJECT_DIR$/vendor/jms/metadata" />
     </include_path>
   </component>
   <component name="ProjectId" id="1ihHVuJulhQqOZuX02c71tjadxD" />
@@ -147,17 +206,23 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/Image" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/Thorns" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/Tire/Entity" />
-      <recent name="$PROJECT_DIR$/src/Entity" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/Image" />
-      <recent name="$PROJECT_DIR$/src" />
+      <recent name="$PROJECT_DIR$/src/Thorns" />
+      <recent name="$PROJECT_DIR$/src/Sealing" />
+      <recent name="$PROJECT_DIR$/src/Design" />
+      <recent name="$PROJECT_DIR$/src/Season" />
+      <recent name="$PROJECT_DIR$/src/Image/Repository" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/templates/Bundles/EasyAdmin" />
+      <recent name="$PROJECT_DIR$/templates/bundles" />
+      <recent name="$PROJECT_DIR$/src/Image/Entity" />
+      <recent name="$PROJECT_DIR$/src/User/Entity" />
+      <recent name="$PROJECT_DIR$/src/Category/Entity" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -171,7 +236,11 @@
       <workItem from="1602352932116" duration="5564000" />
       <workItem from="1602419875954" duration="11460000" />
       <workItem from="1602485563778" duration="14591000" />
-      <workItem from="1602567922998" duration="8125000" />
+      <workItem from="1602567922998" duration="11652000" />
+      <workItem from="1602659198916" duration="14158000" />
+      <workItem from="1602742783129" duration="12031000" />
+      <workItem from="1602831592434" duration="7098000" />
+      <workItem from="1602839773709" duration="10091000" />
     </task>
     <servers />
   </component>
@@ -183,13 +252,44 @@
       <screen x="72" y="24" width="2488" height="1416" />
     </state>
     <state x="1349" y="420" width="800" height="684" key="#com.intellij.execution.impl.EditConfigurationsDialog/72.24.2488.1416@72.24.2488.1416" timestamp="1602583491932" />
+    <state x="1049" y="492" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1602841283261">
+      <screen x="72" y="27" width="2488" height="1413" />
+    </state>
+    <state x="1049" y="490" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/72.24.2488.1416@72.24.2488.1416" timestamp="1602665129887" />
+    <state x="1049" y="492" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/72.27.2488.1413@72.27.2488.1413" timestamp="1602841283261" />
     <state width="263" height="500" key="HiddenNamespacesPopup" timestamp="1602576181115">
       <screen x="72" y="24" width="2488" height="1416" />
     </state>
     <state width="263" height="500" key="HiddenNamespacesPopup/72.24.2488.1416@72.24.2488.1416" timestamp="1602576181115" />
-    <state x="998" y="451" width="625" height="568" key="NewPhpClassDialog" timestamp="1602353563880">
+    <state x="998" y="453" width="673" height="568" key="NewPhpClassDialog" timestamp="1602756788276">
+      <screen x="72" y="27" width="2488" height="1413" />
+    </state>
+    <state x="998" y="451" width="777" height="582" key="NewPhpClassDialog/72.24.2488.1416@72.24.2488.1416" timestamp="1602665927409" />
+    <state x="998" y="453" width="673" height="568" key="NewPhpClassDialog/72.27.2488.1413@72.27.2488.1413" timestamp="1602756788276" />
+    <state x="1111" y="657" width="399" height="156" key="NewPhpFileDialog" timestamp="1602664236972">
       <screen x="72" y="24" width="2488" height="1416" />
     </state>
-    <state x="998" y="451" width="625" height="568" key="NewPhpClassDialog/72.24.2488.1416@72.24.2488.1416" timestamp="1602353563880" />
+    <state x="1111" y="657" width="399" height="156" key="NewPhpFileDialog/72.24.2488.1416@72.24.2488.1416" timestamp="1602664236972" />
+    <state x="1072" y="417" width="477" height="640" key="RollbackChangesDialog" timestamp="1602762200466">
+      <screen x="72" y="27" width="2488" height="1413" />
+    </state>
+    <state x="1072" y="417" width="477" height="640" key="RollbackChangesDialog/72.27.2488.1413@72.27.2488.1413" timestamp="1602762200466" />
+    <state x="1213" y="623" width="367" height="269" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1" timestamp="1602761916889">
+      <screen x="72" y="27" width="2488" height="1413" />
+    </state>
+    <state x="1213" y="623" width="367" height="269" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1/72.27.2488.1413@72.27.2488.1413" timestamp="1602761916889" />
+    <state x="1126" y="505" width="369" height="464" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1602842355502">
+      <screen x="72" y="27" width="2488" height="1413" />
+    </state>
+    <state x="1126" y="503" width="369" height="464" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/72.24.2488.1416@72.24.2488.1416" timestamp="1602667713562" />
+    <state x="1126" y="505" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/72.27.2488.1413@72.27.2488.1413" timestamp="1602842355502" />
+    <state x="172" y="127" width="2288" height="1213" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1602840238986">
+      <screen x="72" y="27" width="2488" height="1413" />
+    </state>
+    <state x="172" y="127" width="2288" height="1213" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog/72.27.2488.1413@72.27.2488.1413" timestamp="1602840238986" />
+    <state x="172" y="127" width="2288" height="1213" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1602840238986">
+      <screen x="72" y="27" width="2488" height="1413" />
+    </state>
+    <state x="172" y="127" width="2288" height="1213" key="com.intellij.history.integration.ui.views.FileHistoryDialog/72.27.2488.1413@72.27.2488.1413" timestamp="1602840238986" />
   </component>
 </project>
