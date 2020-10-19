@@ -2,7 +2,10 @@
 
 namespace App\Tire\Entity;
 
+use App\Image\Entity\Image;
 use App\Tire\Repository\TireRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Category\Entity\Category;
 use App\Brand\Entity\Brand;
@@ -118,6 +121,24 @@ class Tire
      * @ORM\Column(type="boolean")
      */
     private $enabled;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Image\Entity\Image", mappedBy="tire")
+     */
+    private $images;
+
+    public function __construct()
+    {
+        $this->images = new ArrayCollection();
+    }
+
+    /**
+     * @return Collection|Image[]
+     */
+    public function getImages(): Collection
+    {
+        return $this->images;
+    }
 
     public function __toString()
     {

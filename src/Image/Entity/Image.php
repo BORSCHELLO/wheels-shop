@@ -6,7 +6,7 @@ use App\Image\Repository\ImageRepository;
 use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
 use App\Tire\Entity\Tire;
-use Vich\UploaderBundle\Entity\File;
+use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
@@ -24,7 +24,7 @@ class Image
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Tire::class)
+     * @ORM\ManyToOne(targetEntity=Tire::class, inversedBy="images")
      * @ORM\JoinColumn(nullable=false)
      */
     private $tire;
@@ -34,6 +34,17 @@ class Image
      * @var string
      */
     private $source;
+
+    /**
+     * @var string
+     */
+    private $slug;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @var string
+     */
+    private $name;
 
     /**
      * @Vich\UploadableField(mapping="image_source", fileNameProperty="source")
@@ -51,6 +62,10 @@ class Image
      */
     private $updated_at;
 
+    public function __toString()
+    {
+        return $this->source;
+    }
     public function getId(): ?int
     {
         return $this->id;
@@ -126,4 +141,20 @@ class Image
             $this->setUpdatedAt(new DateTimeImmutable());
         }
     }
+
+    public function getSlug(): string
+    {
+        return $this->getTire()->getId() .'-'. $this->getName();
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): void
+    {
+        $this->name = $name;
+    }
+
 }

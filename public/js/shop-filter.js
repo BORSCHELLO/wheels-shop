@@ -11,10 +11,7 @@ $(document).ready(function(){
         data: {},
         dataType:'json',
         success: function (data) {
-            console.log(data);
             data.forEach(function (item){
-
-
                 var element = document.getElementById('category-container');
                 var li= createElement('li');
                 var a= createElement('a');

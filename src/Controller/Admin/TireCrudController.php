@@ -4,7 +4,10 @@ namespace App\Controller\Admin;
 
 
 use App\Tire\Entity\Tire;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
@@ -39,6 +42,12 @@ class TireCrudController extends AbstractCrudController
             NumberField::new('rating')->setLabel('Рейтинг'),
             NumberField::new('discount')->setLabel('Скидка'),
             BooleanField::new('enabled')->setLabel('Показать'),
+            ArrayField::new('images')->setLabel('Images')->hideOnForm(),
         ];
+    }
+
+    public function configureActions(Actions $actions): Actions
+    {
+        return $actions->add(CRUD::PAGE_INDEX, 'detail');
     }
 }
