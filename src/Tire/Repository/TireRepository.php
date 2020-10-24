@@ -48,4 +48,16 @@ class TireRepository extends ServiceEntityRepository implements TireRepositoryIn
             ->getResult()
         );
     }
+
+  public function getRandId(int $limit): ?TireCollection
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager
+            ->createQuery("SELECT u FROM App\Tire\Entity\Tire u ORDER BY u.price ASC")
+            ->setMaxResults($limit);
+
+        return new TireCollection($query->getResult());
+
+    }
 }

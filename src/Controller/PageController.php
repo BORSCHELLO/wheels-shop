@@ -13,9 +13,15 @@ class PageController extends AbstractController
     /**
      *@Route("/", name="home")
      */
-    public function home()
+    public function home(TireRepository $tireRepository)
     {
-        return $this->render('home.html.twig');
+        $limit = $_ENV['SHOW_PRODUCTS_LIMIT'];
+        $products= new TireJsonResponse($tireRepository->getRandId($limit));
+        return $this->render('home.html.twig',
+            [
+                'products' => $products
+            ]
+        );
     }
 
     /**
