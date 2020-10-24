@@ -2602,3 +2602,13 @@ h2.title {
   font-weight: bold;
   margin-left: 10px;
 }
+
+.margin-bottom
+{
+  margin-bottom: 10px;
+}
+
+.margin-right
+{
+  margin-right: 5px;
+}

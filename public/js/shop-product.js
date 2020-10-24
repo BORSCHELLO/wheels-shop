@@ -34,11 +34,11 @@ $(document).ready(function(){
                 let linkCart = createElement('a');
                 let linkDetails = createElement('a');
 
-                divImageContainer.className='col-sm-5';
+                divImageContainer.className='col-sm-5 margin-bottom';
                 divImage.className='view-product';
                 img.src= path;
 
-                divProductContainer.className='col-sm-7';
+                divProductContainer.className='col-sm-7 margin-bottom';
                 divProductInformation.className='product-information';
                 productFullName.innerHTML=item.brand.name+' '+item.name;
                 productId.innerHTML='Web ID:' + ' '+item.id;
@@ -51,7 +51,7 @@ $(document).ready(function(){
                 productWidth.innerHTML='<b>Ширина:</b>'+' '+item.width;
                 productHeight.innerHTML='<b>Высота:</b>'+' '+item.height;
 
-                linkCart.className='btn btn-default add-to-cart';
+                linkCart.className='btn btn-default add-to-cart margin-right';
                 linkCart.innerHTML='<i class="fa fa-shopping-cart"></i>В корзину';
                 linkCart.href='cart';
 

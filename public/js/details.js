@@ -18,13 +18,15 @@ $(document).ready(function() {
         product.images.forEach(function (item,i) {
             imageCount++;
         var litleImage =  createElement('a');
-        litleImage.className='carousel-inner';
+        litleImage.className='carousel-inner margin-right';
         if(i==0 || i>3){
             litleImage.className='carousel-inner hide';
         }
         litleImageContainer.appendChild(litleImage);
         var image=createElement('img');
         image.src = '/images/shop/' + item.source;
+        image.width=106;
+        image.height=150;
         litleImage.id=i;
         litleImage.appendChild(image);
         })
