@@ -20,7 +20,7 @@ final class Version20201024182035 extends AbstractMigration
     public function up(Schema $schema) : void
     {
         $this->addSql('ALTER TABLE tire DROP FOREIGN KEY FK_A2CE96DB6640A8C3');
-        $this->addSql('ALTER TABLE tire CHANGE COLUMN sealing_method_id sealing_method ENUM("tube", "tubeless")');
+        $this->addSql('ALTER TABLE tire CHANGE COLUMN sealing_method_id sealing_method ENUM("tube", "tubeless") not null');
     }
 
     public function down(Schema $schema) : void

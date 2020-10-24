@@ -31,7 +31,7 @@ class TireCrudController extends AbstractCrudController
             AssociationField::new('season')->setLabel('Сезон'),
             ChoiceField::new('sealingMethod')->setLabel('Герметизация')->setChoices(array_flip(Tire::SEALING_METHOD_LABELS)),
             AssociationField::new('design')->setLabel('Конструкция'),
-            AssociationField::new('thorns')->setLabel('Шиповка'),
+            ChoiceField::new('studs')->setLabel('Шиповка')->setChoices(array_flip(Tire::STUDS_LABELS)),
             IntegerField::new('width')->setLabel('Ширина'),
             IntegerField::new('height')->setLabel('Высота'),
             IntegerField::new('diameter')->setLabel('Диаметр'),

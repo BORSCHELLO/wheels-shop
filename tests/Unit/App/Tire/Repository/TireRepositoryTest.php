@@ -69,8 +69,6 @@ class TireRepositoryTest extends DoctrineTestCase
         $sealingMethod = new Sealing();
         $sealingMethod->setName('sealing name');
         $this->sealingRepository->create($sealingMethod);
-        $thorns = new Thorns();
-        $thorns->setName('thorns name');
         $this->thornsRepository->create($thorns);
 
         $tire->setName('test name');
@@ -79,7 +77,7 @@ class TireRepositoryTest extends DoctrineTestCase
         $tire->setSeason($season);
         $tire->setDesign($design);
         $tire->setSealingMethod($sealingMethod);
-        $tire->setThorns($thorns);
+        $tire->setStuds($thorns);
         $tire->setEnabled(true);
         $tire->setDiscount(0);
         $tire->setRating(4);
@@ -101,7 +99,7 @@ class TireRepositoryTest extends DoctrineTestCase
         $this->assertEquals('season name', $tire->getSeason());
         $this->assertEquals('design name', $tire->getDesign());
         $this->assertEquals($sealingMethod, $tire->getSealingMethod());
-        $this->assertEquals('thorns name', $tire->getThorns());
+        $this->assertEquals('thorns name', $tire->getStuds());
         $this->assertEquals(true, $tire->getEnabled());
         $this->assertEquals(0, $tire->getDiscount());
         $this->assertEquals(4, $tire->getRating());
@@ -147,7 +145,7 @@ class TireRepositoryTest extends DoctrineTestCase
         ->setSeason($season)
         ->setDesign($design)
         ->setSealingMethod($sealing_method)
-        ->setThorns($thorns)
+        ->setStuds($thorns)
         ->setEnabled(true)
         ->setDiscount(0)
         ->setRating(4)
@@ -168,7 +166,7 @@ class TireRepositoryTest extends DoctrineTestCase
         ->setSeason($season)
         ->setDesign($design)
         ->setSealingMethod($sealing_method)
-        ->setThorns($thorns)
+        ->setStuds($thorns)
         ->setEnabled(true)
         ->setDiscount(0)
         ->setRating(4)
@@ -189,7 +187,7 @@ class TireRepositoryTest extends DoctrineTestCase
             ->setSeason($season)
             ->setDesign($design)
             ->setSealingMethod($sealing_method)
-            ->setThorns($thorns)
+            ->setStuds($thorns)
             ->setEnabled(false)
             ->setDiscount(0)
             ->setRating(4)
@@ -248,7 +246,7 @@ class TireRepositoryTest extends DoctrineTestCase
             ->setSeason($season)
             ->setDesign($design)
             ->setSealingMethod($sealing_method)
-            ->setThorns($thorns)
+            ->setStuds($thorns)
             ->setEnabled(true)
             ->setDiscount(0)
             ->setRating(4)
@@ -269,7 +267,7 @@ class TireRepositoryTest extends DoctrineTestCase
             ->setSeason($season)
             ->setDesign($design)
             ->setSealingMethod($sealing_method)
-            ->setThorns($thorns)
+            ->setStuds($thorns)
             ->setEnabled(true)
             ->setDiscount(0)
             ->setRating(4)

@@ -7,12 +7,9 @@ namespace App\Tests\Unit\App\Tire\Entity;
 use App\Brand\Entity\Brand;
 use App\Category\Entity\Category;
 use App\Design\Entity\Design;
-use App\Sealing\Entity\Sealing;
 use App\Season\Entity\Season;
-use App\Thorns\Entity\Thorns;
 use App\Tire\Entity\Tire;
 use App\Tests\Unit\TestPrivateHelper;
-use Doctrine\Common\Collections\ArrayCollection;
 use PHPUnit\Framework\TestCase;
 
 class TireTest extends TestCase
@@ -24,7 +21,6 @@ class TireTest extends TestCase
         $category = new Category();
         $season = new Season();
         $design = new Design();
-        $thorns = new Thorns();
 
         $helper = new TestPrivateHelper($tire);
         $helper->set('id', 1);
@@ -35,7 +31,7 @@ class TireTest extends TestCase
         $tire->setSeason($season);
         $tire->setDesign($design);
         $tire->setSealingMethod(Tire::SEALING_METHOD_TUBELESS);
-        $tire->setThorns($thorns);
+        $tire->setStuds(Tire::STUDS_WITHOUT);
         $tire->setEnabled(true);
         $tire->setDiscount(0);
         $tire->setRating(4);
@@ -55,7 +51,7 @@ class TireTest extends TestCase
         $this->assertEquals($season, $tire->getSeason());
         $this->assertEquals($design, $tire->getDesign());
         $this->assertEquals(Tire::SEALING_METHOD_TUBELESS, $tire->getSealingMethod());
-        $this->assertEquals($thorns, $tire->getThorns());
+        $this->assertEquals(Tire::STUDS_WITHOUT, $tire->getStuds());
         $this->assertEquals(true, $tire->getEnabled());
         $this->assertEquals(0, $tire->getDiscount());
         $this->assertEquals(4, $tire->getRating());
@@ -67,5 +63,31 @@ class TireTest extends TestCase
         $this->assertEquals(55, $tire->getHeight());
         $this->assertEquals(205, $tire->getWidth());
         $this->assertEquals(2020, $tire->getMarketLaunchDate());
+    }
+
+    public function testInvalidSealingMethodSet()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        $tire = new Tire();
+        $tire->setSealingMethod('dsfasdfasdfasdfafd');
+    }
+
+    /**
+     * @dataProvider getMethods
+     */
+    public function testValidSealingMethodSet(string $method)
+    {
+        $tire = new Tire();
+        $tire->setSealingMethod($method);
+
+        $this->assertEquals($method, $tire->getSealingMethod());
+    }
+
+    public function getMethods(): array
+    {
+        return array_map(function(string $method) {
+            return [$method];
+        }, Tire::SEALING_METHODS);
     }
 }
