@@ -10,6 +10,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
@@ -28,7 +29,7 @@ class TireCrudController extends AbstractCrudController
             AssociationField::new('brand')->setLabel('Бренд'),
             AssociationField::new('category')->setLabel('Тип'),
             AssociationField::new('season')->setLabel('Сезон'),
-            AssociationField::new('sealing_method')->setLabel('Герметизация'),
+            ChoiceField::new('sealingMethod')->setLabel('Герметизация')->setChoices(array_flip(Tire::SEALING_METHOD_LABELS)),
             AssociationField::new('design')->setLabel('Конструкция'),
             AssociationField::new('thorns')->setLabel('Шиповка'),
             IntegerField::new('width')->setLabel('Ширина'),

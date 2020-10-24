@@ -66,9 +66,9 @@ class TireRepositoryTest extends DoctrineTestCase
         $design = new Design();
         $design->setName('design name');
         $this->designRepository->create($design);
-        $sealing_method = new Sealing();
-        $sealing_method->setName('sealing name');
-        $this->sealingRepository->create($sealing_method);
+        $sealingMethod = new Sealing();
+        $sealingMethod->setName('sealing name');
+        $this->sealingRepository->create($sealingMethod);
         $thorns = new Thorns();
         $thorns->setName('thorns name');
         $this->thornsRepository->create($thorns);
@@ -78,13 +78,13 @@ class TireRepositoryTest extends DoctrineTestCase
         $tire->setCategory($category);
         $tire->setSeason($season);
         $tire->setDesign($design);
-        $tire->setSealingMethod($sealing_method);
+        $tire->setSealingMethod($sealingMethod);
         $tire->setThorns($thorns);
         $tire->setEnabled(true);
         $tire->setDiscount(0);
         $tire->setRating(4);
         $tire->setQuantity(5);
-        $tire->setPrice(115);
+        $tire->setPrice(115.6);
         $tire->setLoadIndex(94);
         $tire->setSpeedIndex(210);
         $tire->setDiameter(16);
@@ -100,7 +100,7 @@ class TireRepositoryTest extends DoctrineTestCase
         $this->assertEquals('category name', $tire->getCategory());
         $this->assertEquals('season name', $tire->getSeason());
         $this->assertEquals('design name', $tire->getDesign());
-        $this->assertEquals('sealing name', $tire->getSealingMethod());
+        $this->assertEquals($sealingMethod, $tire->getSealingMethod());
         $this->assertEquals('thorns name', $tire->getThorns());
         $this->assertEquals(true, $tire->getEnabled());
         $this->assertEquals(0, $tire->getDiscount());

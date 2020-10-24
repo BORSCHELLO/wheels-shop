@@ -21,6 +21,10 @@ class DoctrineTestCase extends KernelTestCase
             ->get('doctrine')
             ->getManager();
 
+/*        $this->em->getConnection()
+            ->getConfiguration()
+            ->setSQLLogger(new \Doctrine\DBAL\Logging\EchoSQLLogger());*/
+
         $schemaTool = new SchemaTool($this->em);
         $schemaTool->dropSchema($this->em->getMetadataFactory()->getAllMetadata());
         $schemaTool->createSchema($this->em->getMetadataFactory()->getAllMetadata());

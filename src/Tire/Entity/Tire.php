@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Tire\Entity;
 
 use App\Image\Entity\Image;
@@ -19,6 +21,19 @@ use App\Thorns\Entity\Thorns;
  */
 class Tire
 {
+    const SEALING_METHOD_TUBE = 'tube';
+    const SEALING_METHOD_TUBELESS = 'tubeless';
+
+    const SEALING_METHODS = [
+        self::SEALING_METHOD_TUBELESS,
+        self::SEALING_METHOD_TUBE,
+    ];
+
+    const SEALING_METHOD_LABELS = [
+        self::SEALING_METHOD_TUBELESS => 'Бескамерная',
+        self::SEALING_METHOD_TUBE => 'Камерная',
+    ];
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -71,10 +86,9 @@ class Tire
     private $design;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Sealing::class)
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\Column(name="sealing_method", nullable=false, options={"default": Tire::SEALING_METHOD_TUBELESS})
      */
-    private $sealing_method;
+    private ?string $sealingMethod;
 
     /**
      * @ORM\Column(name="speed_index", type="integer")
@@ -144,7 +158,8 @@ class Tire
     {
         return $this->brand.' '.$this->getName();
     }
-        public function getId(): ?int
+
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -233,14 +248,14 @@ class Tire
         return $this;
     }
 
-    public function getSealingMethod(): ?Sealing
+    public function getSealingMethod(): ?string
     {
-        return $this->sealing_method;
+        return $this->sealingMethod;
     }
 
-    public function setSealingMethod(Sealing $sealing_method): self
+    public function setSealingMethod(string $sealingMethod): self
     {
-        $this->sealing_method = $sealing_method;
+        $this->sealingMethod = $sealingMethod;
 
         return $this;
     }
@@ -293,12 +308,12 @@ class Tire
         return $this;
     }
 
-    public function getPrice(): ?int
+    public function getPrice(): ?float
     {
         return $this->price;
     }
 
-    public function setPrice(int $price): self
+    public function setPrice(float $price): self
     {
         $this->price = $price;
 
@@ -317,12 +332,12 @@ class Tire
         return $this;
     }
 
-    public function getRating(): ?int
+    public function getRating(): ?float
     {
         return $this->rating;
     }
 
-    public function setRating(int $rating): self
+    public function setRating(float $rating): self
     {
         $this->rating = $rating;
 
