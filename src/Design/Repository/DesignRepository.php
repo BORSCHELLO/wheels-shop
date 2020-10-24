@@ -12,13 +12,20 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Design[]    findAll()
  * @method Design[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class DesignRepository extends ServiceEntityRepository
+class DesignRepository extends ServiceEntityRepository implements DesignRepositoryInterface
 {
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Design::class);
     }
 
+    public function create(Design $design): Design
+    {
+        $this->_em->persist($design);
+        $this->_em->flush();
+
+        return $design;
+    }
     // /**
     //  * @return Design[] Returns an array of Design objects
     //  */

@@ -1210,6 +1210,10 @@ h2.title {
 .item-control i:hover{
 	background:#ccccc6;
 }
+.disabled-button
+{
+  background:#ccccc6;
+}
 
 .product-information {
   border: 1px solid #F7F7F0;

@@ -12,13 +12,20 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Sealing[]    findAll()
  * @method Sealing[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class SealingRepository extends ServiceEntityRepository
+class SealingRepository extends ServiceEntityRepository implements SealingRepositoryInterface
 {
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Sealing::class);
     }
 
+    public function create(Sealing $sealing): Sealing
+    {
+        $this->_em->persist($sealing);
+        $this->_em->flush();
+
+        return $sealing;
+    }
     // /**
     //  * @return Sealing[] Returns an array of Sealing objects
     //  */

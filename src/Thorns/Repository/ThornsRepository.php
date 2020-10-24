@@ -12,13 +12,20 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Thorns[]    findAll()
  * @method Thorns[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class ThornsRepository extends ServiceEntityRepository
+class ThornsRepository extends ServiceEntityRepository implements ThornsRepositoryInterface
 {
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Thorns::class);
     }
 
+    public function create(Thorns $thorns): Thorns
+    {
+        $this->_em->persist($thorns);
+        $this->_em->flush();
+
+        return $thorns;
+    }
     // /**
     //  * @return Thorns[] Returns an array of Thorns objects
     //  */

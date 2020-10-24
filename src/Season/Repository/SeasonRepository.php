@@ -12,13 +12,20 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Season[]    findAll()
  * @method Season[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class SeasonRepository extends ServiceEntityRepository
+class SeasonRepository extends ServiceEntityRepository implements SeasonRepositoryInterface
 {
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Season::class);
     }
 
+    public function create(Season $season): Season
+    {
+        $this->_em->persist($season);
+        $this->_em->flush();
+
+        return $season;
+    }
     // /**
     //  * @return Season[] Returns an array of Season objects
     //  */

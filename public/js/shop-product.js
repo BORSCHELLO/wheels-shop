@@ -1,4 +1,3 @@
-
 function createElement(type)
 {
     return  document.createElement(type);
@@ -15,9 +14,9 @@ $(document).ready(function(){
                 console.log(item);
 
                 let container = document.getElementById('product-container');
-                let divImageContainer= createElement('div');
-                let divImage= createElement('div');
-                let img= createElement('img');
+                let divImageContainer = createElement('div');
+                let divImage = createElement('div');
+                let img = createElement('img');
                 let path = 'images/shop/'+item.images[0].source;
 
                 let divProductContainer= createElement('div');
@@ -58,7 +57,7 @@ $(document).ready(function(){
 
                 linkDetails.className='btn btn-default add-to-cart';
                 linkDetails.innerHTML='<i class="fa fa-plus-square"></i>Подробнее';
-                linkDetails.href='details';
+                linkDetails.href='details/'+item.id;
 
                 container.append(divImageContainer);
                 container.append(divProductContainer);

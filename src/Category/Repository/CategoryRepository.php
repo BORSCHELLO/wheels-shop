@@ -14,6 +14,14 @@ class CategoryRepository extends ServiceEntityRepository implements CategoryRepo
         parent::__construct($registry, Category::class);
     }
 
+    public function create(Category $category): Category
+    {
+        $this->_em->persist($category);
+        $this->_em->flush();
+
+        return $category;
+    }
+
     public function getCategory(int $visibility): ?CategoryCollection
     {
         return new CategoryCollection($this->createQueryBuilder('u')
