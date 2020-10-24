@@ -49,6 +49,22 @@ class Tire
         self::STUDS_WITHOUT => 'Без шипов',
     ];
 
+    const SEASON_MEDIUM = 'medium';
+    const SEASON_SNOW = 'snow';
+    const SEASON_ALL = 'all';
+
+    const SEASONS = [
+        self::SEASON_MEDIUM,
+        self::SEASON_SNOW,
+        self::SEASON_ALL,
+    ];
+
+    const SEASONS_LABELS = [
+        self::SEASON_MEDIUM => 'Летние',
+        self::SEASON_SNOW => 'Зимние',
+        self::SEASON_ALL => 'Всесезонные',
+    ];
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -74,8 +90,7 @@ class Tire
     private $category;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Season::class)
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\Column(nullable=false, options={"default": Tire::SEASON_MEDIUM})
      */
     private $season;
 
@@ -93,12 +108,6 @@ class Tire
      * @ORM\Column(type="integer")
      */
     private $diameter;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=Design::class)
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $design;
 
     /**
      * @ORM\Column(name="sealing_method", nullable=false, options={"default": Tire::SEALING_METHOD_TUBELESS})
@@ -202,18 +211,6 @@ class Tire
         return $this;
     }
 
-    public function getSeason(): ?Season
-    {
-        return $this->season;
-    }
-
-    public function setSeason(Season $season): self
-    {
-        $this->season = $season;
-
-        return $this;
-    }
-
     public function getWidth(): ?int
     {
         return $this->width;
@@ -243,21 +240,21 @@ class Tire
         return $this->diameter;
     }
 
-    public function setDiameter(int $diameter): self
+    public function getSeason()
     {
-        $this->diameter = $diameter;
+        return $this->season;
+    }
+
+    public function setSeason($season): self
+    {
+        $this->season = $season;
 
         return $this;
     }
 
-    public function getDesign(): ?Design
+    public function setDiameter(int $diameter): self
     {
-        return $this->design;
-    }
-
-    public function setDesign(Design $design): self
-    {
-        $this->design = $design;
+        $this->diameter = $diameter;
 
         return $this;
     }

@@ -47,8 +47,6 @@ class DashboardController extends AbstractDashboardController
             MenuItem::linkToCrud('Orders', 'fa fa-money', Order::class),
             MenuItem::linkToCrud('Users', 'fa fa-user', User::class),
             MenuItem::linkToCrud('Brands', 'fa fa-archive', Brand::class),
-            MenuItem::linkToCrud('Season', 'fa fa-thermometer', Season::class),
-            MenuItem::linkToCrud('Design', 'fa fa-cogs', Design::class),
         ];
     }
 }
