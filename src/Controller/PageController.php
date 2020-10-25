@@ -44,7 +44,7 @@ class PageController extends AbstractController
     }
 
     /**
-     *@Route("/details/{id}", name="details")
+     *@Route("/tire/details/{id}", name="tire/details")
      */
     public function details($id, TireRepository $tireRepository)
     {

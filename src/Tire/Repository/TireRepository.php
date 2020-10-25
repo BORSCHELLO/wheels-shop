@@ -29,7 +29,7 @@ class TireRepository extends ServiceEntityRepository implements TireRepositoryIn
         return $tire;
     }
 
-    public function getProducts(int $visibility): ?TireCollection
+    public function getProducts(bool $visibility): ?TireCollection
     {
         return new TireCollection($this->createQueryBuilder('u')
             ->andWhere('u.enabled = :val')

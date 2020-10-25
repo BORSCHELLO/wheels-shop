@@ -11,8 +11,6 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Category\Entity\Category;
 use App\Brand\Entity\Brand;
-use App\Season\Entity\Season;
-use App\Design\Entity\Design;
 use InvalidArgumentException;
 
 /**

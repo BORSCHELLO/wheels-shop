@@ -21,7 +21,7 @@ final class Version20201024195203 extends AbstractMigration
     {
         $this->addSql('ALTER TABLE tire DROP FOREIGN KEY FK_A2CE96DB4EC001D1');
         $this->addSql('ALTER TABLE tire DROP FOREIGN KEY FK_A2CE96DBE41DC9B2');
-        $this->addSql('ALTER TABLE tire CHANGE COLUMN season_id season ENUM ("medium", "snow", "all") not null');
+        $this->addSql('ALTER TABLE tire CHANGE COLUMN season_id season ENUM ("medium", "snow", "all") not null DEFAULT "medium"');
         $this->addSql('DROP TABLE season');
         $this->addSql('DROP TABLE design');
     }
