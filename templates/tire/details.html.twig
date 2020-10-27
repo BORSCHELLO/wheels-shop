@@ -1,0 +1,195 @@
+{% extends"base.html.twig" %}
+{% block title %}{{ tire.name }} | {{ tire.brand.name }} | Wheels-shop{% endblock %}
+{% block body %}
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="left-sidebar">
+                        <div class="shipping text-center"><!--shipping-->
+                            <img src="/images/home/shipping.jpg" alt="" />
+                        </div><!--/shipping-->
+
+                    </div>
+                </div>
+
+                <div class="col-sm-9 padding-right">
+                    <div class="product-details"><!--product-details-->
+                        <div class="col-sm-5">
+                            <div class="view-product" id="image-container">
+                                <img src="/images/shop/{{ tire.images[0].source }}" alt=""/>
+                            </div>
+                            <div id="similar-product" class="carousel slide" data-ride="carousel">
+
+                                <!-- Wrapper for slides -->
+                                <div class=" container row" id="litleImage-container">
+                                    {% for image in tire.images %}
+                                        {% if loop.index >3 %}
+                                    <a class="carousel-inner hide"  id="{{ loop.index }}"><img src="/images/shop/{{ image.source }}" width="106" height="150" alt=""/></a>
+                                        {% else %}
+                                    <a class="carousel-inner margin-right"  id="{{ loop.index }}" ><img  src="/images/shop/{{ image.source }}" width="106" height="150"alt=""/></a>
+                                        {% endif %}
+                                    {% endfor %}
+                                    <!-- Маленькие картинки -->
+                                </div>
+
+                                <!-- Controls -->
+                                <a class="left item-control" href="#" id="prev-product">
+                                    <i class="fa fa-angle-left"></i>
+                                </a>
+                                <a class="right item-control" href="#" id="next-product">
+                                    <i class="fa fa-angle-right"></i>
+                                </a>
+                            </div>
+
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="product-information" id="product-container">
+								<!--СКИДКА<img src="/images/product-details/new.jpg" class="newarrival" alt="" />-->
+                                <p><b class="brand-name-details">{{ tire.brand.name }}</b></p>
+								<h2>{{ tire.name }}</h2>
+								<!--Рейтинг--><img src="/images/product-details/rating.png" alt="" />
+
+
+									<p><b class="bold price">50 p.</b></p>
+									<p><b>Назначение:</b> {{ tire.category.name }}</p>
+									<p><b>Производитель:</b>{{ tire.brand.name }}</p>
+									<p><b>Диаметр:</b> {{ tire.diameter }}"</p>
+									<p><b>Ширина:</b> {{ tire.width }}</p>
+									<p><b>Высота:</b> {{ tire.height }}</p>
+									<p><b>Сезон:</b> {{ constant('App\\Tire\\Entity\\Tire::SEASONS_LABELS')[tire.season] }}</p>
+									<p><b>Способ герметизации:</b> {{ constant('App\\Tire\\Entity\\Tire::SEALING_METHOD_LABELS')[tire.sealingMethod] }}</p>
+									<p><b>Индекс скорости:</b> {{ tire.speedIndex }} км/ч</p>
+									<p><b>Индекс нагрузки:</b> {{ tire.loadIndex }}</p>
+									<p><b>Шипы:</b> {{ constant('App\\Tire\\Entity\\Tire::STUDS_LABELS')[tire.studs] }}</p>
+									<p><b>Дата выхода на рынок:</b> {{ tire.marketLaunchDate }} г.</p>
+
+									<a href="#" class="btn btn-default cart">
+										<i class="fa fa-shopping-cart"></i>
+										В корзину
+									</a>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="category-tab shop-details-tab">
+                        <div class="recommended_items"><!--recommended_items-->
+                            <br>
+                            <h2 class="title text-center">Интересные предложения</h2>
+
+                            <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
+                                <div class="carousel-inner">
+                                    <div class="item active">
+
+                                        <div class="col-sm-4">
+                                            <div class="product-image-wrapper">
+                                                <div class="single-products">
+                                                    <div class="productinfo text-center">
+                                                        <img src="/images/home/recommend1.jpg" alt="" />
+                                                        <h2>$56</h2>
+                                                        <p>Easy Polo Black Edition</p>
+                                                        <ul class="nav nav-pills nav-justified">
+                                                            <li><a href="#"><i class="fa fa-plus-square"></i>Подробнее</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-4">
+                                            <div class="product-image-wrapper">
+                                                <div class="single-products">
+                                                    <div class="productinfo text-center">
+                                                        <img src="/images/home/recommend2.jpg" alt="" />
+                                                        <h2>$56</h2>
+                                                        <p>Easy Polo Black Edition</p>
+                                                        <ul class="nav nav-pills nav-justified">
+                                                            <li><a href="#"><i class="fa fa-plus-square"></i>Подробнее</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-4">
+                                            <div class="product-image-wrapper">
+                                                <div class="single-products">
+                                                    <div class="productinfo text-center">
+                                                        <img src="/images/home/recommend3.jpg" alt="" />
+                                                        <h2>$56</h2>
+                                                        <p>Easy Polo Black Edition</p>
+                                                        <ul class="nav nav-pills nav-justified">
+                                                            <li><a href="#"><i class="fa fa-plus-square"></i>Подробнее</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="item">
+                                        <div class="col-sm-4">
+                                            <div class="product-image-wrapper">
+                                                <div class="single-products">
+                                                    <div class="productinfo text-center">
+                                                        <img src="/images/home/recommend1.jpg" alt="" />
+                                                        <h2>$56</h2>
+                                                        <p>Easy Polo Black Edition</p>
+                                                        <ul class="nav nav-pills nav-justified">
+                                                            <li><a href="#"><i class="fa fa-plus-square"></i>Подробнее</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="product-image-wrapper">
+                                                <div class="single-products">
+                                                    <div class="productinfo text-center">
+                                                        <img src="/images/home/recommend2.jpg" alt="" />
+                                                        <h2>$56</h2>
+                                                        <p>Easy Polo Black Edition</p>
+                                                        <ul class="nav nav-pills nav-justified">
+                                                            <li><a href="#"><i class="fa fa-plus-square"></i>Подробнее</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="product-image-wrapper">
+                                                <div class="single-products">
+                                                    <div class="productinfo text-center">
+                                                        <img src="/images/home/recommend3.jpg" alt="" />
+                                                        <h2>$56</h2>
+                                                        <p>Easy Polo Black Edition</p>
+                                                        <ul class="nav nav-pills nav-justified">
+                                                            <li><a href="#"><i class="fa fa-plus-square"></i>Подробнее</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
+                                    <i class="fa fa-angle-left"></i>
+                                </a>
+                                <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
+                                    <i class="fa fa-angle-right"></i>
+                                </a>
+                            </div>
+                        </div><!--/recommended_items-->
+                    </div>
+                </div>
+    </section>
+{% endblock %}
+{% block javascripts %}
+    <script src="/js/jquery.js"></script>
+    <script src="/js/price-range.js"></script>
+    <script src="/js/jquery.scrollUp.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/jquery.prettyPhoto.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/details.js"></script>
+{% endblock %}

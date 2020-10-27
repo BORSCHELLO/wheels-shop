@@ -28,7 +28,7 @@ ADD . .
 RUN mkdir /var/www/.composer
 RUN chown www-data:www-data /var/www/.composer
 
-COPY --from=composer:1.10.7 /usr/bin/composer /usr/bin/composer
+COPY --from=composer:2.0 /usr/bin/composer /usr/bin/composer
 
 COPY ./xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
 

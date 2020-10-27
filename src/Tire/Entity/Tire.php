@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Tire\Entity;
 
 use App\Image\Entity\Image;
@@ -9,16 +11,58 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Category\Entity\Category;
 use App\Brand\Entity\Brand;
-use App\Season\Entity\Season;
-use App\Design\Entity\Design;
-use App\Sealing\Entity\Sealing;
-use App\Thorns\Entity\Thorns;
+use InvalidArgumentException;
 
 /**
  * @ORM\Entity(repositoryClass=TireRepository::class)
  */
 class Tire
 {
+    const SEALING_METHOD_TUBE = 'tube';
+    const SEALING_METHOD_TUBELESS = 'tubeless';
+
+    const SEALING_METHODS = [
+        self::SEALING_METHOD_TUBELESS,
+        self::SEALING_METHOD_TUBE,
+    ];
+
+    const SEALING_METHOD_LABELS = [
+        self::SEALING_METHOD_TUBELESS => 'Бескамерная',
+        self::SEALING_METHOD_TUBE => 'Камерная',
+    ];
+
+    const STUDS_WITH = 'with';
+    const STUDS_POSSIBILITY = 'possibility';
+    const STUDS_WITHOUT = 'without';
+
+    const STUDS = [
+        self::STUDS_WITH,
+        self::STUDS_POSSIBILITY,
+        self::STUDS_WITHOUT,
+    ];
+
+    const STUDS_LABELS = [
+        self::STUDS_WITH => 'С шипами',
+        self::STUDS_POSSIBILITY => 'С возможностью шиповки',
+        self::STUDS_WITHOUT => 'Без шипов',
+    ];
+
+    const SEASON_MEDIUM = 'medium';
+    const SEASON_SNOW = 'snow';
+    const SEASON_ALL = 'all';
+
+    const SEASONS = [
+        self::SEASON_MEDIUM,
+        self::SEASON_SNOW,
+        self::SEASON_ALL,
+    ];
+
+    const SEASONS_LABELS = [
+        self::SEASON_MEDIUM => 'Летние',
+        self::SEASON_SNOW => 'Зимние',
+        self::SEASON_ALL => 'Всесезонные',
+    ];
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -44,8 +88,7 @@ class Tire
     private $category;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Season::class)
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\Column(nullable=false, options={"default": Tire::SEASON_MEDIUM})
      */
     private $season;
 
@@ -65,16 +108,9 @@ class Tire
     private $diameter;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Design::class)
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\Column(name="sealing_method", nullable=false, options={"default": Tire::SEALING_METHOD_TUBELESS})
      */
-    private $design;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=Sealing::class)
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $sealing_method;
+    private ?string $sealingMethod;
 
     /**
      * @ORM\Column(name="speed_index", type="integer")
@@ -87,10 +123,9 @@ class Tire
     private $loadIndex;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Thorns::class)
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\Column(name="studs", nullable=false, options={"default": Tire::STUDS_WITHOUT})
      */
-    private $thorns;
+    private ?string $studs;
 
     /**
      * @ORM\Column(name="market_launch_date", type="integer")
@@ -144,7 +179,8 @@ class Tire
     {
         return $this->brand.' '.$this->getName();
     }
-        public function getId(): ?int
+
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -169,18 +205,6 @@ class Tire
     public function setBrand(Brand $brand): self
     {
         $this->brand = $brand;
-
-        return $this;
-    }
-
-    public function getSeason(): ?Season
-    {
-        return $this->season;
-    }
-
-    public function setSeason(Season $season): self
-    {
-        $this->season = $season;
 
         return $this;
     }
@@ -214,6 +238,18 @@ class Tire
         return $this->diameter;
     }
 
+    public function getSeason()
+    {
+        return $this->season;
+    }
+
+    public function setSeason($season): self
+    {
+        $this->season = $season;
+
+        return $this;
+    }
+
     public function setDiameter(int $diameter): self
     {
         $this->diameter = $diameter;
@@ -221,26 +257,18 @@ class Tire
         return $this;
     }
 
-    public function getDesign(): ?Design
+    public function getSealingMethod(): ?string
     {
-        return $this->design;
+        return $this->sealingMethod;
     }
 
-    public function setDesign(Design $design): self
+    public function setSealingMethod(string $sealingMethod): self
     {
-        $this->design = $design;
+        if (!in_array($sealingMethod, self::SEALING_METHODS)) {
+            throw new InvalidArgumentException();
+        }
 
-        return $this;
-    }
-
-    public function getSealingMethod(): ?Sealing
-    {
-        return $this->sealing_method;
-    }
-
-    public function setSealingMethod(Sealing $sealing_method): self
-    {
-        $this->sealing_method = $sealing_method;
+        $this->sealingMethod = $sealingMethod;
 
         return $this;
     }
@@ -269,14 +297,14 @@ class Tire
         return $this;
     }
 
-    public function getThorns(): ?Thorns
+    public function getStuds(): ?string
     {
-        return $this->thorns;
+        return $this->studs;
     }
 
-    public function setThorns(Thorns $thorns): self
+    public function setStuds(string $studs): self
     {
-        $this->thorns = $thorns;
+        $this->studs = $studs;
 
         return $this;
     }
@@ -293,12 +321,12 @@ class Tire
         return $this;
     }
 
-    public function getPrice(): ?int
+    public function getPrice(): ?float
     {
         return $this->price;
     }
 
-    public function setPrice(int $price): self
+    public function setPrice(float $price): self
     {
         $this->price = $price;
 
@@ -317,12 +345,12 @@ class Tire
         return $this;
     }
 
-    public function getRating(): ?int
+    public function getRating(): ?float
     {
         return $this->rating;
     }
 
-    public function setRating(int $rating): self
+    public function setRating(float $rating): self
     {
         $this->rating = $rating;
 

@@ -9,7 +9,9 @@ interface TireRepositoryInterface
 {
     public function create(Tire $tire): Tire;
 
-    public function getProducts(int $visibility): ?TireCollection;
+    public function getProducts(bool $visibility): TireCollection;
 
-    public function getProductsById(int $id): ?TireCollection;
+    public function findEnabledById(int $id): ?Tire;
+
+    public function getRelevantByDiameter(array $excludedIds, int $diameter, int $limit): TireCollection;
 }

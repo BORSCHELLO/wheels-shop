@@ -8,83 +8,52 @@ use App\Brand\Entity\Brand;
 use App\Brand\Repository\BrandRepositoryInterface;
 use App\Category\Entity\Category;
 use App\Category\Repository\CategoryRepositoryInterface;
-use App\Design\Entity\Design;
-use App\Design\Repository\DesignRepositoryInterface;
-use App\Sealing\Entity\Sealing;
-use App\Sealing\Repository\SealingRepositoryInterface;
-use App\Season\Entity\Season;
-use App\Season\Repository\SeasonRepositoryInterface;
-use App\Thorns\Entity\Thorns;
-use App\Thorns\Repository\ThornsRepositoryInterface;
+use App\DataFixtures\TireFixtures;
+use App\Tests\Unit\FixturesTestCase;
 use App\Tire\Entity\Tire;
 use App\Tire\Repository\TireRepositoryInterface;
-use App\Tests\Unit\DoctrineTestCase;
 
-class TireRepositoryTest extends DoctrineTestCase
+class TireRepositoryTest extends FixturesTestCase
 {
-    protected TireRepositoryInterface $tireRepository;
+    private TireRepositoryInterface $tireRepository;
 
-    protected BrandRepositoryInterface $brandRepository;
+    private BrandRepositoryInterface $brandRepository;
 
-    protected CategoryRepositoryInterface $categoryRepository;
+    private CategoryRepositoryInterface $categoryRepository;
 
-    protected DesignRepositoryInterface $designRepository;
-
-    protected SeasonRepositoryInterface $seasonRepository;
-
-    protected SealingRepositoryInterface $sealingRepository;
-
-    protected ThornsRepositoryInterface $thornsRepository;
-
-    public function setUp(): void
+    protected function setUp()
     {
         parent::setUp();
+        $this->tireRepository= $this->em->getRepository(Tire::class);
+        $this->brandRepository= $this->em->getRepository(Brand::class);
+        $this->categoryRepository= $this->em->getRepository(Category::class);
 
-        $this->tireRepository = $this->em->getRepository(Tire::class);
-        $this->brandRepository = $this->em->getRepository(Brand::class);
-        $this->categoryRepository = $this->em->getRepository(Category::class);
-        $this->designRepository = $this->em->getRepository(Design::class);
-        $this->seasonRepository = $this->em->getRepository(Season::class);
-        $this->sealingRepository = $this->em->getRepository(Sealing::class);
-        $this->thornsRepository = $this->em->getRepository(Thorns::class);
     }
 
     public function testCreate()
     {
         $tire = new Tire();
-        $brand = new Brand();
-        $brand->setName('brand name');
+        $brand= new Brand();
+        $brand->setName('brand test');
         $brand->setEnabled(true);
         $this->brandRepository->create($brand);
+
         $category = new Category();
-        $category->setName('category name');
+        $category->setName('category test');
         $category->setEnabled(true);
         $this->categoryRepository->create($category);
-        $season = new Season();
-        $season->setName('season name');
-        $this->seasonRepository->create($season);
-        $design = new Design();
-        $design->setName('design name');
-        $this->designRepository->create($design);
-        $sealing_method = new Sealing();
-        $sealing_method->setName('sealing name');
-        $this->sealingRepository->create($sealing_method);
-        $thorns = new Thorns();
-        $thorns->setName('thorns name');
-        $this->thornsRepository->create($thorns);
 
         $tire->setName('test name');
         $tire->setBrand($brand);
         $tire->setCategory($category);
-        $tire->setSeason($season);
-        $tire->setDesign($design);
-        $tire->setSealingMethod($sealing_method);
-        $tire->setThorns($thorns);
+        $tire->setSealingMethod(Tire::SEALING_METHOD_TUBELESS);
+        $tire->setStuds(Tire::STUDS_WITHOUT);
+        $tire->setSeason(Tire::SEASON_MEDIUM);
         $tire->setEnabled(true);
         $tire->setDiscount(0);
-        $tire->setRating(4);
+        $tire->setRating(4.5);
         $tire->setQuantity(5);
-        $tire->setPrice(115);
+        $tire->setPrice(115.5);
         $tire->setLoadIndex(94);
         $tire->setSpeedIndex(210);
         $tire->setDiameter(16);
@@ -96,17 +65,16 @@ class TireRepositoryTest extends DoctrineTestCase
 
         $this->assertEquals(1, $tire->getId());
         $this->assertEquals('test name', $tire->getName());
-        $this->assertEquals('brand name', $tire->getBrand());
-        $this->assertEquals('category name', $tire->getCategory());
-        $this->assertEquals('season name', $tire->getSeason());
-        $this->assertEquals('design name', $tire->getDesign());
-        $this->assertEquals('sealing name', $tire->getSealingMethod());
-        $this->assertEquals('thorns name', $tire->getThorns());
+        $this->assertEquals($brand, $tire->getBrand());
+        $this->assertEquals($category, $tire->getCategory());
+        $this->assertEquals(Tire::SEALING_METHOD_TUBELESS, $tire->getSealingMethod());
+        $this->assertEquals(Tire::STUDS_WITHOUT, $tire->getStuds());
+        $this->assertEquals(Tire::SEASON_MEDIUM, $tire->getSeason());
         $this->assertEquals(true, $tire->getEnabled());
         $this->assertEquals(0, $tire->getDiscount());
-        $this->assertEquals(4, $tire->getRating());
+        $this->assertEquals(4.5, $tire->getRating());
         $this->assertEquals(5, $tire->getQuantity());
-        $this->assertEquals(115, $tire->getPrice());
+        $this->assertEquals(115.5, $tire->getPrice());
         $this->assertEquals(94, $tire->getLoadIndex());
         $this->assertEquals(210, $tire->getSpeedIndex());
         $this->assertEquals(16, $tire->getDiameter());
@@ -117,180 +85,80 @@ class TireRepositoryTest extends DoctrineTestCase
 
     public function testGetProducts()
     {
-        $tire1 = new Tire();
-        $tire2 = new Tire();
-        $tire3 = new Tire();
-        $brand = new Brand();
-        $brand->setName('brand name');
-        $brand->setEnabled(true);
-        $this->brandRepository->create($brand);
-        $category = new Category();
-        $category->setName('category name');
-        $category->setEnabled(true);
-        $this->categoryRepository->create($category);
-        $season = new Season();
-        $season->setName('season name');
-        $this->seasonRepository->create($season);
-        $design = new Design();
-        $design->setName('design name');
-        $this->designRepository->create($design);
-        $sealing_method = new Sealing();
-        $sealing_method->setName('sealing name');
-        $this->sealingRepository->create($sealing_method);
-        $thorns = new Thorns();
-        $thorns->setName('thorns name');
-        $this->thornsRepository->create($thorns);
-
-        $tire1->setName('test name')
-        ->setBrand($brand)
-        ->setCategory($category)
-        ->setSeason($season)
-        ->setDesign($design)
-        ->setSealingMethod($sealing_method)
-        ->setThorns($thorns)
-        ->setEnabled(true)
-        ->setDiscount(0)
-        ->setRating(4)
-        ->setQuantity(5)
-        ->setPrice(115)
-        ->setLoadIndex(94)
-        ->setSpeedIndex(210)
-        ->setDiameter(16)
-        ->setHeight(55)
-        ->setWidth(205)
-        ->setMarketLaunchDate(2020);
-
-        $this->tireRepository->create($tire1);
-
-        $tire2->setName('test name')
-        ->setBrand($brand)
-        ->setCategory($category)
-        ->setSeason($season)
-        ->setDesign($design)
-        ->setSealingMethod($sealing_method)
-        ->setThorns($thorns)
-        ->setEnabled(true)
-        ->setDiscount(0)
-        ->setRating(4)
-        ->setQuantity(5)
-        ->setPrice(115)
-        ->setLoadIndex(94)
-        ->setSpeedIndex(210)
-        ->setDiameter(16)
-        ->setHeight(55)
-        ->setWidth(205)
-        ->setMarketLaunchDate(2020);
-
-        $this->tireRepository->create($tire2);
-
-        $tire3->setName('test name')
-            ->setBrand($brand)
-            ->setCategory($category)
-            ->setSeason($season)
-            ->setDesign($design)
-            ->setSealingMethod($sealing_method)
-            ->setThorns($thorns)
-            ->setEnabled(false)
-            ->setDiscount(0)
-            ->setRating(4)
-            ->setQuantity(5)
-            ->setPrice(115)
-            ->setLoadIndex(94)
-            ->setSpeedIndex(210)
-            ->setDiameter(16)
-            ->setHeight(55)
-            ->setWidth(205)
-            ->setMarketLaunchDate(2020);
-
-
-        $this->tireRepository->create($tire3);
-
-        $collection = $this->tireRepository->getProducts(1);
-        $this->assertCount(2, $collection);
-        $this->assertSame($collection->get(0), $tire1);
-        $this->assertSame($collection->get(1), $tire2);
-
-        $collection = $this->tireRepository->getProducts(0);
-
-        $this->assertCount(1, $collection);
-        $this->assertSame($collection->get(0), $tire3);
+        $this->assertCount(6, $this->tireRepository->getProducts(true));
+        $this->assertCount(1, $this->tireRepository->getProducts(false));
     }
 
-    public function testGetProductsById()
+    public function testFindEnabledById()
     {
         $tire1 = new Tire();
-        $tire2 = new Tire();
-        $tire3 = new Tire();
-        $brand = new Brand();
-        $brand->setName('brand name');
+        $brand= new Brand();
+        $brand->setName('brand test1');
         $brand->setEnabled(true);
         $this->brandRepository->create($brand);
+
         $category = new Category();
-        $category->setName('category name');
+        $category->setName('category test1');
         $category->setEnabled(true);
         $this->categoryRepository->create($category);
-        $season = new Season();
-        $season->setName('season name');
-        $this->seasonRepository->create($season);
-        $design = new Design();
-        $design->setName('design name');
-        $this->designRepository->create($design);
-        $sealing_method = new Sealing();
-        $sealing_method->setName('sealing name');
-        $this->sealingRepository->create($sealing_method);
-        $thorns = new Thorns();
-        $thorns->setName('thorns name');
-        $this->thornsRepository->create($thorns);
 
-        $tire1->setName('test name')
-            ->setBrand($brand)
-            ->setCategory($category)
-            ->setSeason($season)
-            ->setDesign($design)
-            ->setSealingMethod($sealing_method)
-            ->setThorns($thorns)
-            ->setEnabled(true)
-            ->setDiscount(0)
-            ->setRating(4)
-            ->setQuantity(5)
-            ->setPrice(115)
-            ->setLoadIndex(94)
-            ->setSpeedIndex(210)
-            ->setDiameter(16)
-            ->setHeight(55)
-            ->setWidth(205)
-            ->setMarketLaunchDate(2020);
+        $tire1->setName('test name1');
+        $tire1->setBrand($brand);
+        $tire1->setCategory($category);
+        $tire1->setSealingMethod(Tire::SEALING_METHOD_TUBELESS);
+        $tire1->setStuds(Tire::STUDS_WITHOUT);
+        $tire1->setSeason(Tire::SEASON_MEDIUM);
+        $tire1->setEnabled(true);
+        $tire1->setDiscount(0);
+        $tire1->setRating(4.5);
+        $tire1->setQuantity(5);
+        $tire1->setPrice(115.5);
+        $tire1->setLoadIndex(94);
+        $tire1->setSpeedIndex(210);
+        $tire1->setDiameter(16);
+        $tire1->setHeight(55);
+        $tire1->setWidth(205);
+        $tire1->setMarketLaunchDate(2020);
 
         $this->tireRepository->create($tire1);
 
-        $tire2->setName('test name')
-            ->setBrand($brand)
-            ->setCategory($category)
-            ->setSeason($season)
-            ->setDesign($design)
-            ->setSealingMethod($sealing_method)
-            ->setThorns($thorns)
-            ->setEnabled(true)
-            ->setDiscount(0)
-            ->setRating(4)
-            ->setQuantity(5)
-            ->setPrice(115)
-            ->setLoadIndex(94)
-            ->setSpeedIndex(210)
-            ->setDiameter(16)
-            ->setHeight(55)
-            ->setWidth(205)
-            ->setMarketLaunchDate(2020);
+        $tire2 = new Tire();
+
+        $tire2->setName('test name2');
+        $tire2->setBrand($brand);
+        $tire2->setCategory($category);
+        $tire2->setSealingMethod(Tire::SEALING_METHOD_TUBELESS);
+        $tire2->setStuds(Tire::STUDS_WITHOUT);
+        $tire2->setSeason(Tire::SEASON_MEDIUM);
+        $tire2->setEnabled(true);
+        $tire2->setDiscount(0);
+        $tire2->setRating(4.5);
+        $tire2->setQuantity(5);
+        $tire2->setPrice(115.5);
+        $tire2->setLoadIndex(94);
+        $tire2->setSpeedIndex(210);
+        $tire2->setDiameter(16);
+        $tire2->setHeight(55);
+        $tire2->setWidth(205);
+        $tire2->setMarketLaunchDate(2020);
 
         $this->tireRepository->create($tire2);
 
+        $this->assertEquals(1, $this->tireRepository->findEnabledById(1)->getId());
+        $this->assertEquals(2, $this->tireRepository->findEnabledById(2)->getId());
+    }
 
-        $collection = $this->tireRepository->getProductsById(1);
-        $this->assertCount(1, $collection);
-        $this->assertSame($collection->get(0), $tire1);
+    public function testGetRelevantByDiameter()
+    {
+        $arr=[1];
+        $this->assertCount(3,$this->tireRepository->getRelevantByDiameter($arr,17,3));
+        $this->assertCount(2,$this->tireRepository->getRelevantByDiameter($arr,17,2));
+        $this->assertCount(1,$this->tireRepository->getRelevantByDiameter($arr,17,1));
 
-        $collection = $this->tireRepository->getProducts(5);
-        $this->assertEmpty($collection);
+        $this->assertEmpty($this->tireRepository->getRelevantByDiameter($arr,3500,1));
 
+        $this->assertEmpty($this->tireRepository->getRelevantByDiameter($arr,15,1));
+        $arr1=[2];
+        $this->assertNotEmpty($this->tireRepository->getRelevantByDiameter($arr1,15,1));
     }
 }

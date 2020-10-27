@@ -10,6 +10,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
@@ -27,10 +28,9 @@ class TireCrudController extends AbstractCrudController
             TextField::new('name')->setLabel('Модель'),
             AssociationField::new('brand')->setLabel('Бренд'),
             AssociationField::new('category')->setLabel('Тип'),
-            AssociationField::new('season')->setLabel('Сезон'),
-            AssociationField::new('sealing_method')->setLabel('Герметизация'),
-            AssociationField::new('design')->setLabel('Конструкция'),
-            AssociationField::new('thorns')->setLabel('Шиповка'),
+            ChoiceField::new('season')->setLabel('Сезон')->setChoices(array_flip(Tire::SEASONS_LABELS)),
+            ChoiceField::new('sealingMethod')->setLabel('Герметизация')->setChoices(array_flip(Tire::SEALING_METHOD_LABELS)),
+            ChoiceField::new('studs')->setLabel('Шиповка')->setChoices(array_flip(Tire::STUDS_LABELS)),
             IntegerField::new('width')->setLabel('Ширина'),
             IntegerField::new('height')->setLabel('Высота'),
             IntegerField::new('diameter')->setLabel('Диаметр'),

@@ -4,7 +4,7 @@ function createElement(type)
 }
 
 $(document).ready(function() {
-    var products = $('.product-data').data('product');
+/*    var products = $('.product-data').data('product');
     products.forEach(function (item) {
         let containerMainWrapper = document.getElementById('container-main-wrapper');
         let container= createElement('div')
@@ -90,4 +90,6 @@ $(document).ready(function() {
         detailslinkUl.appendChild(detailslinkLi);
         detailslinkLi.appendChild(linkDetails);
     })
+    var brands = $('.brand-data').data('brand');
+    console.log(brands);*/
 });
