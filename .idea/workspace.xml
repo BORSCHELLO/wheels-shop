@@ -2,20 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="56b36591-f836-4b43-834e-6ee5b7cb01de" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/b2e8ba5c-fb43-4dec-9201-f39ed8ca1f47.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/b2e8ba5c-fb43-4dec-9201-f39ed8ca1f47.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/bundles.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/shop-filter.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/shop-filter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/Admin/ImageCrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Admin/ImageCrudController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/Admin/TireCrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Admin/TireCrudController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/main.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/PageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/PageController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ShopController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ShopController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Image/Entity/Image.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Image/Entity/Image.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Tire/Entity/Tire.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tire/Entity/Tire.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Tire/Repository/TireRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tire/Repository/TireRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/product-details.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/product-details.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/shop.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/shop.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/home.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,7 +16,9 @@
   </component>
   <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
-    <execution />
+    <execution>
+      <interpreter composer="composer" />
+    </execution>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -37,7 +31,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="PhpWorkspaceProjectConfiguration">
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="app">
     <include_path>
       <path value="$PROJECT_DIR$/vendor/symfony/deprecation-contracts" />
       <path value="$PROJECT_DIR$/vendor/symfony/console" />
@@ -159,24 +153,57 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/Response/Tire/Normalizer" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/tests/Unit/App/Thorns" />
+    <property name="settings.editor.selected.configurable" value="web-ide.project.structure" />
+    <property name="settings.editor.splitter.proportion" value="0.27032322" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/tests/Unit/App/Thorns" />
+      <recent name="$PROJECT_DIR$/tests/Unit/App/Sealing" />
+      <recent name="$PROJECT_DIR$/tests/Unit/App/Season" />
+      <recent name="$PROJECT_DIR$/tests/Unit/App/Design/Repository" />
+      <recent name="$PROJECT_DIR$/tests/Unit/App/Tire" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/tests/Unit/App" />
       <recent name="$PROJECT_DIR$/templates/Bundles/EasyAdmin" />
       <recent name="$PROJECT_DIR$/templates/bundles" />
       <recent name="$PROJECT_DIR$/src/Image/Entity" />
       <recent name="$PROJECT_DIR$/src/User/Entity" />
-      <recent name="$PROJECT_DIR$/src/Category/Entity" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/Response/Tire/Normalizer" />
-      <recent name="$PROJECT_DIR$/src/Response/Filter/Normalizer" />
-      <recent name="$PROJECT_DIR$/src/Response/Tire" />
-      <recent name="$PROJECT_DIR$/src/Tire/Repository" />
-      <recent name="$PROJECT_DIR$/src/Tire/Collection" />
-    </key>
+  </component>
+  <component name="RunManager" selected="PHPUnit.TireRepositoryTest">
+    <configuration name="DesignRepositoryTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="App\Tests\Unit\App\Design\Repository\DesignRepositoryTest" configuration_file="/var/www/html/phpunit.xml.dist" file="$PROJECT_DIR$/tests/Unit/App/Design/Repository/DesignRepositoryTest.php" scope="Class" />
+      <method v="2" />
+    </configuration>
+    <configuration name="SealingRepositoryTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="App\Tests\Unit\App\Sealing\Repository\SealingRepositoryTest" configuration_file="/var/www/html/phpunit.xml.dist" file="$PROJECT_DIR$/tests/Unit/App/Sealing/Repository/SealingRepositoryTest.php" scope="Class" />
+      <method v="2" />
+    </configuration>
+    <configuration name="SeasonRepositoryTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="App\Tests\Unit\App\Season\Repository\SeasonRepositoryTest" configuration_file="/var/www/html/phpunit.xml.dist" file="$PROJECT_DIR$/tests/Unit/App/Season/Repository/SeasonRepositoryTest.php" scope="Class" />
+      <method v="2" />
+    </configuration>
+    <configuration name="ThornsRepositoryTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="App\Tests\Unit\App\Thorns\Repository\ThornsRepositoryTest" configuration_file="/var/www/html/phpunit.xml.dist" file="$PROJECT_DIR$/tests/Unit/App/Thorns/Repository/ThornsRepositoryTest.php" scope="Class" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TireRepositoryTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="App\Tests\Unit\App\Tire\Repository\TireRepositoryTest" configuration_file="/var/www/html/phpunit.xml.dist" file="$PROJECT_DIR$/tests/Unit/App/Tire/Repository/TireRepositoryTest.php" scope="Class" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="PHPUnit.TireRepositoryTest" />
+        <item itemvalue="PHPUnit.ThornsRepositoryTest" />
+        <item itemvalue="PHPUnit.SealingRepositoryTest" />
+        <item itemvalue="PHPUnit.SeasonRepositoryTest" />
+        <item itemvalue="PHPUnit.DesignRepositoryTest" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -196,7 +223,20 @@
       <workItem from="1602839773709" duration="10751000" />
       <workItem from="1602954715196" duration="14947000" />
       <workItem from="1603005996165" duration="8874000" />
-      <workItem from="1603117050701" duration="7939000" />
+      <workItem from="1603117050701" duration="8761000" />
+      <workItem from="1603203028641" duration="14971000" />
+      <workItem from="1603291754646" duration="10545000" />
+      <workItem from="1603373226096" duration="4071000" />
+      <workItem from="1603378751440" duration="1666000" />
+      <workItem from="1603384110148" duration="1046000" />
+      <workItem from="1603385173344" duration="109000" />
+      <workItem from="1603385479427" duration="3000" />
+      <workItem from="1603385648078" duration="377000" />
+      <workItem from="1603386033316" duration="602000" />
+      <workItem from="1603388358090" duration="3327000" />
+      <workItem from="1603462669263" duration="10849000" />
+      <workItem from="1603480004746" duration="209000" />
+      <workItem from="1603526332350" duration="21048000" />
     </task>
     <servers />
   </component>
@@ -204,32 +244,80 @@
     <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="901" y="395" width="824" height="691" key="#CLI_Interpreters" timestamp="1603301315724">
+      <screen x="72" y="27" width="2488" height="1413" />
+    </state>
+    <state x="901" y="395" width="824" height="691" key="#CLI_Interpreters/72.27.2488.1413@72.27.2488.1413" timestamp="1603301315724" />
+    <state x="901" y="395" width="824" height="691" key="#Test_Frameworks" timestamp="1603298083835">
+      <screen x="72" y="27" width="2488" height="1413" />
+    </state>
+    <state x="901" y="395" width="824" height="691" key="#Test_Frameworks/72.27.2488.1413@72.27.2488.1413" timestamp="1603298083835" />
     <state x="1349" y="420" width="800" height="684" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1602583491932">
       <screen x="72" y="24" width="2488" height="1416" />
     </state>
     <state x="1349" y="420" width="800" height="684" key="#com.intellij.execution.impl.EditConfigurationsDialog/72.24.2488.1416@72.24.2488.1416" timestamp="1602583491932" />
-    <state x="965" y="535" width="692" height="403" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1603006503680">
+    <state x="965" y="535" width="721" height="779" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1603474410988">
       <screen x="72" y="27" width="2488" height="1413" />
     </state>
-    <state x="965" y="535" width="692" height="403" key="#com.intellij.fileTypes.FileTypeChooser/72.27.2488.1413@72.27.2488.1413" timestamp="1603006503680" />
-    <state x="963" y="377" width="686" height="727" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1603006860003">
+    <state x="965" y="535" width="721" height="779" key="#com.intellij.fileTypes.FileTypeChooser/72.27.2488.1413@72.27.2488.1413" timestamp="1603474410988" />
+    <state x="963" y="377" width="686" height="727" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1603529884086">
       <screen x="72" y="27" width="2488" height="1413" />
     </state>
-    <state x="963" y="377" width="686" height="727" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/72.27.2488.1413@72.27.2488.1413" timestamp="1603006860003" />
-    <state x="1049" y="492" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1603006403911">
+    <state x="963" y="377" width="686" height="727" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/72.27.2488.1413@72.27.2488.1413" timestamp="1603529884086" />
+    <state x="1049" y="492" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1603542985585">
       <screen x="72" y="27" width="2488" height="1413" />
     </state>
     <state x="1049" y="490" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/72.24.2488.1416@72.24.2488.1416" timestamp="1602665129887" />
-    <state x="1049" y="492" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/72.27.2488.1413@72.27.2488.1413" timestamp="1603006403911" />
+    <state x="1049" y="492" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/72.27.2488.1413@72.27.2488.1413" timestamp="1603542985585" />
+    <state x="1061" y="620" width="499" height="255" key="DockerComposeFileDialog" timestamp="1603301225460">
+      <screen x="72" y="27" width="2488" height="1413" />
+    </state>
+    <state x="1061" y="620" width="499" height="255" key="DockerComposeFileDialog/72.27.2488.1413@72.27.2488.1413" timestamp="1603301225460" />
+    <state x="1096" y="498" width="424" height="491" key="FileChooserDialogImpl" timestamp="1603301038014">
+      <screen x="72" y="27" width="2488" height="1413" />
+    </state>
+    <state x="1096" y="498" width="424" height="491" key="FileChooserDialogImpl/72.27.2488.1413@72.27.2488.1413" timestamp="1603301038014" />
+    <state width="2442" height="310" key="GridCell.Tab.0.bottom" timestamp="1603534337063">
+      <screen x="72" y="27" width="2488" height="1413" />
+    </state>
+    <state width="2442" height="310" key="GridCell.Tab.0.bottom/72.27.2488.1413@72.27.2488.1413" timestamp="1603534337063" />
+    <state width="2442" height="310" key="GridCell.Tab.0.center" timestamp="1603534337063">
+      <screen x="72" y="27" width="2488" height="1413" />
+    </state>
+    <state width="2442" height="310" key="GridCell.Tab.0.center/72.27.2488.1413@72.27.2488.1413" timestamp="1603534337063" />
+    <state width="2442" height="310" key="GridCell.Tab.0.left" timestamp="1603534337063">
+      <screen x="72" y="27" width="2488" height="1413" />
+    </state>
+    <state width="2442" height="310" key="GridCell.Tab.0.left/72.27.2488.1413@72.27.2488.1413" timestamp="1603534337063" />
+    <state width="2442" height="310" key="GridCell.Tab.0.right" timestamp="1603534337063">
+      <screen x="72" y="27" width="2488" height="1413" />
+    </state>
+    <state width="2442" height="310" key="GridCell.Tab.0.right/72.27.2488.1413@72.27.2488.1413" timestamp="1603534337063" />
+    <state width="2442" height="484" key="GridCell.Tab.1.bottom" timestamp="1603479855991">
+      <screen x="72" y="27" width="2488" height="1413" />
+    </state>
+    <state width="2442" height="484" key="GridCell.Tab.1.bottom/72.27.2488.1413@72.27.2488.1413" timestamp="1603479855991" />
+    <state width="2442" height="484" key="GridCell.Tab.1.center" timestamp="1603479855990">
+      <screen x="72" y="27" width="2488" height="1413" />
+    </state>
+    <state width="2442" height="484" key="GridCell.Tab.1.center/72.27.2488.1413@72.27.2488.1413" timestamp="1603479855990" />
+    <state width="2442" height="484" key="GridCell.Tab.1.left" timestamp="1603479855985">
+      <screen x="72" y="27" width="2488" height="1413" />
+    </state>
+    <state width="2442" height="484" key="GridCell.Tab.1.left/72.27.2488.1413@72.27.2488.1413" timestamp="1603479855985" />
+    <state width="2442" height="484" key="GridCell.Tab.1.right" timestamp="1603479855990">
+      <screen x="72" y="27" width="2488" height="1413" />
+    </state>
+    <state width="2442" height="484" key="GridCell.Tab.1.right/72.27.2488.1413@72.27.2488.1413" timestamp="1603479855990" />
     <state width="263" height="500" key="HiddenNamespacesPopup" timestamp="1602576181115">
       <screen x="72" y="24" width="2488" height="1416" />
     </state>
     <state width="263" height="500" key="HiddenNamespacesPopup/72.24.2488.1416@72.24.2488.1416" timestamp="1602576181115" />
-    <state x="998" y="453" width="673" height="568" key="NewPhpClassDialog" timestamp="1602756788276">
+    <state x="998" y="453" width="825" height="568" key="NewPhpClassDialog" timestamp="1603542971847">
       <screen x="72" y="27" width="2488" height="1413" />
     </state>
     <state x="998" y="451" width="777" height="582" key="NewPhpClassDialog/72.24.2488.1416@72.24.2488.1416" timestamp="1602665927409" />
-    <state x="998" y="453" width="673" height="568" key="NewPhpClassDialog/72.27.2488.1413@72.27.2488.1413" timestamp="1602756788276" />
+    <state x="998" y="453" width="825" height="568" key="NewPhpClassDialog/72.27.2488.1413@72.27.2488.1413" timestamp="1603542971847" />
     <state x="1111" y="657" width="399" height="156" key="NewPhpFileDialog" timestamp="1602664236972">
       <screen x="72" y="24" width="2488" height="1416" />
     </state>
@@ -238,6 +326,10 @@
       <screen x="72" y="27" width="2488" height="1413" />
     </state>
     <state x="1072" y="417" width="477" height="640" key="RollbackChangesDialog/72.27.2488.1413@72.27.2488.1413" timestamp="1602762200466" />
+    <state x="805" y="368" width="1022" height="737" key="SettingsEditor" timestamp="1603528540633">
+      <screen x="72" y="27" width="2488" height="1413" />
+    </state>
+    <state x="805" y="368" width="1022" height="737" key="SettingsEditor/72.27.2488.1413@72.27.2488.1413" timestamp="1603528540633" />
     <state x="1213" y="623" width="367" height="269" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1" timestamp="1602761916889">
       <screen x="72" y="27" width="2488" height="1413" />
     </state>
@@ -255,5 +347,9 @@
       <screen x="72" y="27" width="2488" height="1413" />
     </state>
     <state x="172" y="127" width="2288" height="1213" key="com.intellij.history.integration.ui.views.FileHistoryDialog/72.27.2488.1413@72.27.2488.1413" timestamp="1602840238986" />
+    <state x="1007" y="443" width="618" height="580" key="find.popup" timestamp="1603544633053">
+      <screen x="72" y="27" width="2488" height="1413" />
+    </state>
+    <state x="1007" y="443" width="618" height="580" key="find.popup/72.27.2488.1413@72.27.2488.1413" timestamp="1603544633053" />
   </component>
 </project>

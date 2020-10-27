@@ -3,6 +3,8 @@
 
 namespace App\Controller;
 
+use App\Response\Tire\TireJsonResponse;
+use App\Tire\Repository\TireRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -11,9 +13,15 @@ class PageController extends AbstractController
     /**
      *@Route("/", name="home")
      */
-    public function home()
+    public function home(TireRepository $tireRepository)
     {
-        return $this->render('home.html.twig');
+        $limit = $_ENV['SHOW_PRODUCTS_LIMIT'];
+        $products= new TireJsonResponse($tireRepository->getRandId($limit));
+        return $this->render('home.html.twig',
+            [
+                'products' => $products
+            ]
+        );
     }
 
     /**
@@ -49,10 +57,14 @@ class PageController extends AbstractController
     }
 
     /**
-     *@Route("/details", name="details")
+     *@Route("/details/{id}", name="details")
      */
-    public function details()
+    public function details($id, TireRepository $tireRepository)
     {
-        return $this->render('product-details.html.twig');
+        $product = new TireJsonResponse($tireRepository->getProductsById($id));
+        return $this->render('product-details.html.twig',
+            [
+            'product' => $product
+        ]);
     }
 }

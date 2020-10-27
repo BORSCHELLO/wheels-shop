@@ -21,6 +21,14 @@ class TireRepository extends ServiceEntityRepository implements TireRepositoryIn
         parent::__construct($registry, Tire::class);
     }
 
+    public function create(Tire $tire): Tire
+    {
+        $this->_em->persist($tire);
+        $this->_em->flush();
+
+        return $tire;
+    }
+
     public function getProducts(int $visibility): ?TireCollection
     {
         return new TireCollection($this->createQueryBuilder('u')
@@ -34,10 +42,22 @@ class TireRepository extends ServiceEntityRepository implements TireRepositoryIn
     public function getProductsById(int $id): ?TireCollection
     {
         return new TireCollection($this->createQueryBuilder('u')
-            ->andWhere('u.enabled = :val')
+            ->andWhere('u.id = :val')
             ->setParameter('val', $id)
             ->getQuery()
             ->getResult()
         );
+    }
+
+  public function getRandId(int $limit): ?TireCollection
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager
+            ->createQuery("SELECT u FROM App\Tire\Entity\Tire u ORDER BY u.price ASC")
+            ->setMaxResults($limit);
+
+        return new TireCollection($query->getResult());
+
     }
 }

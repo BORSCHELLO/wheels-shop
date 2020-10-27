@@ -1,4 +1,3 @@
-
 function createElement(type)
 {
     return  document.createElement(type);
@@ -15,9 +14,9 @@ $(document).ready(function(){
                 console.log(item);
 
                 let container = document.getElementById('product-container');
-                let divImageContainer= createElement('div');
-                let divImage= createElement('div');
-                let img= createElement('img');
+                let divImageContainer = createElement('div');
+                let divImage = createElement('div');
+                let img = createElement('img');
                 let path = 'images/shop/'+item.images[0].source;
 
                 let divProductContainer= createElement('div');
@@ -35,11 +34,11 @@ $(document).ready(function(){
                 let linkCart = createElement('a');
                 let linkDetails = createElement('a');
 
-                divImageContainer.className='col-sm-5';
+                divImageContainer.className='col-sm-5 margin-bottom';
                 divImage.className='view-product';
                 img.src= path;
 
-                divProductContainer.className='col-sm-7';
+                divProductContainer.className='col-sm-7 margin-bottom';
                 divProductInformation.className='product-information';
                 productFullName.innerHTML=item.brand.name+' '+item.name;
                 productId.innerHTML='Web ID:' + ' '+item.id;
@@ -52,13 +51,13 @@ $(document).ready(function(){
                 productWidth.innerHTML='<b>Ширина:</b>'+' '+item.width;
                 productHeight.innerHTML='<b>Высота:</b>'+' '+item.height;
 
-                linkCart.className='btn btn-default add-to-cart';
+                linkCart.className='btn btn-default add-to-cart margin-right';
                 linkCart.innerHTML='<i class="fa fa-shopping-cart"></i>В корзину';
                 linkCart.href='cart';
 
                 linkDetails.className='btn btn-default add-to-cart';
                 linkDetails.innerHTML='<i class="fa fa-plus-square"></i>Подробнее';
-                linkDetails.href='details';
+                linkDetails.href='details/'+item.id;
 
                 container.append(divImageContainer);
                 container.append(divProductContainer);

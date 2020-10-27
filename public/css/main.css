@@ -1210,6 +1210,10 @@ h2.title {
 .item-control i:hover{
 	background:#ccccc6;
 }
+.disabled-button
+{
+  background:#ccccc6;
+}
 
 .product-information {
   border: 1px solid #F7F7F0;
@@ -2597,4 +2601,18 @@ h2.title {
   font-size: 18px;
   font-weight: bold;
   margin-left: 10px;
+}
+
+.margin-bottom
+{
+  margin-bottom: 10px;
+}
+
+.margin-right
+{
+  margin-right: 5px;
+}
+.brand-name
+{
+  font-size: 30px;
 }

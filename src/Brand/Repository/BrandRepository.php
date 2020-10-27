@@ -20,6 +20,14 @@ class BrandRepository extends ServiceEntityRepository implements BrandRepository
         parent::__construct($registry, Brand::class);
     }
 
+    public function create(Brand $brand): Brand
+    {
+        $this->_em->persist($brand);
+        $this->_em->flush();
+
+        return $brand;
+    }
+
     public function getBrand(int $visibility): ?BrandCollection
     {
         return new BrandCollection($this->createQueryBuilder('u')

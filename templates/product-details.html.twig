@@ -3,64 +3,52 @@
 {% block body %}
 
 <section>
-		<div class="container">
+	<div class="container">
 			<div class="row">
 				<div class="col-sm-3">
 					<div class="left-sidebar">
 						<div class="shipping text-center"><!--shipping-->
-							<img src="images/home/shipping.jpg" alt="" />
+							<img src="/images/home/shipping.jpg" alt="" />
 						</div><!--/shipping-->
 
 					</div>
 				</div>
 
+				<div class="product-data" data-product="{{ product.content }}">
+					<!-- Передаю объект product в js -->
+				</div>
+
 				<div class="col-sm-9 padding-right">
 					<div class="product-details"><!--product-details-->
 						<div class="col-sm-5">
-							<div class="view-product">
-								<img src="images/product-details/1.jpg" alt="" />
-								<h3>ZOOM</h3>
+							<div class="view-product" id="image-container">
+								<!-- Главная картинка -->
 							</div>
 							<div id="similar-product" class="carousel slide" data-ride="carousel">
 
 								  <!-- Wrapper for slides -->
-								    <div class="carousel-inner">
-										<div class="item active">
-										  <a href=""><img src="images/product-details/similar1.jpg" alt=""></a>
-										  <a href=""><img src="images/product-details/similar2.jpg" alt=""></a>
-										  <a href=""><img src="images/product-details/similar3.jpg" alt=""></a>
-										</div>
-										<div class="item">
-										  <a href=""><img src="images/product-details/similar1.jpg" alt=""></a>
-										  <a href=""><img src="images/product-details/similar2.jpg" alt=""></a>
-										  <a href=""><img src="images/product-details/similar3.jpg" alt=""></a>
-										</div>
-										<div class="item">
-										  <a href=""><img src="images/product-details/similar1.jpg" alt=""></a>
-										  <a href=""><img src="images/product-details/similar2.jpg" alt=""></a>
-										  <a href=""><img src="images/product-details/similar3.jpg" alt=""></a>
-										</div>
-
+								    <div class=" container row" id="litleImage-container">
+										<!-- Маленькие картинки -->
 									</div>
 
 								  <!-- Controls -->
-								  <a class="left item-control" href="#similar-product" data-slide="prev">
+								  <a class="left item-control" href="#" id="prev-product">
 									<i class="fa fa-angle-left"></i>
 								  </a>
-								  <a class="right item-control" href="#similar-product" data-slide="next">
+								  <a class="right item-control" href="#" id="next-product">
 									<i class="fa fa-angle-right"></i>
 								  </a>
 							</div>
 
 						</div>
 						<div class="col-sm-7">
-							<div class="product-information"><!--/product-information-->
-								<!--СКИДКА--><img src="images/product-details/new.jpg" class="newarrival" alt="" />
+							<div class="product-information" id="product-container">{# note:
+								<!--СКИДКА<img src="/images/product-details/new.jpg" class="newarrival" alt="" />-->
 								<h2>Tigar Winter 205/55R16 94H</h2>
 								<p>Web ID: 1089772</p>
-								<!--Рейтинг--><img src="images/product-details/rating.png" alt="" />
+								<!--Рейтинг--><img src="/images/product-details/rating.png" alt="" />
 
-								<div class="product-info">
+
 									<p><b class="bold price">50p</b></p>
 									<p><b>Назначение:</b> Легковые авто</p>
 									<p><b>Производитель:</b>Tigar</p>
@@ -75,13 +63,13 @@
 									<p><b>Шипы:</b> без шипов</p>
 									<p><b>Дата выхода на рынок:</b> 2014 г.</p>
 
-									<a href="{{ path('details')}}" class="btn btn-default cart">
+									<a href="#" class="btn btn-default cart">
 										<i class="fa fa-shopping-cart"></i>
 										В корзину
-									</a>
-								</div>
-							</div><!--/product-information-->
+									</a>#}
+							</div>
 						</div>
+					</div>
 						<br>
 					<div class="category-tab shop-details-tab">
 									<div class="recommended_items"><!--recommended_items-->
@@ -96,11 +84,11 @@
 											<div class="product-image-wrapper">
 												<div class="single-products">
 													<div class="productinfo text-center">
-														<img src="images/home/recommend1.jpg" alt="" />
+														<img src="/images/home/recommend1.jpg" alt="" />
 														<h2>$56</h2>
 														<p>Easy Polo Black Edition</p>
 														<ul class="nav nav-pills nav-justified">
-															<li><a href="{{ path('details')}}"><i class="fa fa-plus-square"></i>Подробнее</a></li>
+															<li><a href="#"><i class="fa fa-plus-square"></i>Подробнее</a></li>
 														</ul>
 													</div>
 												</div>
@@ -111,11 +99,11 @@
 											<div class="product-image-wrapper">
 												<div class="single-products">
 													<div class="productinfo text-center">
-														<img src="images/home/recommend2.jpg" alt="" />
+														<img src="/images/home/recommend2.jpg" alt="" />
 														<h2>$56</h2>
 														<p>Easy Polo Black Edition</p>
 														<ul class="nav nav-pills nav-justified">
-															<li><a href="{{ path('details')}}"><i class="fa fa-plus-square"></i>Подробнее</a></li>
+															<li><a href="#"><i class="fa fa-plus-square"></i>Подробнее</a></li>
 														</ul>
 													</div>
 												</div>
@@ -126,11 +114,11 @@
 											<div class="product-image-wrapper">
 												<div class="single-products">
 													<div class="productinfo text-center">
-														<img src="images/home/recommend3.jpg" alt="" />
+														<img src="/images/home/recommend3.jpg" alt="" />
 														<h2>$56</h2>
 														<p>Easy Polo Black Edition</p>
 														<ul class="nav nav-pills nav-justified">
-															<li><a href="{{ path('details')}}"><i class="fa fa-plus-square"></i>Подробнее</a></li>
+															<li><a href="#"><i class="fa fa-plus-square"></i>Подробнее</a></li>
 														</ul>
 													</div>
 												</div>
@@ -143,11 +131,11 @@
 											<div class="product-image-wrapper">
 												<div class="single-products">
 													<div class="productinfo text-center">
-														<img src="images/home/recommend1.jpg" alt="" />
+														<img src="/images/home/recommend1.jpg" alt="" />
 														<h2>$56</h2>
 														<p>Easy Polo Black Edition</p>
 														<ul class="nav nav-pills nav-justified">
-															<li><a href="{{ path('details')}}"><i class="fa fa-plus-square"></i>Подробнее</a></li>
+															<li><a href="#"><i class="fa fa-plus-square"></i>Подробнее</a></li>
 														</ul>
 													</div>
 												</div>
@@ -157,11 +145,11 @@
 											<div class="product-image-wrapper">
 												<div class="single-products">
 													<div class="productinfo text-center">
-														<img src="images/home/recommend2.jpg" alt="" />
+														<img src="/images/home/recommend2.jpg" alt="" />
 														<h2>$56</h2>
 														<p>Easy Polo Black Edition</p>
 														<ul class="nav nav-pills nav-justified">
-															<li><a href="{{ path('details')}}"><i class="fa fa-plus-square"></i>Подробнее</a></li>
+															<li><a href="#"><i class="fa fa-plus-square"></i>Подробнее</a></li>
 														</ul>
 													</div>
 												</div>
@@ -171,11 +159,11 @@
 											<div class="product-image-wrapper">
 												<div class="single-products">
 													<div class="productinfo text-center">
-														<img src="images/home/recommend3.jpg" alt="" />
+														<img src="/images/home/recommend3.jpg" alt="" />
 														<h2>$56</h2>
 														<p>Easy Polo Black Edition</p>
 														<ul class="nav nav-pills nav-justified">
-															<li><a href="{{ path('details')}}"><i class="fa fa-plus-square"></i>Подробнее</a></li>
+															<li><a href="#"><i class="fa fa-plus-square"></i>Подробнее</a></li>
 														</ul>
 													</div>
 												</div>
@@ -192,15 +180,17 @@
 						</div>
 					</div><!--/recommended_items-->
 					</div>
-				</div>
+
+
 		</div>
 	</section>
 {% endblock %}
 {% block javascripts %}
-	<script src="js/jquery.js"></script>
-	<script src="js/price-range.js"></script>
-	<script src="js/jquery.scrollUp.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/jquery.prettyPhoto.js"></script>
-	<script src="js/main.js"></script>
+	<script src="/js/jquery.js"></script>
+	<script src="/js/price-range.js"></script>
+	<script src="/js/jquery.scrollUp.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	<script src="/js/jquery.prettyPhoto.js"></script>
+	<script src="/js/main.js"></script>
+	<script src="/js/details.js"></script>
 {% endblock %}

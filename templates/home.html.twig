@@ -92,145 +92,15 @@
                         </div><!--/shipping-->
                     </div>
                 </div>
-
+                <div class="product-data" data-product="{{ products.content}}">
+                    <!-- Передаю объект product в js -->
+                </div>
 
                 <div class="col-sm-9 padding-right">
                     <div class="features_items"><!--features_items-->
                         <h2 class="title text-center">Рекомендованые товары</h2>
-                        <div class="col-sm-4">
-                            <div class="product-image-wrapper">
-                                <div class="single-products">
-                                    <div class="productinfo text-center">
-                                        <img src="images/home/product1.jpg" alt="" />
-                                        <h2><b class="overlay-info">Цена:</b> 50 p.</h2>
-                                        <p><b>Tigar Winter 205/55R16 94H</b></p>
-                                        <p><b>Сезон:</b> Летняя</p>
-                                        <p><b>Диаметр:</b> 16"</p>
-                                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>В корзину</a>
-                                    </div>
-                                    <div class="product-overlay">
-                                        <div class="overlay-content">
-                                            <p><b class="overlay-info">Tigar Winter 205/55R16 94H</b></p>
-                                            <p><b class="overlay-info">Сезон:</b><b> Летняя</b></p>
-                                            <p><b class="overlay-info">Диаметр:</b><b> 16"</b></p>
-                                            <p><b class="overlay-info">Ширина:</b><b> 205</b></p>
-                                            <p><b class="overlay-info">Высота:</b><b> 55</b></p>
-                                            <p><b class="overlay-info">Дата выхода на рынок:</b><b> 2014 г.</b></p>
-                                            <p><b class="overlay-info">Цена:</b></p>
-                                            <h2><b class="overlay-info">Цена:</b> 50 p.</h2>
-                                            <a href="#" class="btn btn-default cart home-cart"><i class="fa fa-shopping-cart"></i>В корзину</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="choose">
-                                    <ul class="nav nav-pills nav-justified">
-                                        <li><a href="{{ path('details')}}"><i class="fa fa-plus-square"></i>Подробнее</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="product-image-wrapper">
-                                <div class="single-products">
-                                    <div class="productinfo text-center">
-                                        <img src="images/home/product2.jpg" alt="" />
-                                        <h2><b class="overlay-info">Цена:</b> 50 p.</h2>
-                                        <p><b>Tigar Winter 205/55R16 94H</b></p>
-                                        <p><b>Сезон:</b> Летняя</p>
-                                        <p><b>Диаметр:</b> 16"</p>
-                                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>В корзину</a>
-                                    </div>
-                                    <div class="product-overlay">
-                                        <div class="overlay-content">
-                                            <p><b class="overlay-info">Tigar Winter 205/55R16 94H</b></p>
-                                            <p><b class="overlay-info">Сезон:</b><b> Летняя</b></p>
-                                            <p><b class="overlay-info">Диаметр:</b><b> 16"</b></p>
-                                            <p><b class="overlay-info">Ширина:</b><b> 205</b></p>
-                                            <p><b class="overlay-info">Высота:</b><b> 55</b></p>
-                                            <p><b class="overlay-info">Дата выхода на рынок:</b><b> 2014 г.</b></p>
-                                            <h2><b class="overlay-info">Цена:</b> 50 p.</h2>
-                                            <a href="#" class="btn btn-default cart home-cart"><i class="fa fa-shopping-cart"></i> В корзину</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="choose">
-                                    <ul class="nav nav-pills nav-justified">
-                                        <li><a href="{{ path('details')}}"><i class="fa fa-plus-square"></i>Подробнее</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
 
-
-                        </div>
-                        <div class="col-sm-4">
-
-
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="product-image-wrapper">
-                                <div class="single-products">
-                                    <div class="productinfo text-center">
-                                        <img src="images/home/product3.jpg" alt="" />
-                                        <h2><b class="overlay-info">Цена:</b> 50 p.</h2>
-                                        <p><b>Tigar Winter 205/55R16 94H</b></p>
-                                        <p><b>Сезон:</b> Летняя</p>
-                                        <p><b>Диаметр:</b> 16"</p>
-                                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>В корзину</a>
-                                    </div>
-                                    <div class="product-overlay">
-                                        <div class="overlay-content">
-                                            <p><b class="overlay-info">Tigar Winter 205/55R16 94H</b></p>
-                                            <p><b class="overlay-info">Сезон:</b><b> Летняя</b></p>
-                                            <p><b class="overlay-info">Диаметр:</b><b> 16"</b></p>
-                                            <p><b class="overlay-info">Ширина:</b><b> 205</b></p>
-                                            <p><b class="overlay-info">Высота:</b><b> 55</b></p>
-                                            <p><b class="overlay-info">Дата выхода на рынок:</b><b> 2014 г.</b></p>
-                                            <h2><b class="overlay-info">Цена:</b> 50 p.</h2>
-                                            <a href="#" class="btn btn-default cart home-cart"><i class="fa fa-shopping-cart"></i>В корзину</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="choose">
-                                    <ul class="nav nav-pills nav-justified">
-                                        <li><a href="{{ path('details')}}"><i class="fa fa-plus-square"></i>Подробнее</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="product-image-wrapper">
-                                <div class="single-products">
-                                    <div class="productinfo text-center">
-                                        <img src="images/home/product4.jpg" alt="" />
-                                        <h2><b class="overlay-info">Цена:</b> 50 p.</h2>
-                                        <p><b>Tigar Winter 205/55R16 94H</b></p>
-                                        <p><b>Сезон:</b> Летняя</p>
-                                        <p><b>Диаметр:</b> 16"</p>
-                                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>В корзину</a>
-                                    </div>
-                                    <div class="product-overlay">
-                                        <div class="overlay-content">
-                                            <p><b class="overlay-info">Tigar Winter 205/55R16 94H</b></p>
-                                            <p><b class="overlay-info">Сезон:</b><b> Летняя</b></p>
-                                            <p><b class="overlay-info">Диаметр:</b><b> 16"</b></p>
-                                            <p><b class="overlay-info">Ширина:</b><b> 205</b></p>
-                                            <p><b class="overlay-info">Высота:</b><b> 55</b></p>
-                                            <p><b class="overlay-info">Дата выхода на рынок:</b><b> 2014 г.</b></p>
-                                            <h2><b class="overlay-info">Цена:</b> 50 p.</h2>
-                                            <a href="#" class="btn btn-default cart home-cart"><i class="fa fa-shopping-cart"></i>В корзину</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="choose">
-                                    <ul class="nav nav-pills nav-justified">
-                                        <li><a href="{{ path('details')}}"><i class="fa fa-plus-square"></i>Подробнее</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
+                        <div id="container-main-wrapper"></div>
                     </div><!--features_items-->
 
                     <div class="category-tab"><!--category-tab-->
@@ -253,7 +123,7 @@
                                                 <h2>50 p.</h2>
                                                 <p>Easy Polo Black Edition</p>
                                                 <ul class="nav nav-pills nav-justified">
-                                                    <li><a href="{{ path('details')}}"><i class="fa fa-plus-square"></i>Подробнее</a></li>
+                                                    <li><a href="#"><i class="fa fa-plus-square"></i>Подробнее</a></li>
                                                 </ul>
                                             </div>
 
@@ -268,7 +138,7 @@
                                                 <h2>$56</h2>
                                                 <p>Easy Polo Black Edition</p>
                                                 <ul class="nav nav-pills nav-justified">
-                                                    <li><a href="{{ path('details')}}"><i class="fa fa-plus-square"></i>Подробнее</a></li>
+                                                    <li><a href="#"><i class="fa fa-plus-square"></i>Подробнее</a></li>
                                                 </ul>
                                             </div>
 
@@ -283,7 +153,7 @@
                                                 <h2>$56</h2>
                                                 <p>Easy Polo Black Edition</p>
                                                 <ul class="nav nav-pills nav-justified">
-                                                    <li><a href="{{ path('details')}}"><i class="fa fa-plus-square"></i>Подробнее</a></li>
+                                                    <li><a href="#"><i class="fa fa-plus-square"></i>Подробнее</a></li>
                                                 </ul>
                                             </div>
 
@@ -298,7 +168,7 @@
                                                 <h2>$56</h2>
                                                 <p>Easy Polo Black Edition</p>
                                                 <ul class="nav nav-pills nav-justified">
-                                                    <li><a href="{{ path('details')}}"><i class="fa fa-plus-square"></i>Подробнее</a></li>
+                                                    <li><a href="#"><i class="fa fa-plus-square"></i>Подробнее</a></li>
                                                 </ul>
                                             </div>
 
@@ -316,7 +186,7 @@
                                                 <h2>$56</h2>
                                                 <p>Easy Polo Black Edition</p>
                                                 <ul class="nav nav-pills nav-justified">
-                                                    <li><a href="{{ path('details')}}"><i class="fa fa-plus-square"></i>Подробнее</a></li>
+                                                    <li><a href="#"><i class="fa fa-plus-square"></i>Подробнее</a></li>
                                                 </ul>
                                             </div>
 
@@ -331,7 +201,7 @@
                                                 <h2>$56</h2>
                                                 <p>Easy Polo Black Edition</p>
                                                 <ul class="nav nav-pills nav-justified">
-                                                    <li><a href="{{ path('details')}}"><i class="fa fa-plus-square"></i>Подробнее</a></li>
+                                                    <li><a href="#"><i class="fa fa-plus-square"></i>Подробнее</a></li>
                                                 </ul>
                                             </div>
 
@@ -346,7 +216,7 @@
                                                 <h2>$56</h2>
                                                 <p>Easy Polo Black Edition</p>
                                                 <ul class="nav nav-pills nav-justified">
-                                                    <li><a href="{{ path('details')}}"><i class="fa fa-plus-square"></i>Подробнее</a></li>
+                                                    <li><a href="#"><i class="fa fa-plus-square"></i>Подробнее</a></li>
                                                 </ul>
                                             </div>
 
@@ -361,7 +231,7 @@
                                                 <h2>$56</h2>
                                                 <p>Easy Polo Black Edition</p>
                                                 <ul class="nav nav-pills nav-justified">
-                                                    <li><a href="{{ path('details')}}"><i class="fa fa-plus-square"></i>Подробнее</a></li>
+                                                    <li><a href="#"><i class="fa fa-plus-square"></i>Подробнее</a></li>
                                                 </ul>
                                             </div>
 
@@ -379,7 +249,7 @@
                                                 <h2>$56</h2>
                                                 <p>Easy Polo Black Edition</p>
                                                 <ul class="nav nav-pills nav-justified">
-                                                    <li><a href="{{ path('details')}}"><i class="fa fa-plus-square"></i>Подробнее</a></li>
+                                                    <li><a href="#"><i class="fa fa-plus-square"></i>Подробнее</a></li>
                                                 </ul>
                                             </div>
 
@@ -394,7 +264,7 @@
                                                 <h2>$56</h2>
                                                 <p>Easy Polo Black Edition</p>
                                                 <ul class="nav nav-pills nav-justified">
-                                                    <li><a href="{{ path('details')}}"><i class="fa fa-plus-square"></i>Подробнее</a></li>
+                                                    <li><a href="#"><i class="fa fa-plus-square"></i>Подробнее</a></li>
                                                 </ul>
                                             </div>
 
@@ -409,7 +279,7 @@
                                                 <h2>$56</h2>
                                                 <p>Easy Polo Black Edition</p>
                                                 <ul class="nav nav-pills nav-justified">
-                                                    <li><a href="{{ path('details')}}"><i class="fa fa-plus-square"></i>Подробнее</a></li>
+                                                    <li><a href="#"><i class="fa fa-plus-square"></i>Подробнее</a></li>
                                                 </ul>
                                             </div>
 
@@ -424,7 +294,7 @@
                                                 <h2>$56</h2>
                                                 <p>Easy Polo Black Edition</p>
                                                 <ul class="nav nav-pills nav-justified">
-                                                    <li><a href="{{ path('details')}}"><i class="fa fa-plus-square"></i>Подробнее</a></li>
+                                                    <li><a href="#"><i class="fa fa-plus-square"></i>Подробнее</a></li>
                                                 </ul>
                                             </div>
 
@@ -442,7 +312,7 @@
                                                 <h2>$56</h2>
                                                 <p>Easy Polo Black Edition</p>
                                                 <ul class="nav nav-pills nav-justified">
-                                                    <li><a href="{{ path('details')}}"><i class="fa fa-plus-square"></i>Подробнее</a></li>
+                                                    <li><a href="#"><i class="fa fa-plus-square"></i>Подробнее</a></li>
                                                 </ul>
                                             </div>
 
@@ -457,7 +327,7 @@
                                                 <h2>$56</h2>
                                                 <p>Easy Polo Black Edition</p>
                                                 <ul class="nav nav-pills nav-justified">
-                                                    <li><a href="{{ path('details')}}"><i class="fa fa-plus-square"></i>Подробнее</a></li>
+                                                    <li><a href="#"><i class="fa fa-plus-square"></i>Подробнее</a></li>
                                                 </ul>
                                             </div>
 
@@ -472,7 +342,7 @@
                                                 <h2>$56</h2>
                                                 <p>Easy Polo Black Edition</p>
                                                 <ul class="nav nav-pills nav-justified">
-                                                    <li><a href="{{ path('details')}}"><i class="fa fa-plus-square"></i>Подробнее</a></li>
+                                                    <li><a href="#"><i class="fa fa-plus-square"></i>Подробнее</a></li>
                                                 </ul>
                                             </div>
 
@@ -487,7 +357,7 @@
                                                 <h2>$56</h2>
                                                 <p>Easy Polo Black Edition</p>
                                                 <ul class="nav nav-pills nav-justified">
-                                                    <li><a href="{{ path('details')}}"><i class="fa fa-plus-square"></i>Подробнее</a></li>
+                                                    <li><a href="#"><i class="fa fa-plus-square"></i>Подробнее</a></li>
                                                 </ul>
                                             </div>
 
@@ -505,7 +375,7 @@
                                                 <h2>$56</h2>
                                                 <p>Easy Polo Black Edition</p>
                                                 <ul class="nav nav-pills nav-justified">
-                                                    <li><a href="{{ path('details')}}"><i class="fa fa-plus-square"></i>Подробнее</a></li>
+                                                    <li><a href="#"><i class="fa fa-plus-square"></i>Подробнее</a></li>
                                                 </ul>
                                             </div>
 
@@ -520,7 +390,7 @@
                                                 <h2>$56</h2>
                                                 <p>Easy Polo Black Edition</p>
                                                 <ul class="nav nav-pills nav-justified">
-                                                    <li><a href="{{ path('details')}}"><i class="fa fa-plus-square"></i>Подробнее</a></li>
+                                                    <li><a href="#"><i class="fa fa-plus-square"></i>Подробнее</a></li>
                                                 </ul>
                                             </div>
 
@@ -535,7 +405,7 @@
                                                 <h2>$56</h2>
                                                 <p>Easy Polo Black Edition</p>
                                                 <ul class="nav nav-pills nav-justified">
-                                                    <li><a href="{{ path('details')}}"><i class="fa fa-plus-square"></i>Подробнее</a></li>
+                                                    <li><a href="#"><i class="fa fa-plus-square"></i>Подробнее</a></li>
                                                 </ul>
                                             </div>
 
@@ -550,7 +420,7 @@
                                                 <h2>$56</h2>
                                                 <p>Easy Polo Black Edition</p>
                                                 <ul class="nav nav-pills nav-justified">
-                                                    <li><a href="{{ path('details')}}"><i class="fa fa-plus-square"></i>Подробнее</a></li>
+                                                    <li><a href="#"><i class="fa fa-plus-square"></i>Подробнее</a></li>
                                                 </ul>
                                             </div>
 
@@ -573,4 +443,5 @@
     <script src="/js/price-range.js"></script>
     <script src="/js/jquery.prettyPhoto.js"></script>
     <script src="/js/main.js"></script>
+    <script src="/js/home.js"></script>
 {% endblock %}
