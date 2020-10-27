@@ -6,8 +6,6 @@ namespace App\Tests\Unit\App\Tire\Entity;
 
 use App\Brand\Entity\Brand;
 use App\Category\Entity\Category;
-use App\Design\Entity\Design;
-use App\Season\Entity\Season;
 use App\Tire\Entity\Tire;
 use App\Tests\Unit\TestPrivateHelper;
 use PHPUnit\Framework\TestCase;
@@ -19,8 +17,7 @@ class TireTest extends TestCase
         $tire = new Tire();
         $brand = new Brand();
         $category = new Category();
-        $season = new Season();
-        $design = new Design();
+
 
         $helper = new TestPrivateHelper($tire);
         $helper->set('id', 1);
@@ -28,15 +25,14 @@ class TireTest extends TestCase
         $tire->setName('test name');
         $tire->setBrand( $brand);
         $tire->setCategory($category);
-        $tire->setSeason($season);
-        $tire->setDesign($design);
         $tire->setSealingMethod(Tire::SEALING_METHOD_TUBELESS);
         $tire->setStuds(Tire::STUDS_WITHOUT);
+        $tire->setSeason(Tire::SEASON_MEDIUM);
         $tire->setEnabled(true);
         $tire->setDiscount(0);
-        $tire->setRating(4);
+        $tire->setRating(4.5);
         $tire->setQuantity(5);
-        $tire->setPrice(115);
+        $tire->setPrice(115.5);
         $tire->setLoadIndex(94);
         $tire->setSpeedIndex(210);
         $tire->setDiameter(16);
@@ -48,15 +44,14 @@ class TireTest extends TestCase
         $this->assertEquals('test name', $tire->getName());
         $this->assertEquals($brand, $tire->getBrand());
         $this->assertEquals($category, $tire->getCategory());
-        $this->assertEquals($season, $tire->getSeason());
-        $this->assertEquals($design, $tire->getDesign());
         $this->assertEquals(Tire::SEALING_METHOD_TUBELESS, $tire->getSealingMethod());
         $this->assertEquals(Tire::STUDS_WITHOUT, $tire->getStuds());
+        $this->assertEquals(Tire::SEASON_MEDIUM, $tire->getSeason());
         $this->assertEquals(true, $tire->getEnabled());
         $this->assertEquals(0, $tire->getDiscount());
-        $this->assertEquals(4, $tire->getRating());
+        $this->assertEquals(4.5, $tire->getRating());
         $this->assertEquals(5, $tire->getQuantity());
-        $this->assertEquals(115, $tire->getPrice());
+        $this->assertEquals(115.5, $tire->getPrice());
         $this->assertEquals(94, $tire->getLoadIndex());
         $this->assertEquals(210, $tire->getSpeedIndex());
         $this->assertEquals(16, $tire->getDiameter());

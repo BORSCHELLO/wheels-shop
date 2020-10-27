@@ -42,16 +42,4 @@ class PageController extends AbstractController
     {
         return $this->render('contacts.html.twig');
     }
-
-    /**
-     *@Route("/tire/details/{id}", name="tire/details")
-     */
-    public function details($id, TireRepository $tireRepository)
-    {
-        $product = new TireJsonResponse($tireRepository->getProductsById($id));
-        return $this->render('product-details.html.twig',
-            [
-            'product' => $product
-        ]);
-    }
 }

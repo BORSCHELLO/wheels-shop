@@ -92,17 +92,15 @@
                         </div><!--/shipping-->
                     </div>
                 </div>
-                <div class="product-data" data-product="{{ products.content}}">
-                    <!-- Передаю объект product в js -->
-                </div>
 
                 <div class="col-sm-9 padding-right">
                     <div class="features_items"><!--features_items-->
                         <h2 class="title text-center">Рекомендованые товары</h2>
-
-                        <div id="container-main-wrapper"></div>
-                    </div><!--features_items-->
-
+                        {% for tire in tires %}
+                            {# note: {{ dump(tire) }} #}
+                            {{ include('tire/gridview/item.html.twig', {tire: tire}) }}
+                        {% endfor %}
+                    </div>
                     <div class="category-tab"><!--category-tab-->
                         <div class="col-sm-12">
                             <ul class="nav nav-tabs">

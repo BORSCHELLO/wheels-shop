@@ -30,7 +30,6 @@ class RecommendedTireService implements RecommendedTireServiceInterface
      */
     public function getRelevantCollectionByTire(Tire $tire, int $count): TireCollection
     {
-        // TODO: Implement getRelevantCollectionByTire() method.
-    }
 
+    }
 }

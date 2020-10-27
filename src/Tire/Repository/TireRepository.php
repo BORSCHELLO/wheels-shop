@@ -5,6 +5,7 @@ namespace App\Tire\Repository;
 use App\Tire\Collection\TireCollection;
 use App\Tire\Entity\Tire;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\DBAL\Connection;
 use Doctrine\Persistence\ManagerRegistry;
 
 
@@ -29,7 +30,7 @@ class TireRepository extends ServiceEntityRepository implements TireRepositoryIn
         return $tire;
     }
 
-    public function getProducts(bool $visibility): ?TireCollection
+    public function getProducts(bool $visibility): TireCollection
     {
         return new TireCollection($this->createQueryBuilder('u')
             ->andWhere('u.enabled = :val')
@@ -39,25 +40,21 @@ class TireRepository extends ServiceEntityRepository implements TireRepositoryIn
         );
     }
 
-    public function getProductsById(int $id): ?TireCollection
+    public function findEnabledById(int $id): ?Tire
     {
-        return new TireCollection($this->createQueryBuilder('u')
-            ->andWhere('u.id = :val')
-            ->setParameter('val', $id)
-            ->getQuery()
-            ->getResult()
-        );
+        return $this->findOneBy(['id'=> $id, 'enabled' => true]);
     }
 
-  public function getRandId(int $limit): ?TireCollection
+    public function getRelevantByDiameter(array $excludedIds, int $diameter, int $limit): TireCollection
     {
-        $entityManager = $this->getEntityManager();
-
-        $query = $entityManager
-            ->createQuery("SELECT u FROM App\Tire\Entity\Tire u ORDER BY u.price ASC")
+        $builder = $this->createQueryBuilder('t')
+            ->andWhere('t.enabled = 1')
+            ->andWhere('t.id NOT IN (:excludeIds)')
+            ->andWhere('t.diameter = :diameter')
+            ->setParameter('excludeIds', $excludedIds, Connection::PARAM_INT_ARRAY)
+            ->setParameter('diameter', $diameter)
             ->setMaxResults($limit);
 
-        return new TireCollection($query->getResult());
-
+        return new TireCollection($builder->getQuery()->getResult());
     }
 }

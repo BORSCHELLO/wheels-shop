@@ -6,6 +6,7 @@ namespace App\Tests\Unit;
 
 use App\DataFixtures\BrandFixtures;
 use App\DataFixtures\CategoryFixtures;
+use App\DataFixtures\TireFixtures;
 use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
 use Doctrine\Common\DataFixtures\Loader;
 use Doctrine\Common\DataFixtures\Purger\ORMPurger;
@@ -22,6 +23,7 @@ class FixturesTestCase extends DoctrineTestCase
         $loader = new Loader();
         $loader->addFixture(new BrandFixtures());
         $loader->addFixture(new CategoryFixtures());
+        $loader->addFixture(new TireFixtures());
 
         $purger = new ORMPurger($this->em);
         $executor = new ORMExecutor($this->em, $purger);
