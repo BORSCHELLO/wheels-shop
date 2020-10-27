@@ -1,0 +1,33 @@
+<div class="col-sm-4">
+    <div class="product-image-wrapper">
+        <div class="single-products">
+            <div class="productinfo text-center">
+                <img src="/images/shop/{{ tire.images[0].source }}" height="220" alt=""/>
+                <h2><b class="overlay-info">Цена:</b> {{ tire.price }} p.</h2>
+                <p><b>{{ tire.brand.name }}</b></p>
+                <p><b>{{ tire.name }}</b></p>
+                <p><b>Сезон:</b> {{ constant('App\\Tire\\Entity\\Tire::SEASONS_LABELS')[tire.season] }}</p>
+                <p><b>Диаметр:</b> {{ tire.diameter }}"</p>
+                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>В корзину</a>
+            </div>
+            <div class="product-overlay">
+                <div class="overlay-content">
+                    <p><b class="overlay-info brand-name">{{ tire.brand.name }}</b></p>
+                    <p><b class="overlay-info">{{ tire.name }}</b></p>
+                    <p><b class="overlay-info">Сезон:</b><b> {{ constant('App\\Tire\\Entity\\Tire::SEASONS_LABELS')[tire.season] }}</b></p>
+                    <p><b class="overlay-info">Диаметр:</b><b> {{ tire.diameter }}"</b></p>
+                    <p><b class="overlay-info">Ширина:</b><b> {{ tire.width }}</b></p>
+                    <p><b class="overlay-info">Высота:</b><b> {{ tire.height }}</b></p>
+                    <p><b class="overlay-info">Дата выхода на рынок:</b><b> {{ tire.marketLaunchDate }} г.</b></p>
+                    <h2><b class="overlay-info">Цена:</b> {{ tire.price }} p.</h2>
+                    <a href="#" class="btn btn-default cart home-cart"><i class="fa fa-shopping-cart"></i>В корзину</a>
+                </div>
+            </div>
+        </div>
+        <div class="choose">
+            <ul class="nav nav-pills nav-justified">
+                <li><a href="{{ path('tire/details', {'id': tire.id}) }}"><i class="fa fa-plus-square"></i>Подробнее</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
