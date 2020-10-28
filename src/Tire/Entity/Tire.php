@@ -248,6 +248,7 @@ class Tire
         if (!in_array($season, self::SEASONS)) {
             throw new InvalidArgumentException();
         }
+
         $this->season = $season;
 
         return $this;

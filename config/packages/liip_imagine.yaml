@@ -5,36 +5,23 @@ liip_imagine:
             web_path: ~
     # valid drivers options include "gd" or "gmagick" or "imagick"
     driver: "gd"
-
     filter_sets:
         cache: ~
-
         # the name of the "filter set"
         grid_image:
-
             # adjust the image quality to 75%
             quality: 75
-
             # list of transformations to apply (the "filters")
             filters:
-
                 fixed:
-
                     width: 300
                     height: 400
-
-
-
         # the name of the "filter set"
         slaider:
-
             # adjust the image quality to 75%
             quality: 75
-
             # list of transformations to apply (the "filters")
             filters:
-
                 fixed:
-
                     width: 100
                     height: 150
