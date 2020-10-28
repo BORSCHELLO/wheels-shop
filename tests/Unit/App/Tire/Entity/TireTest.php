@@ -85,4 +85,56 @@ class TireTest extends TestCase
             return [$method];
         }, Tire::SEALING_METHODS);
     }
+
+    public function testInvalidSeasonSet()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        $tire = new Tire();
+        $tire->setSeason('dsfasdfasdfasdfafd');
+    }
+
+    /**
+     * @dataProvider getMethodsSeason
+     */
+    public function testValidSeasonSet(string $method)
+    {
+        $tire = new Tire();
+        $tire->setSeason($method);
+
+        $this->assertEquals($method, $tire->getSeason());
+    }
+
+    public function getMethodsSeason(): array
+    {
+        return array_map(function(string $method) {
+            return [$method];
+        }, Tire::SEASONS);
+    }
+
+    public function testInvalidStudsSet()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        $tire = new Tire();
+        $tire->setStuds('dsfasdfasdfasdfafd');
+    }
+
+    /**
+     * @dataProvider getMethodsStuds
+     */
+    public function testValidStudsSet(string $method)
+    {
+        $tire = new Tire();
+        $tire->setStuds($method);
+
+        $this->assertEquals($method, $tire->getStuds());
+    }
+
+    public function getMethodsStuds(): array
+    {
+        return array_map(function(string $method) {
+            return [$method];
+        }, Tire::STUDS);
+    }
 }

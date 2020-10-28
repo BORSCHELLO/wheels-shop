@@ -7,10 +7,13 @@ RUN apt-get update && apt-get install -y \
     curl \
     zsh \
     zip \
+    zlib1g-dev libpng-dev libjpeg-dev libfreetype6-dev \
  && pecl install redis-5.2.2 \
  && pecl install xdebug \
  && docker-php-ext-enable xdebug \
  && docker-php-ext-install pdo_mysql \
+ && docker-php-ext-configure gd --with-freetype --with-jpeg \
+ && docker-php-ext-install gd \
  && echo "date.timezone=$TZ" > "$PHP_INI_DIR/conf.d/date-time-zone.ini" \
  && mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
