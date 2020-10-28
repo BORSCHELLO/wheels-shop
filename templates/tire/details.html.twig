@@ -25,9 +25,9 @@
                                 <div class=" container row" id="litleImage-container">
                                     {% for image in tire.images %}
                                         {% if loop.index >3 %}
-                                    <a class="carousel-inner hide"  id="{{ loop.index }}"><img src="/images/shop/{{ image.source }}" width="106" height="150" alt=""/></a>
+                                    <a class="carousel-inner hide"  id="{{ loop.index }}"><img src="{{ asset("images/shop/#{ image.source }") | imagine_filter('slaider') }}" alt=""/></a>
                                         {% else %}
-                                    <a class="carousel-inner margin-right"  id="{{ loop.index }}" ><img  src="/images/shop/{{ image.source }}" width="106" height="150"alt=""/></a>
+                                    <a class="carousel-inner margin-right"  id="{{ loop.index }}" ><img  src="{{ asset("images/shop/#{ image.source }") | imagine_filter('slaider') }}" width="106" height="150"alt=""/></a>
                                         {% endif %}
                                     {% endfor %}
                                     <!-- Маленькие картинки -->

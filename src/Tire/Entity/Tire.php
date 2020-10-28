@@ -245,6 +245,10 @@ class Tire
 
     public function setSeason($season): self
     {
+        if (!in_array($season, self::SEASONS)) {
+            throw new InvalidArgumentException();
+        }
+
         $this->season = $season;
 
         return $this;
@@ -304,6 +308,10 @@ class Tire
 
     public function setStuds(string $studs): self
     {
+        if (!in_array($studs, self::STUDS)) {
+            throw new InvalidArgumentException();
+        }
+
         $this->studs = $studs;
 
         return $this;
