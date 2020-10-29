@@ -85,8 +85,10 @@ class TireRepositoryTest extends FixturesTestCase
 
     public function testGetProducts()
     {
-        $this->assertCount(6, $this->tireRepository->getProducts(true));
-        $this->assertCount(1, $this->tireRepository->getProducts(false));
+        $this->assertCount(5, $this->tireRepository->getProducts(true,5));
+        $this->assertCount(0, $this->tireRepository->getProducts(true,0));
+        $this->assertCount(1, $this->tireRepository->getProducts(false,1));
+        $this->assertCount(1, $this->tireRepository->getProducts(false,10));
     }
 
     public function testFindEnabledById()

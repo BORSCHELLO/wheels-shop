@@ -22,7 +22,9 @@ class RecommendedTireService implements RecommendedTireServiceInterface
      */
     public function getCollectionForHomePage(): TireCollection
     {
-        return $this->tireRepository->getProducts(true);
+        $limit = (int) $_ENV['PRODUCT_HOME_LIMIT'];
+
+        return $this->tireRepository->getProducts(true, $limit);
     }
 
     /**
