@@ -30,6 +30,6 @@ class RecommendedTireService implements RecommendedTireServiceInterface
      */
     public function getRelevantCollectionByTire(Tire $tire, int $count): TireCollection
     {
-
+        return $this->tireRepository->getRelevantByDiameter([$tire->getId()], $tire->getDiameter(), $count);
     }
 }

@@ -2,7 +2,7 @@
     <div class="product-image-wrapper">
         <div class="single-products">
             <div class="productinfo text-center">
-                <img src="{{ asset("images/shop/#{ tire.images[0].source }") | imagine_filter('grid_image') }}"  alt=""/>
+                <img src="{{ asset("images/shop/#{ tire.images[0].source }") | imagine_filter('main_image') }}"  alt=""/>
                 <h2><b class="overlay-info">Цена:</b> {{ tire.price }} p.</h2>
                 <p><b>{{ tire.brand.name }}</b></p>
                 <p><b>{{ tire.name }}</b></p>
