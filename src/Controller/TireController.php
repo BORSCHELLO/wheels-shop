@@ -12,15 +12,16 @@ use Symfony\Component\Routing\Annotation\Route;
 class TireController extends AbstractController
 {
     /**
-     *@Route("/tire/details/{id}", name="tire/details")
+     * @Route("/tire/details/{id}", name="tire/details")
      */
     public function details(Tire $tire, RecommendedTireServiceInterface $recommendedTireService)
     {
         $count = 5;
+        $recommended = $recommendedTireService->getRelevantCollectionByTire($tire, $count);
 
         return $this->render('tire/details.html.twig', [
             'tire' => $tire,
-            'recommended' => $recommendedTireService->getRelevantCollectionByTire($tire, $count)
-            ]);
+            'recommended' => $recommended
+        ]);
     }
 }
