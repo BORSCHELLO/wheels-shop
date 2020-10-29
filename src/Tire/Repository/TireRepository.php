@@ -1,5 +1,5 @@
 <?php
-
+declare(strict_types=1);
 namespace App\Tire\Repository;
 
 use App\Tire\Collection\TireCollection;
@@ -30,11 +30,12 @@ class TireRepository extends ServiceEntityRepository implements TireRepositoryIn
         return $tire;
     }
 
-    public function getProducts(bool $visibility): TireCollection
+    public function getProducts(bool $visibility, int $limit): TireCollection
     {
         return new TireCollection($this->createQueryBuilder('u')
             ->andWhere('u.enabled = :val')
             ->setParameter('val', $visibility)
+            ->setMaxResults($limit)
             ->getQuery()
             ->getResult()
         );
