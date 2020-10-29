@@ -17,6 +17,7 @@ class TireController extends AbstractController
     public function details(Tire $tire, RecommendedTireServiceInterface $recommendedTireService)
     {
         $count = 5;
+
         return $this->render('tire/details.html.twig', [
             'tire' => $tire,
             'recommended' => $recommendedTireService->getRelevantCollectionByTire($tire, $count)

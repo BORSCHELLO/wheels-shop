@@ -4,19 +4,21 @@ let imageCount = elem.length+1;
 let recommended = $("a.carousel-inner-rec");
 let recommendedCount = recommended.length+1;
 
-
-if(elem.length<4){
+if(elem.length<4)
+{
     $("#prev-product").addClass('hide');
     $("#next-product").addClass('hide');
 }
 
-if(recommended.length<4){
+if(recommended.length<4)
+{
     $("#prev-recommended").addClass('hide');
     $("#next-recommended").addClass('hide');
 }
 
 //Карусель для миниатюр
-$("#prev-product").on("click",function () {
+$("#prev-product").on("click",function ()
+{
     if(statusVisibility>4)
     {
         var idImageNext = '#' + (statusVisibility-1);
@@ -27,7 +29,8 @@ $("#prev-product").on("click",function () {
     }
 });
 
-$("#next-product").on("click",function () {
+$("#next-product").on("click",function ()
+{
     if(statusVisibility<imageCount)
     {
         var idImageNext = '#' + statusVisibility;
@@ -39,7 +42,8 @@ $("#next-product").on("click",function () {
 });
 
 //Карусель для рекомендуемых
-$("#prev-recommended").on("click",function () {
+$("#prev-recommended").on("click",function ()
+{
     if(statusVisibility>4)
     {
         var idImageNext = '#recommended' + (statusVisibility-1);
@@ -50,7 +54,8 @@ $("#prev-recommended").on("click",function () {
     }
 });
 
-$("#next-recommended").on("click",function () {
+$("#next-recommended").on("click",function ()
+{
     if(statusVisibility<recommendedCount)
     {
         var idImageNext = '#recommended' + statusVisibility;

@@ -9,10 +9,8 @@
                         <div class="shipping text-center"><!--shipping-->
                             <img src="/images/home/shipping.jpg" alt="" />
                         </div><!--/shipping-->
-
                     </div>
                 </div>
-
                 <div class="col-sm-9 padding-right">
                     <div class="product-details"><!--product-details-->
                         <div class="col-sm-5">
@@ -20,7 +18,6 @@
                                 <img src="{{ asset("images/shop/#{ tire.images[0].source }") | imagine_filter('details') }}" alt=""/>
                             </div>
                             <div id="similar-product" class="carousel slide" data-ride="carousel">
-
                                 <!-- Wrapper for slides -->
                                 <div class=" container row" id="litleImage-container">
                                     {% for image in tire.images %}
@@ -32,7 +29,6 @@
                                     {% endfor %}
                                     <!-- Маленькие картинки -->
                                 </div>
-
                                 <!-- Controls -->
                                 <a class="left item-control" href="#" id="prev-product" data-slide="prev">
                                     <i class="fa fa-angle-left"></i>
@@ -41,14 +37,12 @@
                                     <i class="fa fa-angle-right"></i>
                                 </a>
                             </div>
-
                         </div>
                         <div class="col-sm-7">
                             <div class="product-information" id="product-container">
 								<!--СКИДКА<img src="/images/product-details/new.jpg" class="newarrival" alt="" />-->
                                 <p><b class="brand-name-details">{{ tire.brand.name }}</b></p>
 								<h2>{{ tire.name }}</h2>
-
 								<!--Рейтинг--><img src="/images/product-details/rating.png" alt="" />
 									<p><b class="bold price">{{ tire.price }} p.</b></p>
 									<p><b>Назначение:</b> {{ tire.category.name }}</p>
@@ -62,7 +56,6 @@
 									<p><b>Индекс нагрузки:</b> {{ tire.loadIndex }}</p>
 									<p><b>Шипы:</b> {{ constant('App\\Tire\\Entity\\Tire::STUDS_LABELS')[tire.studs] }}</p>
 									<p><b>Дата выхода на рынок:</b> {{ tire.marketLaunchDate }} г.</p>
-
 									<a href="#" class="btn btn-default cart">
 										<i class="fa fa-shopping-cart"></i>
 										В корзину
@@ -112,7 +105,6 @@
                                                                     </div>
                                                                 </div>
                                                     {% endif %}
-
                                         {% endfor %}
                                     </div>
                                 </div>
