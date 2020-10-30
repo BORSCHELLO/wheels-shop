@@ -76,7 +76,7 @@ class Tire
     private $name;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Brand::class)
+     * @ORM\ManyToOne(targetEntity=Brand::class, inversedBy="tire")
      * @ORM\JoinColumn(nullable=false)
      */
     private $brand;

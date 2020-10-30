@@ -28,11 +28,13 @@ class BrandRepository extends ServiceEntityRepository implements BrandRepository
         return $brand;
     }
 
-    public function getBrand(int $visibility): ?BrandCollection
+    public function getBrands(bool $visibility, int $limit): ?BrandCollection
     {
         return new BrandCollection($this->createQueryBuilder('u')
-            ->andWhere('u.enabled = :val')
-            ->setParameter('val', $visibility)
+            ->andWhere('u.enabled = :visibility')
+            ->andWhere('u.tire IS NOT EMPTY')
+            ->setParameter('visibility', $visibility)
+            ->setMaxResults($limit)
             ->getQuery()
             ->getResult()
         );

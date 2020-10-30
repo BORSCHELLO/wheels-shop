@@ -24,4 +24,11 @@ interface RecommendedTireServiceInterface
      * @return TireCollection
      */
     public function getRelevantCollectionByTire(Tire $tire, int $count): TireCollection;
+
+    /**
+     * @Todo write description
+     *
+     * @return TireCollection
+     */
+    public function getRecommendedCollectionBrand(): TireCollection;
 }

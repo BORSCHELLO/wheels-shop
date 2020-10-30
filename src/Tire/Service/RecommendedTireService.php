@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Tire\Service;
 
+use App\Brand\Service\RecommendedBrandServiceInterface;
+use App\Controller\HomeController;
 use App\Tire\Collection\TireCollection;
 use App\Tire\Entity\Tire;
 use App\Tire\Repository\TireRepositoryInterface;
@@ -11,10 +13,12 @@ use App\Tire\Repository\TireRepositoryInterface;
 class RecommendedTireService implements RecommendedTireServiceInterface
 {
     private TireRepositoryInterface $tireRepository;
+    private RecommendedBrandServiceInterface $recommendedBrandService;
 
-    public function __construct(TireRepositoryInterface $tireRepository)
+    public function __construct(TireRepositoryInterface $tireRepository, RecommendedBrandServiceInterface $recommendedBrandService)
     {
         $this->tireRepository = $tireRepository;
+        $this->recommendedBrandService = $recommendedBrandService;
     }
 
     /**
@@ -22,7 +26,7 @@ class RecommendedTireService implements RecommendedTireServiceInterface
      */
     public function getCollectionForHomePage(): TireCollection
     {
-        $limit = (int) $_ENV['PRODUCT_HOME_LIMIT'];
+        $limit = HomeController::PRODUCT_HOME_LIMIT;
 
         return $this->tireRepository->getProducts(true, $limit);
     }
@@ -33,5 +37,16 @@ class RecommendedTireService implements RecommendedTireServiceInterface
     public function getRelevantCollectionByTire(Tire $tire, int $count): TireCollection
     {
         return $this->tireRepository->getRelevantByDiameter([$tire->getId()], $tire->getDiameter(), $count);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getRecommendedCollectionBrand(): TireCollection
+    {
+        $count = HomeController::BRAND_COLLECTION_LIMIT;
+        $brands = $this->recommendedBrandService->getCollectionBrand();
+
+        return $this->tireRepository->getBrandCollection($brands, $count);
     }
 }
