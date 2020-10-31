@@ -1,4 +1,5 @@
-let statusVisibility=4;
+let statusVisibilityMin=4;
+let statusVisibilityRec=4;
 let elem = $("a.carousel-inner");
 let imageCount = elem.length+1;
 let recommended = $("a.carousel-inner-rec");
@@ -24,15 +25,15 @@ if(recommended.length<4)
 $("#prev-product").on("click",function ()
 {
     $("#next-product").removeClass('hide');
-    if(statusVisibility>4)
+    if(statusVisibilityMin>4)
     {
-        var idImageNext = '#' + (statusVisibility-1);
-        var idImagePrev = '#' + (statusVisibility-4);
-        statusVisibility--;
+        var idImageNext = '#' + (statusVisibilityMin-1);
+        var idImagePrev = '#' + (statusVisibilityMin-4);
+        statusVisibilityMin--;
         $(idImagePrev).removeClass('hide');
         $(idImageNext).addClass('hide');
     }
-    if(statusVisibility == 4)
+    if(statusVisibilityMin == 4)
     {
         $("#prev-product").addClass('hide');
     }
@@ -41,14 +42,14 @@ $("#prev-product").on("click",function ()
 $("#next-product").on("click",function ()
 {
     $("#prev-product").removeClass('hide');
-    if(statusVisibility<imageCount)
+    if(statusVisibilityMin<imageCount)
     {
-        var idImageNext = '#' + statusVisibility;
-        var idImagePrev = '#' + (statusVisibility-3);
-        statusVisibility++;
+        var idImageNext = '#' + statusVisibilityMin;
+        var idImagePrev = '#' + (statusVisibilityMin-3);
+        statusVisibilityMin++;
         $(idImageNext).removeClass('hide');
         $(idImagePrev).addClass('hide');
-        if(statusVisibility == imageCount)
+        if(statusVisibilityMin == imageCount)
         {
             $("#next-product").addClass('hide');
         }
@@ -59,12 +60,12 @@ $("#next-product").on("click",function ()
 $("#prev-recommended").on("click",function ()
 {
     $("#next-recommended").removeClass('hide');
-    if(statusVisibility>4)
+    if(statusVisibilityRec>4)
     {
         $("#prev-recommended").addClass('hide');
-        var idImageNext = '#recommended' + (statusVisibility-1);
-        var idImagePrev = '#recommended' + (statusVisibility-4);
-        statusVisibility--;
+        var idImageNext = '#recommended' + (statusVisibilityRec-1);
+        var idImagePrev = '#recommended' + (statusVisibilityRec-4);
+        statusVisibilityRec--;
         $(idImagePrev).removeClass('hide');
         $(idImageNext).addClass('hide');
     }
@@ -77,14 +78,14 @@ $("#prev-recommended").on("click",function ()
 $("#next-recommended").on("click",function ()
 {
     $("#prev-recommended").removeClass('hide');
-    if(statusVisibility<recommendedCount)
+    if(statusVisibilityRec<recommendedCount)
     {
-        var idImageNext = '#recommended' + statusVisibility;
-        var idImagePrev = '#recommended' + (statusVisibility-3);
-        statusVisibility++;
+        var idImageNext = '#recommended' + statusVisibilityRec;
+        var idImagePrev = '#recommended' + (statusVisibilityRec-3);
+        statusVisibilityRec++;
         $(idImageNext).removeClass('hide');
         $(idImagePrev).addClass('hide');
-        if(statusVisibility == recommendedCount)
+        if(statusVisibilityRec == recommendedCount)
         {
             $("#next-recommended").addClass('hide');
         }
