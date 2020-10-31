@@ -13,7 +13,7 @@ class HomeController extends AbstractController
 {
     const PRODUCT_HOME_LIMIT = 6;
     const BRAND_HOME_LIMIT = 6;
-    const BRAND_COLLECTION_LIMIT = 10;
+    const BRAND_COLLECTION_LIMIT = 4;
     /**
      *@Route("/", name="home")
      */

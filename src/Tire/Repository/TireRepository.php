@@ -59,12 +59,12 @@ class TireRepository extends ServiceEntityRepository implements TireRepositoryIn
         return new TireCollection($builder->getQuery()->getResult());
     }
 
-    public function getBrandCollection($brands, int $limit): TireCollection
+    public function getBrandCollection($brand, int $limit): TireCollection
     {
         $builder = $this->createQueryBuilder('t')
             ->andWhere('t.enabled = 1')
-            ->andWhere('t.brand IN (:brands)')
-            ->setParameter('brands', $brands)
+            ->andWhere('t.brand = :brand')
+            ->setParameter('brand', $brand)
             ->setMaxResults($limit);
 
         return new TireCollection($builder->getQuery()->getResult());

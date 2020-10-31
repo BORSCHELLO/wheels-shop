@@ -46,7 +46,13 @@ class RecommendedTireService implements RecommendedTireServiceInterface
     {
         $count = HomeController::BRAND_COLLECTION_LIMIT;
         $brands = $this->recommendedBrandService->getCollectionBrand();
+        $brandTires=[];
 
-        return $this->tireRepository->getBrandCollection($brands, $count);
+        foreach ($brands as $brand)
+        {
+            $brandTires[] = $this->tireRepository->getBrandCollection($brand, $count);
+        }
+
+        return new TireCollection($brandTires);
     }
 }
