@@ -39,4 +39,16 @@ class BrandRepository extends ServiceEntityRepository implements BrandRepository
             ->getResult()
         );
     }
+
+    public function getBrandsForFilters(bool $visibility): ?BrandCollection
+    {
+        return new BrandCollection($this->createQueryBuilder('b')
+            ->select('b.id, b.name')
+            ->andWhere('b.enabled = :visibility')
+            ->andWhere('b.tire IS NOT EMPTY')
+            ->setParameter('visibility', $visibility)
+            ->getQuery()
+            ->getResult()
+        );
+    }
 }

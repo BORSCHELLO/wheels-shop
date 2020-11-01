@@ -2,7 +2,7 @@ function createElement(type)
 {
     return  document.createElement(type);
 }
-
+/*
 $(document).ready(function(){
     $.ajax({
         url: 'showProducts',
@@ -84,4 +84,4 @@ $(document).ready(function(){
             });
         }
     });
-});
+});*/
