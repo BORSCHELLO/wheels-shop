@@ -34,7 +34,7 @@ class BrandRepositoryTest extends DoctrineTestCase
         $this->assertEquals(true, $brand->getEnabled());
     }
 
-    public function testGetBrand()
+    public function testGetBrands()
     {
         $brand1 = new Brand();
 
@@ -57,12 +57,12 @@ class BrandRepositoryTest extends DoctrineTestCase
 
         $this->brandRepository->create($brand3);
 
-        $collection = $this->brandRepository->getBrand(1);
+        $collection = $this->brandRepository->getBrands(true, 10);
         $this->assertCount(2, $collection);
         $this->assertSame($collection->get(0), $brand1);
         $this->assertSame($collection->get(1), $brand3);
 
-        $collection = $this->brandRepository->getBrand(0);
+        $collection = $this->brandRepository->getBrands(false, 10);
 
         $this->assertCount(1, $collection);
         $this->assertSame($collection->get(0), $brand2);

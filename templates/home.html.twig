@@ -4,7 +4,6 @@
     {% block main %}<li><a id="main-page" href="{{ path('home')}}" class="active">Главная</a></li>{% endblock %}
 
 {% block body %}
-
     <section id="slider"><!--slider-->
         <div class="container">
             <div class="row">
@@ -97,337 +96,67 @@
                     <div class="features_items"><!--features_items-->
                         <h2 class="title text-center">Рекомендованые товары</h2>
                         {% for tire in tires %}
-                            {# note: {{ dump(tire) }} #}
                             {{ include('tire/gridview/item.html.twig', {tire: tire}) }}
                         {% endfor %}
                     </div>
                     <div class="category-tab"><!--category-tab-->
                         <div class="col-sm-12">
-                            <ul class="nav nav-tabs">
-                                <li class="active"><a href="#tshirt" data-toggle="tab">Бренд 1</a></li>
-                                <li><a href="#blazers" data-toggle="tab">Бренд 2</a></li>
-                                <li><a href="#sunglass" data-toggle="tab">Бренд 3</a></li>
-                                <li><a href="#kids" data-toggle="tab">Бренд 4</a></li>
-                                <li><a href="#poloshirt" data-toggle="tab">Бренд 5</a></li>
-                            </ul>
+                            {{ include('brand/brand.html.twig', {brands: brands}) }}
                         </div>
                         <div class="tab-content">
-                            <div class="tab-pane fade active in" id="tshirt" >
-                                <div class="col-sm-3">
-                                    <div class="product-image-wrapper">
-                                        <div class="single-products">
-                                            <div class="productinfo text-center">
-                                                <img src="images/home/gallery1.jpg" alt="" />
-                                                <h2>50 p.</h2>
-                                                <p>Easy Polo Black Edition</p>
-                                                <ul class="nav nav-pills nav-justified">
-                                                    <li><a href="#"><i class="fa fa-plus-square"></i>Подробнее</a></li>
-                                                </ul>
-                                            </div>
-
-                                        </div>
+                            {% for brand in brands %}
+                                {% if loop.index ==1 %}
+                                    <div class="tab-pane fade active in" id="brand{{ brand.name }}" >
+                                        {% for brands in brandTires %}
+                                        {% for tire in brands %}
+                                            {% if tire.brand.name == brand.name  %}
+                                                <div class="col-sm-3">
+                                                    <div class="product-image-wrapper">
+                                                        <div class="single-products">
+                                                            <div class="productinfo text-center">
+                                                                <img  src="{{ asset("images/shop/#{ tire.images[0].source }") | imagine_filter('recommended') }}"alt=""/>
+                                                                <p><b class="brand-name">{{ tire.brand.name }}</b></p>
+                                                                <p><b>{{ tire.name }}</b></p>
+                                                                <p><b class="bold price">{{ tire.price }} p.</b></p>
+                                                                <ul class="nav nav-pills nav-justified">
+                                                                    <li><a href="{{ path('tire/details', {'id': tire.id}) }}"><i class="fa fa-plus-square"></i>Подробнее</a></li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            {% endif %}
+                                        {% endfor %}
+                                        {% endfor %}
                                     </div>
-                                </div>
-                                <div class="col-sm-3">
-                                    <div class="product-image-wrapper">
-                                        <div class="single-products">
-                                            <div class="productinfo text-center">
-                                                <img src="images/home/gallery2.jpg" alt="" />
-                                                <h2>$56</h2>
-                                                <p>Easy Polo Black Edition</p>
-                                                <ul class="nav nav-pills nav-justified">
-                                                    <li><a href="#"><i class="fa fa-plus-square"></i>Подробнее</a></li>
-                                                </ul>
-                                            </div>
-
-                                        </div>
+                                {% else %}
+                                    <div class="tab-pane fade" id="brand{{ brand.name }}" >
+                                        {% for brands in brandTires %}
+                                        {% for tire in brands %}
+                                            {% if tire.brand.name == brand.name  %}
+                                                <div class="col-sm-3">
+                                                    <div class="product-image-wrapper">
+                                                        <div class="single-products">
+                                                            <div class="productinfo text-center">
+                                                                <img  src="{{ asset("images/shop/#{ tire.images[0].source }") | imagine_filter('recommended') }}"alt=""/>
+                                                                <p><b class="brand-name">{{ tire.brand.name }}</b></p>
+                                                                <p><b>{{ tire.name }}</b></p>
+                                                                <p><b class="bold price">{{ tire.price }} p.</b></p>
+                                                                <ul class="nav nav-pills nav-justified">
+                                                                    <li><a href="{{ path('tire/details', {'id': tire.id}) }}"><i class="fa fa-plus-square"></i>Подробнее</a></li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            {% endif %}
+                                        {% endfor %}
+                                        {% endfor %}
                                     </div>
-                                </div>
-                                <div class="col-sm-3">
-                                    <div class="product-image-wrapper">
-                                        <div class="single-products">
-                                            <div class="productinfo text-center">
-                                                <img src="images/home/gallery3.jpg" alt="" />
-                                                <h2>$56</h2>
-                                                <p>Easy Polo Black Edition</p>
-                                                <ul class="nav nav-pills nav-justified">
-                                                    <li><a href="#"><i class="fa fa-plus-square"></i>Подробнее</a></li>
-                                                </ul>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-3">
-                                    <div class="product-image-wrapper">
-                                        <div class="single-products">
-                                            <div class="productinfo text-center">
-                                                <img src="images/home/gallery4.jpg" alt="" />
-                                                <h2>$56</h2>
-                                                <p>Easy Polo Black Edition</p>
-                                                <ul class="nav nav-pills nav-justified">
-                                                    <li><a href="#"><i class="fa fa-plus-square"></i>Подробнее</a></li>
-                                                </ul>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="tab-pane fade" id="blazers" >
-                                <div class="col-sm-3">
-                                    <div class="product-image-wrapper">
-                                        <div class="single-products">
-                                            <div class="productinfo text-center">
-                                                <img src="images/home/gallery4.jpg" alt="" />
-                                                <h2>$56</h2>
-                                                <p>Easy Polo Black Edition</p>
-                                                <ul class="nav nav-pills nav-justified">
-                                                    <li><a href="#"><i class="fa fa-plus-square"></i>Подробнее</a></li>
-                                                </ul>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-3">
-                                    <div class="product-image-wrapper">
-                                        <div class="single-products">
-                                            <div class="productinfo text-center">
-                                                <img src="images/home/gallery3.jpg" alt="" />
-                                                <h2>$56</h2>
-                                                <p>Easy Polo Black Edition</p>
-                                                <ul class="nav nav-pills nav-justified">
-                                                    <li><a href="#"><i class="fa fa-plus-square"></i>Подробнее</a></li>
-                                                </ul>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-3">
-                                    <div class="product-image-wrapper">
-                                        <div class="single-products">
-                                            <div class="productinfo text-center">
-                                                <img src="images/home/gallery2.jpg" alt="" />
-                                                <h2>$56</h2>
-                                                <p>Easy Polo Black Edition</p>
-                                                <ul class="nav nav-pills nav-justified">
-                                                    <li><a href="#"><i class="fa fa-plus-square"></i>Подробнее</a></li>
-                                                </ul>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-3">
-                                    <div class="product-image-wrapper">
-                                        <div class="single-products">
-                                            <div class="productinfo text-center">
-                                                <img src="images/home/gallery1.jpg" alt="" />
-                                                <h2>$56</h2>
-                                                <p>Easy Polo Black Edition</p>
-                                                <ul class="nav nav-pills nav-justified">
-                                                    <li><a href="#"><i class="fa fa-plus-square"></i>Подробнее</a></li>
-                                                </ul>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="tab-pane fade" id="sunglass" >
-                                <div class="col-sm-3">
-                                    <div class="product-image-wrapper">
-                                        <div class="single-products">
-                                            <div class="productinfo text-center">
-                                                <img src="images/home/gallery3.jpg" alt="" />
-                                                <h2>$56</h2>
-                                                <p>Easy Polo Black Edition</p>
-                                                <ul class="nav nav-pills nav-justified">
-                                                    <li><a href="#"><i class="fa fa-plus-square"></i>Подробнее</a></li>
-                                                </ul>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-3">
-                                    <div class="product-image-wrapper">
-                                        <div class="single-products">
-                                            <div class="productinfo text-center">
-                                                <img src="images/home/gallery4.jpg" alt="" />
-                                                <h2>$56</h2>
-                                                <p>Easy Polo Black Edition</p>
-                                                <ul class="nav nav-pills nav-justified">
-                                                    <li><a href="#"><i class="fa fa-plus-square"></i>Подробнее</a></li>
-                                                </ul>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-3">
-                                    <div class="product-image-wrapper">
-                                        <div class="single-products">
-                                            <div class="productinfo text-center">
-                                                <img src="images/home/gallery1.jpg" alt="" />
-                                                <h2>$56</h2>
-                                                <p>Easy Polo Black Edition</p>
-                                                <ul class="nav nav-pills nav-justified">
-                                                    <li><a href="#"><i class="fa fa-plus-square"></i>Подробнее</a></li>
-                                                </ul>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-3">
-                                    <div class="product-image-wrapper">
-                                        <div class="single-products">
-                                            <div class="productinfo text-center">
-                                                <img src="images/home/gallery2.jpg" alt="" />
-                                                <h2>$56</h2>
-                                                <p>Easy Polo Black Edition</p>
-                                                <ul class="nav nav-pills nav-justified">
-                                                    <li><a href="#"><i class="fa fa-plus-square"></i>Подробнее</a></li>
-                                                </ul>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="tab-pane fade" id="kids" >
-                                <div class="col-sm-3">
-                                    <div class="product-image-wrapper">
-                                        <div class="single-products">
-                                            <div class="productinfo text-center">
-                                                <img src="images/home/gallery1.jpg" alt="" />
-                                                <h2>$56</h2>
-                                                <p>Easy Polo Black Edition</p>
-                                                <ul class="nav nav-pills nav-justified">
-                                                    <li><a href="#"><i class="fa fa-plus-square"></i>Подробнее</a></li>
-                                                </ul>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-3">
-                                    <div class="product-image-wrapper">
-                                        <div class="single-products">
-                                            <div class="productinfo text-center">
-                                                <img src="images/home/gallery2.jpg" alt="" />
-                                                <h2>$56</h2>
-                                                <p>Easy Polo Black Edition</p>
-                                                <ul class="nav nav-pills nav-justified">
-                                                    <li><a href="#"><i class="fa fa-plus-square"></i>Подробнее</a></li>
-                                                </ul>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-3">
-                                    <div class="product-image-wrapper">
-                                        <div class="single-products">
-                                            <div class="productinfo text-center">
-                                                <img src="images/home/gallery3.jpg" alt="" />
-                                                <h2>$56</h2>
-                                                <p>Easy Polo Black Edition</p>
-                                                <ul class="nav nav-pills nav-justified">
-                                                    <li><a href="#"><i class="fa fa-plus-square"></i>Подробнее</a></li>
-                                                </ul>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-3">
-                                    <div class="product-image-wrapper">
-                                        <div class="single-products">
-                                            <div class="productinfo text-center">
-                                                <img src="images/home/gallery4.jpg" alt="" />
-                                                <h2>$56</h2>
-                                                <p>Easy Polo Black Edition</p>
-                                                <ul class="nav nav-pills nav-justified">
-                                                    <li><a href="#"><i class="fa fa-plus-square"></i>Подробнее</a></li>
-                                                </ul>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="tab-pane fade" id="poloshirt" >
-                                <div class="col-sm-3">
-                                    <div class="product-image-wrapper">
-                                        <div class="single-products">
-                                            <div class="productinfo text-center">
-                                                <img src="images/home/gallery2.jpg" alt="" />
-                                                <h2>$56</h2>
-                                                <p>Easy Polo Black Edition</p>
-                                                <ul class="nav nav-pills nav-justified">
-                                                    <li><a href="#"><i class="fa fa-plus-square"></i>Подробнее</a></li>
-                                                </ul>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-3">
-                                    <div class="product-image-wrapper">
-                                        <div class="single-products">
-                                            <div class="productinfo text-center">
-                                                <img src="images/home/gallery4.jpg" alt="" />
-                                                <h2>$56</h2>
-                                                <p>Easy Polo Black Edition</p>
-                                                <ul class="nav nav-pills nav-justified">
-                                                    <li><a href="#"><i class="fa fa-plus-square"></i>Подробнее</a></li>
-                                                </ul>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-3">
-                                    <div class="product-image-wrapper">
-                                        <div class="single-products">
-                                            <div class="productinfo text-center">
-                                                <img src="images/home/gallery3.jpg" alt="" />
-                                                <h2>$56</h2>
-                                                <p>Easy Polo Black Edition</p>
-                                                <ul class="nav nav-pills nav-justified">
-                                                    <li><a href="#"><i class="fa fa-plus-square"></i>Подробнее</a></li>
-                                                </ul>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-3">
-                                    <div class="product-image-wrapper">
-                                        <div class="single-products">
-                                            <div class="productinfo text-center">
-                                                <img src="images/home/gallery1.jpg" alt="" />
-                                                <h2>$56</h2>
-                                                <p>Easy Polo Black Edition</p>
-                                                <ul class="nav nav-pills nav-justified">
-                                                    <li><a href="#"><i class="fa fa-plus-square"></i>Подробнее</a></li>
-                                                </ul>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                                {% endif %}
+                            {% endfor %}
                         </div>
-                    </div><!--/category-tab-->
+                        </div><!--/category-tab-->
 
                 </div>
             </div>

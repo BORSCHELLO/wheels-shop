@@ -1,8 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Brand\Entity;
 
 use App\Brand\Repository\BrandRepository;
+use App\Tire\Entity\Tire;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -32,7 +35,7 @@ class Brand
         return $this->id;
     }
 
-    public function __toString()
+    public function __toString(): ?string
     {
         return $this->getName();
     }
@@ -60,4 +63,5 @@ class Brand
 
         return $this;
     }
+
 }

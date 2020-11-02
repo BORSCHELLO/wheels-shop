@@ -27,7 +27,6 @@ class TireRepositoryTest extends FixturesTestCase
         $this->tireRepository= $this->em->getRepository(Tire::class);
         $this->brandRepository= $this->em->getRepository(Brand::class);
         $this->categoryRepository= $this->em->getRepository(Category::class);
-
     }
 
     public function testCreate()

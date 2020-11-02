@@ -15,16 +15,22 @@
 					<div class="left-sidebar">
 						<h2>Категории</h2>
 						<div class="panel-group category-products" id="accordian"><!--category-productsr-->
-							<ul class="nav nav-pills nav-stacked" id="category-container"><!--Вставка категорий--></ul>
+							<ul class="nav nav-pills nav-stacked">
+								{% for filter in filters[0] %}
+							<li class="margin-li-style"><a class="category-name" id="category{{ filter.id }}" href="#">{{ filter.name }}</a></li>
+								{% endfor %}
+							</ul>
 
 						</div><!--/category-productsr-->
 					
 						<div class="brands_products"><!--brands_products-->
 							<h2>Бренды</h2>
 							<div class="brands-name">
-								<ul class="nav nav-pills nav-stacked" id="brand-container">
-									<li class="margin-li-style"><label for="summer" class="filter-text brend">Hankook<span class="pull-right">(21)</span></label>
-										<input type="checkbox" id="summer" name="summer" class="pull-right check-size"></li>
+								<ul class="nav nav-pills nav-stacked">
+									{% for filter in filters[1] %}
+									<li class="margin-li-style"><label for="brand{{ filter.id }}" class="filter-text brend">{{ filter.name }}</label>
+										<input type="checkbox" id="brand{{ filter.id }}" class="pull-right check-size"></li>
+									{% endfor %}
 								</ul>
 							</div>
 						</div><!--/brands_products-->
@@ -32,8 +38,12 @@
 						<div class="price-range"><!--price-range-->
 							<h2>Диапазон цен</h2>
 							<div class="well">
-								<input type="text" class="span2" value="" data-slider-min="0" data-slider-max="800" data-slider-step="5" data-slider-value="[250,450]" id="sl2" ><br />
-								<b>0р</b> <b class="pull-right">800р</b>
+								<p class="brand">Задать цену товара:</p>
+								<label for="priceMin">Минимальная:</label>
+								<input id="priceMin" type="text" placeholder="{{ filters[5][0].price }}"/>
+
+								<label for="priceMax">Максимальная:</label>
+								<input id="priceMax" type="text" placeholder="{{ filters[5][1].price }}"/>
 							</div>
 						</div><!--/price-range-->
 
@@ -42,9 +52,10 @@
 							<h2>Сезон</h2>
 							<div class="brands-name">
 								<ul class="nav nav-pills nav-stacked">
-									<li class="margin-li-style"><label for="summer" class="filter-text">Летняя<span class="pull-right">(21)</span></label><input type="checkbox" id="summer" name="summer" class="pull-right check-size"></li>
-									<li class="margin-li-style"><label for="winter" class="filter-text">Зимняя<span class="pull-right">(27)</span></label><input type="checkbox" id="winter" name="winter" class="pull-right check-size"></li>
-									<li class="margin-li-style"><label for="allseason" class="filter-text">Всесезонная<span class="pull-right">(9)</span></label><input type="checkbox" id="allseason" name="allseason" class="pull-right check-size"></li>
+									{% for filter in filters[2] %}
+									<li class="margin-li-style"><label for="season{{ filter }}" class="filter-text">{{ filter }}</label>
+										<input type="checkbox" id="season{{ filter }}" class="pull-right check-size"></li>
+									{% endfor %}
 								</ul>
 							</div>
 						</div><!--/season-->
@@ -57,14 +68,9 @@
 									<li class="single_field">
 										<label class="filter-text" for="width-tire">Выберите ширину шины:</label>
 										<select id="width-tire">
-											<option>180</option>
-											<option>185</option>
-											<option>190</option>
-											<option>195</option>
-											<option>200</option>
-											<option>205</option>
-											<option>210</option>
-											<option>215</option>
+											{% for filter in filters[6] %}
+											<option id="width{{ filter }}">{{ filter }}</option>
+											{% endfor %}
 										</select>
 									</li>
 								</ul>
@@ -73,14 +79,9 @@
 									<li class="single_field">
 										<label class="filter-text" for="height-tire">Выберите высоту шины:</label>
 										<select id="height-tire">
-											<option>40</option>
-											<option>45</option>
-											<option>50</option>
-											<option>55</option>
-											<option>60</option>
-											<option>65</option>
-											<option>70</option>
-											<option>75</option>
+											{% for filter in filters[7] %}
+											<option id="height{{ filter }}">{{ filter }}</option>
+											{% endfor %}
 										</select>
 									</li>
 								</ul>
@@ -95,38 +96,24 @@
 									<li class="single_field">
 										<label class="filter-text" for="diameter-tire">Посадочный диаметр:</label>
 										<select id="diameter-tire">
-											<option>13"</option>
-											<option>14"</option>
-											<option>15"</option>
-											<option>16"</option>
-											<option>17"</option>
-											<option>18"</option>
-											<option>19"</option>
-											<option>20"</option>
+											{% for filter in filters[8] %}
+												<option id="diameter{{ filter }}">{{ filter }}"</option>
+											{% endfor %}
 										</select>
 									</li>
 								</ul>
 							</div>
 						</div><!--/diameter-->
 
-						<div class="brands_products"><!--design-->
-							<br/>
-							<h2>Конструкция</h2>
-							<div class="brands-name">
-								<ul class="nav nav-pills nav-stacked">
-									<li class="margin-li-style"><label for="radial" class="filter-text">Радиальные<span class="pull-right">(6)</span></label><input type="checkbox" id="radial" name="radial" class="pull-right check-size"></li>
-									<li class="margin-li-style"><label for="dioganal" class="filter-text">Диагональные<span class="pull-right">(3)</span></label><input type="checkbox" id="dioganal" name="dioganal" class="pull-right  check-size"></li>
-								</ul>
-							</div>
-						</div><!--/design-->
-
 						<div class="brands_products"><!--sealing_method-->
 							<br/>
 							<h2>Способ герметизации</h2>
 							<div class="brands-name">
 								<ul class="nav nav-pills nav-stacked">
-									<li class="margin-li-style"><label for="radial" class="filter-text">Камерные<span class="pull-right">(6)</span></label><input type="checkbox" id="radial" name="radial" class="pull-right check-size"></li>
-									<li class="margin-li-style"><label for="dioganal" class="filter-text">Бескамерные<span class="pull-right">(3)</span></label><input type="checkbox" id="dioganal" name="dioganal" class="pull-right  check-size"></li>
+									{% for filter in filters[3] %}
+									<li class="margin-li-style"><label for="sealing{{ filter }}" class="filter-text">{{ filter }}</label>
+										<input type="checkbox" id="sealing{{ filter }}" class="pull-right check-size"></li>
+									{% endfor %}
 								</ul>
 							</div>
 						</div><!--/sealing_method-->
@@ -139,14 +126,9 @@
 									<li class="single_field">
 										<label class="filter-text" for="speed-index">Выбрать:</label>
 										<select id="speed-index">
-											<option>A2 (до 10 км/ч)</option>
-											<option>S (до 180 км/ч)</option>
-											<option>T (до 190 км/ч)</option>
-											<option>U (до 200 км/ч)</option>
-											<option>H (до 210 км/ч)</option>
-											<option>VR (свыше 210 км/ч)</option>
-											<option>V (до 240 км/ч)</option>
-											<option>Y (до 300км/ч)</option>
+											{% for filter in filters[9] %}
+												<option id="speed{{ filter }}">до {{ filter }} км/ч</option>
+											{% endfor %}
 										</select>
 									</li>
 								</ul>
@@ -161,14 +143,9 @@
 									<li class="single_field">
 										<label class="filter-text" for="load-index">Выбрать:</label>
 										<select id="load-index">
-											<option>91</option>
-											<option>92</option>
-											<option>93</option>
-											<option>94</option>
-											<option>95</option>
-											<option>96</option>
-											<option>97</option>
-											<option>98</option>
+											{% for filter in filters[10] %}
+												<option id="load{{ filter }}">{{ filter }}</option>
+											{% endfor %}
 										</select>
 									</li>
 								</ul>
@@ -177,12 +154,13 @@
 
 						<div class="brands_products"><!--thorns-->
 							<br/>
-							<h2>Сезон</h2>
+							<h2>Шипы</h2>
 							<div class="brands-name">
 								<ul class="nav nav-pills nav-stacked">
-									<li class="margin-li-style"><label for="summer" class="filter-text">Шипы<span class="pull-right">(21)</span></label><input type="checkbox" id="summer" name="summer" class="pull-right check-size"></li>
-									<li class="margin-li-style"><label for="winter" class="filter-text">Возможно ошиповать<span class="pull-right">(27)</span></label><input type="checkbox" id="winter" name="winter" class="pull-right check-size"></li>
-									<li class="margin-li-style"><label for="allseason" class="filter-text">Без шипов<span class="pull-right">(9)</span></label><input type="checkbox" id="allseason" name="allseason" class="pull-right check-size"></li>
+									{% for filter in filters[4] %}
+									<li class="margin-li-style"><label for="studs{{ filter }}" class="filter-text">{{ filter }}</label>
+										<input type="checkbox" id="studs{{ filter }}" class="pull-right check-size"></li>
+									{% endfor %}
 								</ul>
 							</div>
 						</div><!--/thorns-->
@@ -195,14 +173,9 @@
 									<li class="single_field">
 										<label class="filter-text" for="market_launch_date">Выбрать:</label>
 										<select id="market_launch_date">
-											<option>2009</option>
-											<option>2014</option>
-											<option>2015</option>
-											<option>2016</option>
-											<option>2017</option>
-											<option>2018</option>
-											<option>2019</option>
-											<option>2020</option>
+											{% for filter in filters[11] %}
+												<option id="launchDate{{ filter }}">{{ filter }}</option>
+											{% endfor %}
 										</select>
 									</li>
 								</ul>
@@ -225,7 +198,7 @@
 
 				<div class="col-sm-9 padding-right">
 					<h2 class="title text-center">Товары</h2>
-
+                    {{ dump(filters) }}
 					<div class="product-details" id="product-container"><!--product-details-->
 					<div class="col-sm-5" >
 								<div class="view-product">

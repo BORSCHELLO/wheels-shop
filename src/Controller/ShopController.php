@@ -4,32 +4,21 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Category\Repository\CategoryRepository;
-use App\Response\Filter\CategoryJsonResponse;
-use App\Response\Tire\TireJsonResponse;
-use App\Tire\Repository\TireRepository;
+use App\Tire\Service\FiltersTireServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 class ShopController extends AbstractController
 {
     /**
-     * @Route ("/filter-data" , name="filter-data")
-     * @param Request $request
+     *@Route("/shop", name="shop")
      */
-    public function passFilterData(CategoryRepository $categoryRepository)
+    public function shop(FiltersTireServiceInterface $filtersTireService)
     {
-        return new CategoryJsonResponse($categoryRepository->getCategory(1));
+        return $this->render('shop.html.twig',
+            [
+            'filters' =>$filtersTireService->getCollectionFiltersForShop()
+            ]
+        );
     }
-
-    /**
-     * @Route ("/showProducts" , name="showProducts")
-     * @param Request $request
-     */
-    public function showProducts(TireRepository $tireRepository)
-    {
-        return new TireJsonResponse($tireRepository->getProducts(1));
-    }
-
 }

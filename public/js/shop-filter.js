@@ -1,9 +1,8 @@
-
 function createElement(type)
 {
     return  document.createElement(type);
 }
-
+/*
 $(document).ready(function(){
     $.ajax({
         url: 'filter-data',
@@ -27,4 +26,4 @@ $(document).ready(function(){
             });
         }
     });
-});
+});*/

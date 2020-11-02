@@ -1,5 +1,6 @@
 <?php
 declare(strict_types=1);
+
 namespace App\Tire\Repository;
 
 use App\Tire\Collection\TireCollection;
@@ -17,6 +18,8 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class TireRepository extends ServiceEntityRepository implements TireRepositoryInterface
 {
+
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Tire::class);
@@ -57,5 +60,37 @@ class TireRepository extends ServiceEntityRepository implements TireRepositoryIn
             ->setMaxResults($limit);
 
         return new TireCollection($builder->getQuery()->getResult());
+    }
+
+    public function getBrandCollection($brand, int $limit): TireCollection
+    {
+        $builder = $this->createQueryBuilder('t')
+            ->andWhere('t.enabled = true')
+            ->andWhere('t.brand = :brand')
+            ->setParameter('brand', $brand)
+            ->setMaxResults($limit);
+
+        return new TireCollection($builder->getQuery()->getResult());
+    }
+
+    public function getPrice(bool $visibility): ?array
+    {
+        return $this->createQueryBuilder('p')
+            ->select('p.price')
+            ->andWhere('p.enabled = :val')
+            ->setParameter('val', $visibility)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function getProductsForFilters(bool $visibility): TireCollection
+    {
+        return new TireCollection($this->createQueryBuilder('t')
+            ->select('t.width, t.height, t.diameter, t.speedIndex, t.loadIndex, t.marketLaunchDate')
+            ->andWhere('t.enabled = :val')
+            ->setParameter('val', $visibility)
+            ->getQuery()
+            ->getResult()
+        );
     }
 }

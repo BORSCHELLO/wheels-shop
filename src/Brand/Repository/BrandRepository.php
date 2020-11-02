@@ -1,10 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Brand\Repository;
 
 use App\Brand\Collection\BrandCollection;
 use App\Brand\Entity\Brand;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\DBAL\Connection;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -15,9 +18,13 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class BrandRepository extends ServiceEntityRepository implements BrandRepositoryInterface
 {
-    public function __construct(ManagerRegistry $registry)
+    private Connection $connection;
+
+    public function __construct(ManagerRegistry $registry, Connection $connection)
     {
         parent::__construct($registry, Brand::class);
+
+        $this->connection = $connection;
     }
 
     public function create(Brand $brand): Brand
@@ -28,13 +35,45 @@ class BrandRepository extends ServiceEntityRepository implements BrandRepository
         return $brand;
     }
 
-    public function getBrand(int $visibility): ?BrandCollection
+
+    public function getBrandsInTires(bool $visibility, int $limit): ?BrandCollection
     {
-        return new BrandCollection($this->createQueryBuilder('u')
-            ->andWhere('u.enabled = :val')
-            ->setParameter('val', $visibility)
-            ->getQuery()
-            ->getResult()
-        );
+        $qb = $this->connection->createQueryBuilder();
+        $brandIds = $qb->select('brand_id')
+            ->distinct()
+            ->from('tire')
+            ->where('enabled = :enabled')
+            ->setParameter(':enabled', $visibility)
+            ->setMaxResults($limit)
+            ->execute()
+            ->fetchFirstColumn();
+
+        $brands = $this->findBy(['id' => $brandIds]);
+
+/*        $queryBuilder = $this->connection->createQueryBuilder();
+        $brandsNames[] = $queryBuilder->select('name')
+            ->from('brand')
+            ->where('id IN (:brandIds)')
+            ->setParameter('brandIds', $brandIds, Connection::PARAM_INT_ARRAY)
+            ->execute()
+            ->fetchAll();*/
+
+        return new BrandCollection($brands);
+    }
+
+    public function getBrandsForFilters(bool $visibility): ?BrandCollection
+    {
+        $qb = $this->connection->createQueryBuilder();
+        $brandIds = $qb->select('brand_id')
+            ->distinct()
+            ->from('tire')
+            ->where('enabled = :enabled')
+            ->setParameter(':enabled', $visibility)
+            ->execute()
+            ->fetchFirstColumn();
+
+        $brands = $this->findBy(['id' => $brandIds]);
+
+        return new BrandCollection($brands);
     }
 }

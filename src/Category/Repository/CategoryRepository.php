@@ -22,7 +22,7 @@ class CategoryRepository extends ServiceEntityRepository implements CategoryRepo
         return $category;
     }
 
-    public function getCategory(int $visibility): ?CategoryCollection
+    public function getCategory(bool $visibility): ?CategoryCollection
     {
         return new CategoryCollection($this->createQueryBuilder('u')
             ->andWhere('u.enabled = :val')
@@ -30,5 +30,16 @@ class CategoryRepository extends ServiceEntityRepository implements CategoryRepo
             ->getQuery()
             ->getResult()
             );
+    }
+
+    public function getCategorysForFilters(bool $visibility): ?CategoryCollection
+    {
+        return new CategoryCollection($this->createQueryBuilder('c')
+            ->select('c.id, c.name')
+            ->andWhere('c.enabled = :val')
+            ->setParameter('val', $visibility)
+            ->getQuery()
+            ->getResult()
+        );
     }
 }

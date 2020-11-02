@@ -28,14 +28,6 @@ class PageController extends AbstractController
     }
 
     /**
-     *@Route("/shop", name="shop")
-     */
-    public function shop()
-    {
-        return $this->render('shop.html.twig');
-    }
-
-    /**
      *@Route("/contacts", name="contacts")
      */
     public function contacts()
