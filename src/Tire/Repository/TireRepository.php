@@ -18,6 +18,8 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class TireRepository extends ServiceEntityRepository implements TireRepositoryInterface
 {
+
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Tire::class);
@@ -63,7 +65,7 @@ class TireRepository extends ServiceEntityRepository implements TireRepositoryIn
     public function getBrandCollection($brand, int $limit): TireCollection
     {
         $builder = $this->createQueryBuilder('t')
-            ->andWhere('t.enabled = 1')
+            ->andWhere('t.enabled = true')
             ->andWhere('t.brand = :brand')
             ->setParameter('brand', $brand)
             ->setMaxResults($limit);
@@ -84,7 +86,7 @@ class TireRepository extends ServiceEntityRepository implements TireRepositoryIn
     public function getProductsForFilters(bool $visibility): TireCollection
     {
         return new TireCollection($this->createQueryBuilder('t')
-            ->select('t.width, t.height, t.diameter, t.speedIndex, t.loadIndex, t.marketLaunchDate ')
+            ->select('t.width, t.height, t.diameter, t.speedIndex, t.loadIndex, t.marketLaunchDate')
             ->andWhere('t.enabled = :val')
             ->setParameter('val', $visibility)
             ->getQuery()

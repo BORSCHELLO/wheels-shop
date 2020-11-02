@@ -11,7 +11,7 @@ interface BrandRepositoryInterface
 {
     public function create(Brand $brand): Brand;
 
-    public function getBrands(bool $visibility, int $limit): ?BrandCollection;
+    public function getBrandsInTires(bool $visibility, int $limit): ?BrandCollection;
 
     public function getBrandsForFilters(bool $visibility): ?BrandCollection;
 }

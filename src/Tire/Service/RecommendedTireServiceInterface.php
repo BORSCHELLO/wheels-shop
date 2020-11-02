@@ -14,7 +14,7 @@ interface RecommendedTireServiceInterface
      *
      * @return TireCollection
      */
-    public function getCollectionForHomePage(): TireCollection;
+    public function getCollectionForHomePage(int $limit): TireCollection;
 
     /**
      * @Todo write description
@@ -30,5 +30,5 @@ interface RecommendedTireServiceInterface
      *
      * @return TireCollection
      */
-    public function getRecommendedCollectionBrand(): TireCollection;
+    public function getRecommendedCollectionBrand(int $count, int $limit): TireCollection;
 }

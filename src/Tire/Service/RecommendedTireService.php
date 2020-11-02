@@ -24,10 +24,8 @@ class RecommendedTireService implements RecommendedTireServiceInterface
     /**
      * @inheritDoc
      */
-    public function getCollectionForHomePage(): TireCollection
+    public function getCollectionForHomePage(int $limit): TireCollection
     {
-        $limit = HomeController::PRODUCT_HOME_LIMIT;
-
         return $this->tireRepository->getProducts(true, $limit);
     }
 
@@ -42,10 +40,9 @@ class RecommendedTireService implements RecommendedTireServiceInterface
     /**
      * @inheritDoc
      */
-    public function getRecommendedCollectionBrand(): TireCollection
+    public function getRecommendedCollectionBrand(int $count, int $limit): TireCollection
     {
-        $count = HomeController::BRAND_COLLECTION_LIMIT;
-        $brands = $this->recommendedBrandService->getCollectionBrand();
+        $brands = $this->recommendedBrandService->getCollectionBrand($limit);
         $brandTires=[];
 
         foreach ($brands as $brand)

@@ -21,9 +21,9 @@ class HomeController extends AbstractController
     {
         return $this->render('home.html.twig',
             [
-                'tires' => $recommendedTireService->getCollectionForHomePage(),
-                'brands' => $recommendedBrandService->getCollectionBrand(),
-                'brandTires' => $recommendedTireService->getRecommendedCollectionBrand()
+                'tires' => $recommendedTireService->getCollectionForHomePage(self::PRODUCT_HOME_LIMIT),
+                'brands' => $recommendedBrandService->getCollectionBrand(self::BRAND_HOME_LIMIT),
+                'brandTires' => $recommendedTireService->getRecommendedCollectionBrand(self::BRAND_COLLECTION_LIMIT, self::BRAND_HOME_LIMIT)
             ]
         );
     }

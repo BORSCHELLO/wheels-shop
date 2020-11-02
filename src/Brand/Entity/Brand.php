@@ -26,11 +26,6 @@ class Brand
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Tire\Entity\Tire", mappedBy="brand")
-     */
-    private $tire;
-
-    /**
      * @ORM\Column(type="boolean")
      */
     private $enabled;
@@ -69,13 +64,4 @@ class Brand
         return $this;
     }
 
-    public function getTire(): Tire
-    {
-        return $this->tire;
-    }
-
-    public function setTire(Tire $tire): void
-    {
-        $this->tire = $tire;
-    }
 }
