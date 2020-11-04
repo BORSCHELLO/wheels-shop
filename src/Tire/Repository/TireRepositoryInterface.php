@@ -9,7 +9,7 @@ interface TireRepositoryInterface
 {
     public function create(Tire $tire): Tire;
 
-    public function getProducts(bool $visibility, int $limit): TireCollection;
+    public function getProducts(bool $enabled, int $limit): TireCollection;
 
     public function findEnabledById(int $id): ?Tire;
 
@@ -17,9 +17,9 @@ interface TireRepositoryInterface
 
     public function getTireForBrandCollection($brand, int $limit): TireCollection;
 
-    public function getPrice(bool $visibility): ?array;
+    public function getPrice(bool $enabled): ?array;
 
-    public function getProductsForFilters(bool $visibility): TireCollection;
+    public function getProductsForFilters(bool $enabled): TireCollection;
 
-    public function getTiresForPaginator(bool $visibility): TireCollection;
+    public function getTiresForPaginator(bool $enabled): TireCollection;
 }

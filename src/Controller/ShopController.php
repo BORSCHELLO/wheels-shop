@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ShopController extends AbstractController
 {
-    const TIRES_LIMIT_SHOP_PAGE = 3;
+    const TIRES_LIMIT_SHOP_PAGE = 2;
 
     /**
      *@Route("/shop/page/{page}", name="shop/page")

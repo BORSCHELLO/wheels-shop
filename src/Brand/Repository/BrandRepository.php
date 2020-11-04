@@ -36,14 +36,14 @@ class BrandRepository extends ServiceEntityRepository implements BrandRepository
     }
 
 
-    public function getBrandsInTires(bool $visibility, int $limit): ?BrandCollection
+    public function getBrandsInTires(bool $enabled, int $limit): ?BrandCollection
     {
         $qb = $this->connection->createQueryBuilder();
         $brandIds = $qb->select('brand_id')
             ->distinct()
             ->from('tire')
             ->where('enabled = :enabled')
-            ->setParameter(':enabled', (int)$visibility)
+            ->setParameter(':enabled', (int)$enabled)
             ->setMaxResults($limit)
             ->execute()
             ->fetchFirstColumn();
@@ -61,14 +61,14 @@ class BrandRepository extends ServiceEntityRepository implements BrandRepository
         return new BrandCollection($brands);
     }
 
-    public function getBrandsForFilters(bool $visibility): ?BrandCollection
+    public function getBrandsForFilters(bool $enabled): ?BrandCollection
     {
         $qb = $this->connection->createQueryBuilder();
         $brandIds = $qb->select('brand_id')
             ->distinct()
             ->from('tire')
             ->where('enabled = :enabled')
-            ->setParameter(':enabled', (int)$visibility)
+            ->setParameter(':enabled', (int)$enabled)
             ->execute()
             ->fetchFirstColumn();
 
