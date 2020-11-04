@@ -21,7 +21,7 @@ class DoctrineTestCase extends KernelTestCase
             ->get('doctrine')
             ->getManager();
 
-/*        $this->em->getConnection()
+      /*  $this->em->getConnection()
             ->getConfiguration()
             ->setSQLLogger(new \Doctrine\DBAL\Logging\EchoSQLLogger());*/
 

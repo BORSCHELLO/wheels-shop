@@ -1,0 +1,9 @@
+<ul class="nav nav-tabs">
+    {% for brand in brands %}
+       {% if loop.index ==1 %}
+            <li class="active"><a href="{{ brand.name }}" id="{{ brand.name }}" class="brand" data-toggle="tab">{{brand.name}}</a></li>
+        {% else %}
+            <li><a href="{{ brand.name }}" id="{{ brand.name }}" class="brand" data-toggle="tab">{{brand.name}}</a></li>
+        {% endif %}
+    {% endfor %}
+</ul>

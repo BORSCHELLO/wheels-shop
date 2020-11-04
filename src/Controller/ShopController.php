@@ -4,20 +4,29 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Tire\Service\FiltersTireServiceInterface;
+use App\Tire\Service\ShopFiltersServiceInterface;
+use App\Tire\Service\ShopsTireServiceInterface;
+use App\Utilities\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
 class ShopController extends AbstractController
 {
+    const TIRES_LIMIT_SHOP_PAGE = 4;
+
     /**
-     *@Route("/shop", name="shop")
+     *@Route("/shop/page/{page}", name="shop/page")
      */
-    public function shop(FiltersTireServiceInterface $filtersTireService)
+    public function shop($page, ShopFiltersServiceInterface $shopFiltersService, ShopsTireServiceInterface $shopsTireService, PaginatorInterface $paginator)
     {
-        return $this->render('shop.html.twig',
+        $countElement = $shopsTireService->getCountTiresForPaginator();
+        $offset = $paginator->offset(self::TIRES_LIMIT_SHOP_PAGE, (int) $page);
+
+        return $this->render('shop/page.html.twig',
             [
-            'filters' =>$filtersTireService->getCollectionFiltersForShop()
+            'filters' =>$shopFiltersService->getCollectionFiltersForShop(),
+            'tires' => $shopsTireService->getCollectionForShopPage(self::TIRES_LIMIT_SHOP_PAGE, $offset),
+            'paginator' => [$page, $paginator->countPage(self::TIRES_LIMIT_SHOP_PAGE, $countElement)]
             ]
         );
     }

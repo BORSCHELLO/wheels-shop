@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Tire\Service;
 
 use App\Brand\Service\RecommendedBrandServiceInterface;
-use App\Controller\HomeController;
 use App\Tire\Collection\TireCollection;
 use App\Tire\Entity\Tire;
 use App\Tire\Repository\TireRepositoryInterface;
@@ -47,7 +46,7 @@ class RecommendedTireService implements RecommendedTireServiceInterface
 
         foreach ($brands as $brand)
         {
-            $brandTires[] = $this->tireRepository->getBrandCollection($brand, $count);
+            $brandTires[] = $this->tireRepository->getTireForBrandCollection($brand, $count);
         }
 
         return new TireCollection($brandTires);

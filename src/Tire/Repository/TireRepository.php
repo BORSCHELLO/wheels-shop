@@ -33,11 +33,11 @@ class TireRepository extends ServiceEntityRepository implements TireRepositoryIn
         return $tire;
     }
 
-    public function getProducts(bool $visibility, int $limit): TireCollection
+    public function getProducts(bool $enabled, int $limit): TireCollection
     {
         return new TireCollection($this->createQueryBuilder('u')
             ->andWhere('u.enabled = :val')
-            ->setParameter('val', $visibility)
+            ->setParameter('val', $enabled)
             ->setMaxResults($limit)
             ->getQuery()
             ->getResult()
@@ -62,7 +62,7 @@ class TireRepository extends ServiceEntityRepository implements TireRepositoryIn
         return new TireCollection($builder->getQuery()->getResult());
     }
 
-    public function getBrandCollection($brand, int $limit): TireCollection
+    public function getTireForBrandCollection($brand, int $limit): TireCollection
     {
         $builder = $this->createQueryBuilder('t')
             ->andWhere('t.enabled = true')
@@ -73,22 +73,46 @@ class TireRepository extends ServiceEntityRepository implements TireRepositoryIn
         return new TireCollection($builder->getQuery()->getResult());
     }
 
-    public function getPrice(bool $visibility): ?array
+    public function getPrice(bool $enabled): ?array
     {
         return $this->createQueryBuilder('p')
             ->select('p.price')
             ->andWhere('p.enabled = :val')
-            ->setParameter('val', $visibility)
+            ->setParameter('val', $enabled)
             ->getQuery()
             ->getResult();
     }
 
-    public function getProductsForFilters(bool $visibility): TireCollection
+    public function getProductsForFilters(bool $enabled): TireCollection
     {
         return new TireCollection($this->createQueryBuilder('t')
             ->select('t.width, t.height, t.diameter, t.speedIndex, t.loadIndex, t.marketLaunchDate')
             ->andWhere('t.enabled = :val')
-            ->setParameter('val', $visibility)
+            ->setParameter('val', $enabled)
+            ->getQuery()
+            ->getResult()
+        );
+    }
+
+    public function getTiresForPaginator(bool $enabled): TireCollection
+    {
+        return new TireCollection($this->createQueryBuilder('u')
+            ->orderBy('u.id','DESC')
+            ->andWhere('u.enabled = :val')
+            ->setParameter('val', $enabled)
+            ->getQuery()
+            ->getResult()
+        );
+    }
+
+    public function getTiresForShop(bool $enabled, int $limit, int $offset): TireCollection
+    {
+        return new TireCollection($this->createQueryBuilder('u')
+            ->orderBy('u.id','DESC')
+            ->andWhere('u.enabled = :val')
+            ->setParameter('val', $enabled)
+            ->setFirstResult($offset)
+            ->setMaxResults($limit)
             ->getQuery()
             ->getResult()
         );
