@@ -34,7 +34,7 @@ class CategoryRepositoryTest extends DoctrineTestCase
         $this->assertEquals(true, $category->getEnabled());
     }
 
-    public function testGetCategory()
+    public function testGetCategorysForFilters()
     {
         $category1 = new Category();
 
@@ -57,14 +57,14 @@ class CategoryRepositoryTest extends DoctrineTestCase
 
         $this->categoryRepository->create($category3);
 
-        $collection = $this->categoryRepository->getCategory(1);
+        $collection = $this->categoryRepository->getCategorysForFilters(true);
         $this->assertCount(2, $collection);
-        $this->assertSame($collection->get(0), $category1);
-        $this->assertSame($collection->get(1), $category3);
+        $this->assertSame($collection->get(0), ['id' => $category1->getId(),'name' => $category1->getName()]);
+        $this->assertSame($collection->get(1), ['id' => $category3->getId(),'name' => $category3->getName()]);
 
-        $collection = $this->categoryRepository->getCategory(0);
+        $collection1 = $this->categoryRepository->getCategorysForFilters(false);
 
-        $this->assertCount(1, $collection);
-        $this->assertSame($collection->get(0), $category2);
+        $this->assertCount(1, $collection1);
+        $this->assertSame($collection1->get(0), ['id' => $category2->getId(),'name' => $category2->getName()]);
     }
 }

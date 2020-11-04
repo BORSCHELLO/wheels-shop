@@ -10,7 +10,5 @@ interface CategoryRepositoryInterface
 
     public function create(Category $category): Category;
 
-    public function getCategory(bool $visibility): ?CategoryCollection;
-
     public function getCategorysForFilters(bool $visibility): ?CategoryCollection;
 }

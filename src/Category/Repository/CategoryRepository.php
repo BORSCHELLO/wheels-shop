@@ -22,16 +22,6 @@ class CategoryRepository extends ServiceEntityRepository implements CategoryRepo
         return $category;
     }
 
-    public function getCategory(bool $visibility): ?CategoryCollection
-    {
-        return new CategoryCollection($this->createQueryBuilder('u')
-            ->andWhere('u.enabled = :val')
-            ->setParameter('val', $visibility)
-            ->getQuery()
-            ->getResult()
-            );
-    }
-
     public function getCategorysForFilters(bool $visibility): ?CategoryCollection
     {
         return new CategoryCollection($this->createQueryBuilder('c')

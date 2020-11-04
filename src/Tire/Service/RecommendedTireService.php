@@ -47,7 +47,7 @@ class RecommendedTireService implements RecommendedTireServiceInterface
 
         foreach ($brands as $brand)
         {
-            $brandTires[] = $this->tireRepository->getBrandCollection($brand, $count);
+            $brandTires[] = $this->tireRepository->getTireForBrandCollection($brand, $count);
         }
 
         return new TireCollection($brandTires);

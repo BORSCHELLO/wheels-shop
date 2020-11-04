@@ -15,7 +15,11 @@ interface TireRepositoryInterface
 
     public function getRelevantByDiameter(array $excludedIds, int $diameter, int $limit): TireCollection;
 
+    public function getTireForBrandCollection($brand, int $limit): TireCollection;
+
     public function getPrice(bool $visibility): ?array;
 
     public function getProductsForFilters(bool $visibility): TireCollection;
+
+    public function getTiresForPaginator(bool $visibility): TireCollection;
 }

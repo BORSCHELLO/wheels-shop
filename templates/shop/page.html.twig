@@ -1,0 +1,268 @@
+{% extends"base.html.twig" %}
+{% block title %}Каталог | Wheels-shop{% endblock %}
+{% block shop %}<li><a id="shop-page" href="{{path('shop/page', {'page': 1}) }}" class="active">Магазин</a></li>{% endblock %}
+{% block body %}
+	<section id="advertisement">
+		<div class="container">
+			<img src="images/shop/advertisement.jpg" alt="" />
+		</div>
+	</section>
+	
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="left-sidebar">
+						<h2>Категории</h2>
+						<div class="panel-group category-products" id="accordian"><!--category-productsr-->
+							<ul class="nav nav-pills nav-stacked">
+								{% for filter in filters[0] %}
+							<li class="margin-li-style"><a class="category-name" id="category{{ filter.id }}" href="#">{{ filter.name }}</a></li>
+								{% endfor %}
+							</ul>
+
+						</div><!--/category-productsr-->
+					
+						<div class="brands_products"><!--brands_products-->
+							<h2>Бренды</h2>
+							<div class="brands-name">
+								<ul class="nav nav-pills nav-stacked">
+									{% for filter in filters[1] %}
+									<li class="margin-li-style"><label for="brand{{ filter.id }}" class="filter-text brend">{{ filter.name }}</label>
+										<input type="checkbox" id="brand{{ filter.id }}" class="pull-right check-size"></li>
+									{% endfor %}
+								</ul>
+							</div>
+						</div><!--/brands_products-->
+
+						<div class="price-range"><!--price-range-->
+							<h2>Диапазон цен</h2>
+							<div class="well">
+								<p class="brand">Задать цену товара:</p>
+								<label for="priceMin">Минимальная:</label>
+								<input id="priceMin" type="text" placeholder="{{ filters[5][0].price }}"/>
+
+								<label for="priceMax">Максимальная:</label>
+								<input id="priceMax" type="text" placeholder="{{ filters[5][1].price }}"/>
+							</div>
+						</div><!--/price-range-->
+
+						<div class="brands_products"><!--season-->
+							<br/>
+							<h2>Сезон</h2>
+							<div class="brands-name">
+								<ul class="nav nav-pills nav-stacked">
+									{% for filter in filters[2] %}
+									<li class="margin-li-style"><label for="season{{ filter }}" class="filter-text">{{ filter }}</label>
+										<input type="checkbox" id="season{{ filter }}" class="pull-right check-size"></li>
+									{% endfor %}
+								</ul>
+							</div>
+						</div><!--/season-->
+
+						<div class="brands_products"><!--width-->
+							<br/>
+							<h2>Ширина и Высота </h2>
+							<div class="brands-name">
+								<ul class="nav nav-pills nav-stacked">
+									<li class="single_field">
+										<label class="filter-text" for="width-tire">Выберите ширину шины:</label>
+										<select id="width-tire">
+											{% for filter in filters[6] %}
+											<option id="width{{ filter }}">{{ filter }}</option>
+											{% endfor %}
+										</select>
+									</li>
+								</ul>
+							<br/>
+								<ul class="nav nav-pills nav-stacked">
+									<li class="single_field">
+										<label class="filter-text" for="height-tire">Выберите высоту шины:</label>
+										<select id="height-tire">
+											{% for filter in filters[7] %}
+											<option id="height{{ filter }}">{{ filter }}</option>
+											{% endfor %}
+										</select>
+									</li>
+								</ul>
+							</div>
+						</div><!--/width-->
+
+						<div class="brands_products"><!--diameter-->
+							<br/>
+							<h2>Диаметр</h2>
+							<div class="brands-name">
+								<ul class="nav nav-pills nav-stacked">
+									<li class="single_field">
+										<label class="filter-text" for="diameter-tire">Посадочный диаметр:</label>
+										<select id="diameter-tire">
+											{% for filter in filters[8] %}
+												<option id="diameter{{ filter }}">{{ filter }}"</option>
+											{% endfor %}
+										</select>
+									</li>
+								</ul>
+							</div>
+						</div><!--/diameter-->
+
+						<div class="brands_products"><!--sealing_method-->
+							<br/>
+							<h2>Способ герметизации</h2>
+							<div class="brands-name">
+								<ul class="nav nav-pills nav-stacked">
+									{% for filter in filters[3] %}
+									<li class="margin-li-style"><label for="sealing{{ filter }}" class="filter-text">{{ filter }}</label>
+										<input type="checkbox" id="sealing{{ filter }}" class="pull-right check-size"></li>
+									{% endfor %}
+								</ul>
+							</div>
+						</div><!--/sealing_method-->
+
+						<div class="brands_products"><!--speed_index-->
+							<br/>
+							<h2>Индекс скорости</h2>
+							<div class="brands-name">
+								<ul class="nav nav-pills nav-stacked">
+									<li class="single_field">
+										<label class="filter-text" for="speed-index">Выбрать:</label>
+										<select id="speed-index">
+											{% for filter in filters[9] %}
+												<option id="speed{{ filter }}">до {{ filter }} км/ч</option>
+											{% endfor %}
+										</select>
+									</li>
+								</ul>
+							</div>
+						</div><!--/speed_index-->
+
+						<div class="brands_products"><!--load_index-->
+							<br/>
+							<h2>Индекс нагрузки</h2>
+							<div class="brands-name">
+								<ul class="nav nav-pills nav-stacked">
+									<li class="single_field">
+										<label class="filter-text" for="load-index">Выбрать:</label>
+										<select id="load-index">
+											{% for filter in filters[10] %}
+												<option id="load{{ filter }}">{{ filter }}</option>
+											{% endfor %}
+										</select>
+									</li>
+								</ul>
+							</div>
+						</div><!--/load_index-->
+
+						<div class="brands_products"><!--thorns-->
+							<br/>
+							<h2>Шипы</h2>
+							<div class="brands-name">
+								<ul class="nav nav-pills nav-stacked">
+									{% for filter in filters[4] %}
+									<li class="margin-li-style"><label for="studs{{ filter }}" class="filter-text">{{ filter }}</label>
+										<input type="checkbox" id="studs{{ filter }}" class="pull-right check-size"></li>
+									{% endfor %}
+								</ul>
+							</div>
+						</div><!--/thorns-->
+
+						<div class="brands_products"><!--market_launch_date-->
+							<br/>
+							<h2>Дата выхода на рынок</h2>
+							<div class="brands-name">
+								<ul class="nav nav-pills nav-stacked">
+									<li class="single_field">
+										<label class="filter-text" for="market_launch_date">Выбрать:</label>
+										<select id="market_launch_date">
+											{% for filter in filters[11] %}
+												<option id="launchDate{{ filter }}">{{ filter }}</option>
+											{% endfor %}
+										</select>
+									</li>
+								</ul>
+							</div>
+						</div><!--/market_launch_date-->
+
+						<div class="shipping text-center"><!--shipping-->
+							<img src="images/home/shipping.jpg" alt="" />
+						</div><!--/shipping-->
+
+						<div class="shipping text-center"><!--shipping-->
+							<img src="images/home/shipping.jpg" alt="" />
+						</div><!--/shipping-->
+
+						<div class="shipping text-center"><!--shipping-->
+							<img src="images/home/shipping.jpg" alt="" />
+						</div><!--/shipping-->
+					</div>
+				</div>
+
+				<div class="col-sm-9 padding-right">
+					<h2 class="title text-center">Товары</h2>
+					<div class="features_items">
+						{% for tire in tires %}
+						{{ include('tire/gridview/item.html.twig', {tire: tire}) }}
+						{% endfor %}
+					</div>
+					{#
+					<div class="product-details" id="product-container"><!--product-details-->
+					<div class="col-sm-5" >
+								<div class="view-product">
+								<img src="images/product-details/1.jpg" alt="" />
+							</div>
+						</div>
+						<div class="col-sm-7">
+							<div class="product-information"><!--/product-information-->
+								<!--СКИДКА--><img src="images/product-details/new.jpg" class="newarrival" alt="" />
+								<h2>Tigar Winter 205/55R16 94H</h2>
+								<p>Web ID: 1089772</p>
+								<!--Рейтинг--><img src="images/product-details/rating.png" alt="" />
+
+								<div class="product-info">
+									<p><b class="bold price">50p</b></p>
+									<p><b>Назначение:</b> Легковые авто</p>
+									<p><b>Сезон:</b> Летняя</p>
+									<p><b>Диаметр:</b> 16"</p>
+									<p><b>Ширина:</b> 205</p>
+									<p><b>Высота:</b> 55</p>
+
+									<a href="" class="btn btn-default add-to-cart">
+										<i class="fa fa-shopping-cart"></i>
+										В корзину
+									</a>
+									<a href="" class="btn btn-default add-to-cart">
+										<i class="fa fa-plus-square"></i>
+										Подробнее
+									</a>
+								</div>
+							</div><!--/product-information-->
+
+						</div>
+					</div><!--/product-details-->
+					#}
+
+					<ul class="pagination">
+						{% for page in 1..paginator[1] %}
+							{% if page ==paginator[0] %}
+						<li class="active"><a href="{{path('shop/page', {'page':  page }) }}">{{ page }}</a></li>
+								{% else %}
+						<li><a href="{{path('shop/page', {'page':  page }) }}">{{ page }}</a></li>
+							{% endif %}
+						{% endfor %}
+						</ul>
+					</div><!--features_items-->
+				</div>
+			</div>
+		</div>
+	</section>
+	<br/>
+{% endblock %}
+
+	{% block javascripts %}
+		<script src="js/jquery.js"></script>
+		<script src="js/price-range.js"></script>
+		<script src="js/jquery.scrollUp.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/jquery.prettyPhoto.js"></script>
+		<script src="js/main.js"></script>
+		<script src="js/shop-product.js"></script>
+	{% endblock %}

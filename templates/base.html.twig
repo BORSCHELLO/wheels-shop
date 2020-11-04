@@ -65,8 +65,8 @@
                             <div class="mainmenu pull-left">
                                 <ul class="nav navbar-nav collapse navbar-collapse">
                                     {% block main %}<li><a id="main-page" href="{{ path('home')}}">Главная</a></li>{% endblock %}
-                                    {% block shop %}<li><a id="shop-page" href="{{ path('shop')}}">Магазин</a></li>{% endblock %}
-                                    {% block contacts %}<li><a id="contact-page"href="{{ path('contacts')}}">Контакты</a></li>{% endblock %}
+                                    {% block shop %}<li><a id="shop-page" href="{{path('shop/page', {'page': 1}) }}">Магазин</a></li>{% endblock %}
+                                    {% block contacts %}<li><a id="contact-page" href="{{ path('contacts')}}">Контакты</a></li>{% endblock %}
                                 </ul>
                             </div>
                         </div>

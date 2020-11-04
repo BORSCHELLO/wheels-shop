@@ -43,12 +43,12 @@ class BrandRepository extends ServiceEntityRepository implements BrandRepository
             ->distinct()
             ->from('tire')
             ->where('enabled = :enabled')
-            ->setParameter(':enabled', $visibility)
+            ->setParameter(':enabled', (int)$visibility)
             ->setMaxResults($limit)
             ->execute()
             ->fetchFirstColumn();
 
-        $brands = $this->findBy(['id' => $brandIds]);
+        $brands = $this->findBy(['id' => $brandIds, 'enabled' => true]);
 
 /*        $queryBuilder = $this->connection->createQueryBuilder();
         $brandsNames[] = $queryBuilder->select('name')
@@ -68,11 +68,11 @@ class BrandRepository extends ServiceEntityRepository implements BrandRepository
             ->distinct()
             ->from('tire')
             ->where('enabled = :enabled')
-            ->setParameter(':enabled', $visibility)
+            ->setParameter(':enabled', (int)$visibility)
             ->execute()
             ->fetchFirstColumn();
 
-        $brands = $this->findBy(['id' => $brandIds]);
+        $brands = $this->findBy(['id' => $brandIds, 'enabled' => true]);
 
         return new BrandCollection($brands);
     }
