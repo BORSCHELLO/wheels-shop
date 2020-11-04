@@ -25,7 +25,7 @@ class ShopsTireService implements ShopsTireServiceInterface
         return $this->tireRepository->getTiresForShop(true, $limit, $offset);
     }
 
-    public function getCollectionForPaginator()
+    public function getCountTiresForPaginator(): int
     {
        return count($this->tireRepository->getTiresForPaginator(true));
     }

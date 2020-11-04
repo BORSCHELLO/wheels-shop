@@ -9,7 +9,7 @@ use App\Category\Repository\CategoryRepositoryInterface;
 use App\Tire\Entity\Tire;
 use App\Tire\Repository\TireRepositoryInterface;
 
-class FiletrsTireService implements FiltersTireServiceInterface
+class ShopFiltersService implements ShopFiltersServiceInterface
 {
     private TireRepositoryInterface $tireRepository;
 

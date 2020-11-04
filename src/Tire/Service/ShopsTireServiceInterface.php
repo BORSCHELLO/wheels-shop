@@ -11,5 +11,5 @@ interface ShopsTireServiceInterface
 {
     public function getCollectionForShopPage(int $limit, int $offset): TireCollection;
 
-    public function getCollectionForPaginator();
+    public function getCountTiresForPaginator(): int;
 }

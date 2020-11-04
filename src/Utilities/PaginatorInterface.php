@@ -9,5 +9,5 @@ interface PaginatorInterface
 {
     public function countPage(int $limit, int $countElements): int;
 
-    public function currentPage(int $limit, int $page): int;
+    public function offset(int $limit, int $page): int;
 }

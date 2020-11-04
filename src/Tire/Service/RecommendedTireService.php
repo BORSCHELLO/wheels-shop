@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Tire\Service;
 
 use App\Brand\Service\RecommendedBrandServiceInterface;
-use App\Controller\HomeController;
 use App\Tire\Collection\TireCollection;
 use App\Tire\Entity\Tire;
 use App\Tire\Repository\TireRepositoryInterface;
