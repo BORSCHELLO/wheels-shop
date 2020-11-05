@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Brand\Entity\Brand;
+use App\Cart\Entity\Cart;
 use App\Category\Entity\Category;
 use App\Design\Entity\Design;
 use App\Image\Entity\Image;
@@ -47,6 +48,7 @@ class DashboardController extends AbstractDashboardController
             MenuItem::linkToCrud('Orders', 'fa fa-money', Order::class),
             MenuItem::linkToCrud('Users', 'fa fa-user', User::class),
             MenuItem::linkToCrud('Brands', 'fa fa-archive', Brand::class),
+            MenuItem::linkToCrud('Cart', 'fa fa-cart-plus', Cart::class)
         ];
     }
 }

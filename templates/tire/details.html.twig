@@ -56,7 +56,7 @@
 									<p><b>Индекс нагрузки:</b> {{ tire.loadIndex }}</p>
 									<p><b>Шипы:</b> {{ constant('App\\Tire\\Entity\\Tire::STUDS_LABELS')[tire.studs] }}</p>
 									<p><b>Дата выхода на рынок:</b> {{ tire.marketLaunchDate }} г.</p>
-									<a href="#" class="btn btn-default cart">
+									<a href="{{path('cart/add', {'id': tire.id}) }}" class="btn btn-default cart">
 										<i class="fa fa-shopping-cart"></i>
 										В корзину
 									</a>
