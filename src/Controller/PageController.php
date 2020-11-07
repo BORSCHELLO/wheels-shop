@@ -3,16 +3,13 @@
 
 namespace App\Controller;
 
-
-use App\Response\Tire\TireJsonResponse;
-use App\Tire\Repository\TireRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
 class PageController extends AbstractController
 {
     /**
-     *@Route("/login", name="login")
+     *@Route("/login1", name="login1")
      */
     public function login()
     {

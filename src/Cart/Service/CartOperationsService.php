@@ -26,5 +26,4 @@ class CartOperationsService implements CartOperationsServiceInterface
 
         return $this->cartRepository->create($cart);
     }
-
 }

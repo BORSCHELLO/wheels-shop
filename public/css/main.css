@@ -2627,3 +2627,8 @@ h2.title {
 {
 
 }
+
+.message-flash
+{
+  flex: 0 0 auto;
+}

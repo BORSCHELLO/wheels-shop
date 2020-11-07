@@ -5,6 +5,7 @@ namespace App\Cart\Repository;
 use App\Cart\Entity\Cart;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @method Cart|null find($id, $lockMode = null, $lockVersion = null)
@@ -17,6 +18,7 @@ class CartRepository extends ServiceEntityRepository implements CartRepositoryIn
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Cart::class);
+
     }
 
     public function create(Cart $cart): Cart
