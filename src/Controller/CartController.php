@@ -5,9 +5,8 @@ declare(strict_types=1);
 namespace App\Controller;
 
 
-use App\Cart\Service\CartOperationsServiceInterface;
-use App\Tire\Repository\TireRepositoryInterface;
-use App\User\Repository\UserRepositoryInterface;
+use App\Cart\Service\CartServiceInterface;
+use App\Tire\Entity\Tire;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -17,13 +16,12 @@ class CartController  extends AbstractController
     /**
      *@Route("/cart/add/{id}", name="cart/add")
      */
-    public function addToCart($id, Request $request, UserRepositoryInterface $userRepository, TireRepositoryInterface $tireRepository, CartOperationsServiceInterface $cartOperationsService)
+    public function addToCart(Tire $tire, Request $request, CartServiceInterface $cartService)
     {
-        $user = $userRepository->findById(2);
-        $tire = $tireRepository->findEnabledById((int) $id);
+        $user = $this->get('security.token_storage')->getToken()->getUser();
 
-        $cartOperationsService->addToCart($user, $tire);
+        $cartService->addToCart($user, $tire);
 
-        return $this->redirect($request->server->get('HTTP_REFERER'));
+        return $this->redirectToRoute('cart');
     }
 }

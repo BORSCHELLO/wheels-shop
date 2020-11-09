@@ -4,15 +4,19 @@ declare(strict_types=1);
 
 namespace App\Cart\Entity;
 
-use App\Cart\Repository\CartRepository;
+use App\Cart\Repository\CartItemRepository;
 use Doctrine\ORM\Mapping as ORM;
 use App\Tire\Entity\Tire;
 use App\User\Entity\User;
+use Doctrine\ORM\Mapping\Table;
 
 /**
- * @ORM\Entity(repositoryClass=CartRepository::class)
+ * @ORM\Entity(repositoryClass=CartItemRepository::class)
+ * @Table(name="cart_item", uniqueConstraints={
+ *     @ORM\UniqueConstraint(name="user_item",columns={"user_id","tire_id"})
+ * })
  */
-class Cart
+class CartItem
 {
     /**
      * @ORM\Id
@@ -22,9 +26,9 @@ class Cart
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", options={"unsigned":true}))
      */
-    private $count;
+    private $quantity;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class)
@@ -43,14 +47,14 @@ class Cart
         return $this->id;
     }
 
-    public function getCount(): ?int
+    public function getQuantity(): ?int
     {
-        return $this->count;
+        return $this->quantity;
     }
 
-    public function setCount(int $count): self
+    public function setQuantity(int $quantity): self
     {
-        $this->count = $count;
+        $this->quantity = $quantity;
 
         return $this;
     }

@@ -8,15 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class PageController extends AbstractController
 {
-    /**
-     *@Route("/login1", name="login1")
-     */
-    public function login()
-    {
-        return $this->render('login.html.twig');
-    }
-
-    /**
+     /**
      *@Route("/cart", name="cart")
      */
     public function cart()
