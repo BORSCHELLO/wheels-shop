@@ -726,4 +726,6 @@ class TireRepositoryTest extends DoctrineTestCase
             'marketLaunchDate' => $tire3->getMarketLaunchDate()
         ]);
     }
+
+
 }

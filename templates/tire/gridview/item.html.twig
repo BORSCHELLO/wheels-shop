@@ -20,7 +20,7 @@
                     <p><b class="overlay-info">Высота:</b><b> {{ tire.height }}</b></p>
                     <p><b class="overlay-info">Дата выхода на рынок:</b><b> {{ tire.marketLaunchDate }} г.</b></p>
                     <h2><b class="overlay-info">Цена:</b> {{ tire.price }} p.</h2>
-                    <a href="#" class="btn btn-default cart home-cart"><i class="fa fa-shopping-cart"></i>В корзину</a>
+                    <a href="{{path('cart/add', {'id': tire.id}) }}" class="btn btn-default cart home-cart"><i class="fa fa-shopping-cart"></i>В корзину</a>
                 </div>
             </div>
         </div>

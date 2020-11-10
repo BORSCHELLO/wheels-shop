@@ -12,13 +12,25 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method User[]    findAll()
  * @method User[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class UserRepository extends ServiceEntityRepository
+class UserRepository extends ServiceEntityRepository implements UserRepositoryInterface
 {
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, User::class);
     }
 
+    public function create(User $user): User
+    {
+        $this->_em->persist($user);
+        $this->_em->flush();
+
+        return $user;
+    }
+
+    public function findById(int $id): ?User
+    {
+        return $this->findOneBy(['id'=> $id]);
+    }
     // /**
     //  * @return User[] Returns an array of User objects
     //  */

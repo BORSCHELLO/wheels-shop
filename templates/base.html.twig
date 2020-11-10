@@ -42,7 +42,13 @@
                             <div class="shop-menu pull-right">
                                 <ul class="nav navbar-nav">
                                     {% block cart %}<li><a href="{{ path('cart')}}"><i class="fa fa-shopping-cart"></i>Корзина</a></li>{% endblock %}
-                                    {% block authReg %}<li><a href="{{ path('login')}}"><i class="fa fa-lock"></i>Авторизация/Регистрация</a></li>{% endblock %}
+                                    {% if app.user %}
+                                        <div class="col-sm-5"><b style="font-size:15px;color:red;">{{ app.user.username }}</b>, <a href="{{ path('app_logout') }}">Выйти</a>
+                                        </div>
+                                    {% else %}
+                                            {% block Reg %} <li><a href="{{ path('user_registration')}}"><i class="fa fa-lock"></i>Регистрация</a></li>{% endblock %}
+                                            {% block authReg %}<li><a href="{{ path('app_login')}}"><i class="fa fa-unlock"></i>Авторизация</a></li>{% endblock %}
+                                    {% endif %}
                                 </ul>
                             </div>
                         </div>
