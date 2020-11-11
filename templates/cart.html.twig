@@ -4,13 +4,15 @@
 {% block body %}
 	<section id="cart_items">
 		<div class="container">
+			{% if app.user %}
 
+			{% else %}
 			<div class="checkout-options">
-				<h3>Вы можете продолжить как Гость или Зарегистрироваться, если Вы зарегистрированы, можете авторизаваться:</h3>
+						<h3>Вы можете продолжить как Гость или Зарегистрироваться, если Вы зарегистрированы, можете авторизаваться:</h3>
 						<a class="btn btn-primary" href="{{ path('user_registration')}}">Регистрация</a>
-				<a class="btn btn-primary" href="{{ path('app_login')}}">Авторизация</a>
+						<a class="btn btn-primary" href="{{ path('app_login')}}">Авторизация</a>
 			</div><!--/checkout-options-->
-
+			{% endif %}
 			<div class="register-req">
 				<p>Заполните пожалуйста все необходимые поля</p>
 			</div><!--/register-req-->
@@ -21,11 +23,11 @@
 						<div class="shopper-info">
 							<p>Информация о покупателе</p>
 							<form>
-								<input type="text" placeholder="Имя">
-								<input type="text" placeholder="Фамилия">
-								<input type="password" placeholder="Адрес доставки">
-								<input type="password" placeholder="Индекс">
-								<input type="password" placeholder="Телефон">
+								<input type="text" id="firstname" placeholder="Имя" value="{{ items[0].user.firstname }}">
+								<input type="text" id="lastname" placeholder="Фамилия" value="{{ items[0].user.lastname }}">
+								<input type="text" id="address" placeholder="Адрес доставки" value="{{ items[0].user.address }}">
+								<input type="number" id="postalCode" placeholder="Индекс" value="{{ items[0].user.postalCode }}">
+								<input type="tel" id="phone" placeholder="Телефон" value="{{ items[0].user.phone }}">
 							</form>
 						</div>
 					</div>
@@ -41,17 +43,17 @@
 							<p>Доставка и оплата заказа</p>
 							<p>Доставка</p>
 							<span>
-						<label><input type="checkbox"> Самовывоз</label>
+						<label><input id="pickup" type="checkbox"> Самовывоз</label>
 					</span>
 							<span>
-						<label><input type="checkbox"> Доставка курьером</label>
+						<label><input id="courierDelivery" type="checkbox"> Доставка курьером</label>
 					</span>
 							<p>Оплата</p>
 							<span>
-						<label><input type="checkbox">Наличными при приеме заказа</label>
+						<label><input id="cash" type="checkbox">Наличными при приеме заказа</label>
 					</span>
 							<span>
-						<label><input type="checkbox">Картой при приеме заказа</label>
+						<label><input id="card" type="checkbox">Картой при приеме заказа</label>
 					</span>
 						</div>
 					</div>
@@ -63,7 +65,7 @@
 				<table class="table table-condensed">
 					<thead>
 					<tr class="cart_menu">
-						<td class="image"></td>
+						<td class="image">Фото</td>
 						<td class="description">Информация</td>
 						<td class="prices">Цена</td>
 						<td class="quantity">Количество</td>
@@ -72,34 +74,34 @@
 					</tr>
 					</thead>
 					<tbody>
-					<tr>
-
+					{% for item in items%}
+					<tr id="cart-item-{{ item.id }}">
 						<td class="cart_product">
-							<a href=""><img src="images/cart/one.png" alt=""></a>
+							<a href=""><img src="{{ asset("images/shop/#{ item.tire.images[0].source }") | imagine_filter('cartItem') }}" alt=""/></a>
 						</td>
 						<td class="cart_description">
-							<h4><a href="">Colorblock Scuba</a></h4>
-							<p>Web ID: 1089772</p>
+							<h4><a href="{{ path('tire/details', {'id': item.tire.id}) }}">{{ item.tire.brand }}</h4>
+							<p>{{ item.tire.name }}</p></a>
 						</td>
 						<td class="cart_price">
-							<p>$59</p>
+							<p>{{ item.tire.price }} p.</p>
 						</td>
 						<td class="cart_quantity">
 							<div class="cart_quantity_button">
-								<a class="cart_quantity_down" href=""> - </a>
-								<input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-								<a class="cart_quantity_up" href=""> + </a>
+								<a id="{{ item.id }}" class="cart_quantity_down" href="#"> - </a>
+								<input id="input-{{ item.id }}" class="cart_quantity_input" type="text" name="quantity" value="{{ item.quantity }}" autocomplete="off" size="2">
+								<a id="{{ item.id }}" class="cart_quantity_up" href="#"> + </a>
 							</div>
 						</td>
 						<td class="cart_total">
-							<p class="cart_total_price">$59</p>
+							{#Цена товара для передачи в JS#}<p id="price-item-{{ item.id }}" class="hide">{{ item.tire.price}}</p>
+							<p id="price-{{ item.id }}" class="cart_total_price">{{ item.tire.price * item.quantity }} p.</p>
 						</td>
-						<td class="cart_delete">
-							<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
+						<td  id="{{ item.id }}" class="cart_delete">
+							<a class="cart_quantity_delete" href="#"><i class="fa fa-times"></i></a>
 						</td>
 					</tr>
-
-
+					{% endfor %}
 					<tr>
 						<td colspan="4">&nbsp;</td>
 						<td colspan="2">
@@ -114,7 +116,7 @@
 								</tr>
 								<tr class="shipping-cost">
 									<td>Доставка</td>
-									<td>Free</td>
+									<td>15 р.</td>
 								</tr>
 								<tr>
 									<td>Итого</td>
@@ -133,9 +135,11 @@
 {% endblock %}
 
 	{% block javascripts %}
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 		<script src="js/jquery.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/jquery.scrollUp.min.js"></script>
 		<script src="js/jquery.prettyPhoto.js"></script>
 		<script src="js/main.js"></script>
+		<script src="js/cart.js"></script>
 	{% endblock %}

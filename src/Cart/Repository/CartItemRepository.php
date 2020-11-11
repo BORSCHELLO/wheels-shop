@@ -2,12 +2,12 @@
 
 namespace App\Cart\Repository;
 
+use App\Cart\Collection\CartItemCollection;
 use App\Cart\Entity\CartItem;
 use App\Tire\Entity\Tire;
 use App\User\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
-use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @method CartItem|null find($id, $lockMode = null, $lockVersion = null)
@@ -31,7 +31,7 @@ class CartItemRepository extends ServiceEntityRepository implements CartItemRepo
         return $cartItem;
     }
 
-    public function findByUser(User $user, Tire $tire): ?CartItem
+    public function findByUserAndTire(User $user, Tire $tire): ?CartItem
     {
         return $this->findOneBy([
             'user' => $user,
@@ -41,13 +41,56 @@ class CartItemRepository extends ServiceEntityRepository implements CartItemRepo
 
     public function increaseQuantity(CartItem $cartItem, int $quantity = 1): CartItem
     {
-        $currentQuantity=$cartItem->getQuantity();
-        $cartItem->setQuantity($currentQuantity+$quantity);
-        $this->create($cartItem);
+        $item = $cartItem->increaseQuantity($quantity);
+        $this->create($item);
 
-        return $cartItem;
+        return $item;
     }
 
+    public function findByUser(User $user): ?CartItemCollection
+    {
+        $cartItem = $this->createQueryBuilder('c')
+            ->select('c', 'tire')
+            ->join('c.tire', 'tire')
+            ->andWhere('c.user = :val')
+            ->setParameter('val', $user)
+            ->orderBy('c.id', 'ASC')
+            ->getQuery()
+            ->getResult();
+
+        return new CartItemCollection($cartItem);
+    }
+
+    public function delete($id): void
+    {
+        $item = $this->findOneBy([
+            'id' => $id]);
+
+        $this->_em->remove($item);
+        $this->_em->flush();
+    }
+
+    public function increment($id, $quantity): CartItem
+    {
+        $item = $this->findOneBy([
+            'id' => $id]);
+
+        $item->increaseQuantity($quantity);
+        $this->create($item);
+
+        return $item;
+    }
+
+    public function decrement($id, $quantity): CartItem
+    {
+        $item = $this->findOneBy([
+            'id' => $id]);
+
+        $item->decreaseQuantity($quantity);
+        $this->create($item);
+
+        return $item;
+    }
 
     // /**
     //  * @return Cart[] Returns an array of Cart objects
