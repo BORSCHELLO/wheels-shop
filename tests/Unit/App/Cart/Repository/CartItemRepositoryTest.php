@@ -249,7 +249,7 @@ class CartItemRepositoryTest extends DoctrineTestCase
         $this->assertEquals(8,$result1->getQuantity());
     }
 
-    public function testFindByUser()
+    public function testGetItemCollection()
     {
         $cart1 = new CartItem();
         $user1 = new User();
@@ -341,11 +341,11 @@ class CartItemRepositoryTest extends DoctrineTestCase
 
         $this->cartItemRepository->create($cart2);
 
-        $result = $this->cartItemRepository->findByUser($user1);
+        $result = $this->cartItemRepository->getItemCollection($user1);
         $this->assertNotEmpty($result);
         $this->assertEquals($cart1, $result->get(0));
 
-        $result1 = $this->cartItemRepository->findByUser($user2);
+        $result1 = $this->cartItemRepository->getItemCollection($user2);
         $this->assertNotEmpty($result1);
         $this->assertEquals($cart2, $result1->get(0));
     }
@@ -442,21 +442,21 @@ class CartItemRepositoryTest extends DoctrineTestCase
 
         $this->cartItemRepository->create($cart2);
 
-        $result = $this->cartItemRepository->findByUser($user1);
+        $result = $this->cartItemRepository->getItemCollection($user1);
         $this->assertNotEmpty($result);
         $this->assertEquals($cart1, $result->get(0));
 
         $this->cartItemRepository->delete(1);
 
-        $result1 = $this->cartItemRepository->findByUser($user1);
+        $result1 = $this->cartItemRepository->getItemCollection($user1);
         $this->assertEmpty($result1);
 
-        $result2 = $this->cartItemRepository->findByUser($user2);
+        $result2 = $this->cartItemRepository->getItemCollection($user2);
         $this->assertNotEmpty($result2);
         $this->assertEquals($cart2, $result2->get(0));
 
         $this->cartItemRepository->delete(2);
-        $result3 = $this->cartItemRepository->findByUser($user2);
+        $result3 = $this->cartItemRepository->getItemCollection($user2);
         $this->assertEmpty($result3);
     }
 
@@ -567,8 +567,6 @@ class CartItemRepositoryTest extends DoctrineTestCase
         $result1 = $this->cartItemRepository->decrement(1, 1);
         $this->assertNotEmpty($result1);
         $this->assertSame(4, $result1->getQuantity());
-
-        $test2 = $cart1->setQuantity(2);
 
         $result2 = $this->cartItemRepository->decrement(1, 2);
         $this->assertNotEmpty($result2);
