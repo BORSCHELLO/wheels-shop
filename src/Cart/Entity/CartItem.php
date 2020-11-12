@@ -86,16 +86,14 @@ class CartItem
 
     public function increaseQuantity(int $quantity = 1): CartItem
     {
-        $currentQuantity = $this->getQuantity();
-        $this->setQuantity($currentQuantity+$quantity);
+        $this->setQuantity($this->getQuantity()+$quantity);
 
         return $this;
     }
 
     public function decreaseQuantity(int $quantity = 1): CartItem
     {
-        $currentQuantity=$this->getQuantity();
-        $this->setQuantity($currentQuantity-$quantity);
+        $this->setQuantity($this->getQuantity()-$quantity);
 
         return $this;
     }

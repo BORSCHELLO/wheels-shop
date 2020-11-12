@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\User\Entity\User;
 use App\User\Form\UserForm;
 use App\User\Repository\UserRepositoryInterface;
+use App\User\Service\UserServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -34,19 +35,16 @@ class UserAuthSecurityController extends AbstractController
     /**
      * @Route("/register", name="user_registration")
      */
-    public function registerAction(Request $request, UserPasswordEncoderInterface $passwordEncoder, UserRepositoryInterface $userRepository)
+    public function registerAction(Request $request, UserPasswordEncoderInterface $passwordEncoder, UserRepositoryInterface $userRepository, UserServiceInterface $userService)
     {
         $user = new User();
         $form = $this->createForm(UserForm::class, $user);
 
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
 
-            $password = $passwordEncoder->encodePassword($user, $user->getPassword());
-            $user->setPassword($password);
-
-            $userRepository->create($user);
-
+      if ($form->isSubmitted() && $form->isValid())
+        {
+          $userService->registration($user, $passwordEncoder, $userRepository);
 
             return $this->redirectToRoute('home');
         }

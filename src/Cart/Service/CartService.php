@@ -37,7 +37,7 @@ class CartService implements CartServiceInterface
 
     public function getItemFromCart(User $user): ?CartItemCollection
     {
-        return $this->cartItemRepository->findByUser($user);
+        return $this->cartItemRepository->getItemCollection($user);
     }
 
     public function deleteItem($id): void

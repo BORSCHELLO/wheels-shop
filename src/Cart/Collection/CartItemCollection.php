@@ -8,8 +8,5 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 class CartItemCollection extends ArrayCollection
 {
-    public function getTotalCount()
-    {
-        
-    }
+
 }

@@ -17,7 +17,7 @@ interface CartItemRepositoryInterface
 
     public function findByUserAndTire(User $user, Tire $tire): ?CartItem;
 
-    public function findByUser(User $user): ?CartItemCollection;
+    public function getItemCollection(User $user): ?CartItemCollection;
 
     public function delete(CartItem $cartItem): void;
 

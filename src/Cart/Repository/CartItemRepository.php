@@ -20,7 +20,6 @@ class CartItemRepository extends ServiceEntityRepository implements CartItemRepo
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, CartItem::class);
-
     }
 
     public function create(CartItem $cartItem): CartItem
@@ -47,7 +46,7 @@ class CartItemRepository extends ServiceEntityRepository implements CartItemRepo
         return $item;
     }
 
-    public function findByUser(User $user): ?CartItemCollection
+    public function getItemCollection(User $user): ?CartItemCollection
     {
         $cartItem = $this->createQueryBuilder('c')
             ->select('c', 'tire')
@@ -63,18 +62,14 @@ class CartItemRepository extends ServiceEntityRepository implements CartItemRepo
 
     public function delete($id): void
     {
-        $item = $this->findOneBy([
-            'id' => $id]);
-
+        $item = $this->find($id);
         $this->_em->remove($item);
         $this->_em->flush();
     }
 
     public function increment($id, $quantity): CartItem
     {
-        $item = $this->findOneBy([
-            'id' => $id]);
-
+        $item = $this->find($id);
         $item->increaseQuantity($quantity);
         $this->create($item);
 
@@ -83,9 +78,7 @@ class CartItemRepository extends ServiceEntityRepository implements CartItemRepo
 
     public function decrement($id, $quantity): CartItem
     {
-        $item = $this->findOneBy([
-            'id' => $id]);
-
+        $item = $this->find($id);
         $item->decreaseQuantity($quantity);
         $this->create($item);
 
