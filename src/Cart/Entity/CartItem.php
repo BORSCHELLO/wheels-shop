@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Cart\Entity;
 
+use App\Cart\Exceptions\InvalidQuantityException;
 use App\Cart\Repository\CartItemRepository;
 use Doctrine\ORM\Mapping as ORM;
 use App\Tire\Entity\Tire;
@@ -86,14 +87,18 @@ class CartItem
 
     public function increaseQuantity(int $quantity = 1): CartItem
     {
-        $this->setQuantity($this->getQuantity()+$quantity);
+        $this->setQuantity($this->getQuantity() + $quantity);
 
         return $this;
     }
 
     public function decreaseQuantity(int $quantity = 1): CartItem
     {
-        $this->setQuantity($this->getQuantity()-$quantity);
+        if (($this->getQuantity() - $quantity) < 1) {
+            throw new InvalidQuantityException('Количество товаров не может быть меньше 1');
+        }
+
+        $this->setQuantity($this->getQuantity() - $quantity);
 
         return $this;
     }

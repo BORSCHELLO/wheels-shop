@@ -10,5 +10,5 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 interface UserServiceInterface
 {
-    public function registration(User $user, UserPasswordEncoderInterface $passwordEncoder, UserRepositoryInterface $userRepository);
+    public function registration(User $user, UserPasswordEncoderInterface $passwordEncoder, UserRepositoryInterface $userRepository): void;
 }

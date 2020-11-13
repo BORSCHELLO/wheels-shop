@@ -15,9 +15,9 @@ interface CartServiceInterface
 
     public function getItemFromCart(User $user): ?CartItemCollection;
 
-    public function deleteItem($id): void;
+    public function deleteItem(int $id): void;
 
-    public function incrementItem($id, $quantity): CartItem;
+    public function incrementItem(int $id, int $quantity): CartItem;
 
-    public function decrementItem($id, $quantity): CartItem;
+    public function decrementItem(int $id, int $quantity): CartItem;
 }

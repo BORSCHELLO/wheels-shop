@@ -60,57 +60,17 @@ class CartItemRepository extends ServiceEntityRepository implements CartItemRepo
         return new CartItemCollection($cartItem);
     }
 
-    public function delete($id): void
+    public function findById(int $id): CartItem
+    {
+        $item = $this->find($id);
+
+        return $item;
+    }
+
+    public function delete(int $id): void
     {
         $item = $this->find($id);
         $this->_em->remove($item);
         $this->_em->flush();
     }
-
-    public function increment($id, $quantity): CartItem
-    {
-        $item = $this->find($id);
-        $item->increaseQuantity($quantity);
-        $this->create($item);
-
-        return $item;
-    }
-
-    public function decrement($id, $quantity): CartItem
-    {
-        $item = $this->find($id);
-        $item->decreaseQuantity($quantity);
-        $this->create($item);
-
-        return $item;
-    }
-
-    // /**
-    //  * @return Cart[] Returns an array of Cart objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('c.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Cart
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

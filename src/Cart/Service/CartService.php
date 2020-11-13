@@ -40,18 +40,26 @@ class CartService implements CartServiceInterface
         return $this->cartItemRepository->getItemCollection($user);
     }
 
-    public function deleteItem($id): void
+    public function deleteItem(int $id): void
     {
         $this->cartItemRepository->delete($id);
     }
 
-    public function incrementItem($id, $quantity): CartItem
+    public function incrementItem(int $id, int $quantity): CartItem
     {
-        return $this->cartItemRepository->increment($id, $quantity);
+        $item = $this->cartItemRepository->findById($id);
+        $item->increaseQuantity($quantity);
+        $this->cartItemRepository->create($item);
+
+        return $item;
     }
 
-    public function decrementItem($id, $quantity): CartItem
+    public function decrementItem(int $id, int $quantity): CartItem
     {
-        return $this->cartItemRepository->decrement($id, $quantity);
+        $item = $this->cartItemRepository->findById($id);
+        $item->decreaseQuantity($quantity);
+        $this->cartItemRepository->create($item);
+
+        return $item;
     }
 }

@@ -54,7 +54,7 @@ class CartController  extends AbstractController
      */
     public function incrementQuantity(Request $request, CartServiceInterface $cartService)
     {
-        $item = $cartService->incrementItem($request->get('id'), 1);
+        $item = $cartService->incrementItem((int) $request->get('id'), 1);
         $quantity = $item->getQuantity();
 
         return new JsonResponse($quantity);
@@ -65,7 +65,7 @@ class CartController  extends AbstractController
      */
     public function decrementQuantity(Request $request, CartServiceInterface $cartService)
     {
-        $item = $cartService->decrementItem($request->get('id'), 1);
+        $item = $cartService->decrementItem((int) $request->get('id'), 1);
         $quantity = $item->getQuantity();
 
         return new JsonResponse($quantity);
