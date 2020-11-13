@@ -28,13 +28,14 @@ class CartController  extends AbstractController
     /**
      *@Route("/cart", name="cart")
      */
-    public function getItem(CartServiceInterface $cartService)
+    public function getCartElements(CartServiceInterface $cartService)
     {
         $user = $this->getUser();
 
         return $this->render('cart.html.twig',
         [
-            'items' =>$cartService->getItemFromCart($user)
+            'items' => $cartService->getItemFromCart($user),
+            'userInfo' => $user
         ]
         );
     }
@@ -44,7 +45,7 @@ class CartController  extends AbstractController
      */
     public function deleteItem(Request $request, CartServiceInterface $cartService)
     {
-        $cartService->deleteItem($request->get('id'));
+        $cartService->deleteItem((int) $request->get('id'));
 
         return new JsonResponse('ok');
     }

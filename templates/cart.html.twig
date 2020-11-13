@@ -23,11 +23,11 @@
 						<div class="shopper-info">
 							<p>Информация о покупателе</p>
 							<form>
-								<input type="text" id="firstname" placeholder="Имя" value="{{ items[0].user.firstname }}">
-								<input type="text" id="lastname" placeholder="Фамилия" value="{{ items[0].user.lastname }}">
-								<input type="text" id="address" placeholder="Адрес доставки" value="{{ items[0].user.address }}">
-								<input type="number" id="postalCode" placeholder="Индекс" value="{{ items[0].user.postalCode }}">
-								<input type="tel" id="phone" placeholder="Телефон" value="{{ items[0].user.phone }}">
+								<input type="text" id="firstname" placeholder="Имя" value="{{ userInfo.firstname }}">
+								<input type="text" id="lastname" placeholder="Фамилия" value="{{ userInfo.lastname }}">
+								<input type="text" id="address" placeholder="Адрес доставки" value="{{ userInfo.address }}">
+								<input type="number" id="postalCode" placeholder="Индекс" value="{{ userInfo.postalCode }}">
+								<input type="tel" id="phone" placeholder="Телефон" value="{{ userInfo.phone }}">
 							</form>
 						</div>
 					</div>
