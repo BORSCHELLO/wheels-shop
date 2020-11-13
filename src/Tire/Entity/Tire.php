@@ -402,5 +402,4 @@ class Tire
 
         return $this;
     }
-
 }

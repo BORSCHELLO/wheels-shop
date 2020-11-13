@@ -2,12 +2,12 @@
 
 namespace App\Cart\Repository;
 
+use App\Cart\Collection\CartItemCollection;
 use App\Cart\Entity\CartItem;
 use App\Tire\Entity\Tire;
 use App\User\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
-use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @method CartItem|null find($id, $lockMode = null, $lockVersion = null)
@@ -20,7 +20,6 @@ class CartItemRepository extends ServiceEntityRepository implements CartItemRepo
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, CartItem::class);
-
     }
 
     public function create(CartItem $cartItem): CartItem
@@ -31,7 +30,7 @@ class CartItemRepository extends ServiceEntityRepository implements CartItemRepo
         return $cartItem;
     }
 
-    public function findByUser(User $user, Tire $tire): ?CartItem
+    public function findByUserAndTire(User $user, Tire $tire): ?CartItem
     {
         return $this->findOneBy([
             'user' => $user,
@@ -41,40 +40,37 @@ class CartItemRepository extends ServiceEntityRepository implements CartItemRepo
 
     public function increaseQuantity(CartItem $cartItem, int $quantity = 1): CartItem
     {
-        $currentQuantity=$cartItem->getQuantity();
-        $cartItem->setQuantity($currentQuantity+$quantity);
-        $this->create($cartItem);
+        $item = $cartItem->increaseQuantity($quantity);
+        $this->create($item);
 
-        return $cartItem;
+        return $item;
     }
 
-
-    // /**
-    //  * @return Cart[] Returns an array of Cart objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function getItemCollection(User $user): ?CartItemCollection
     {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
+        $cartItem = $this->createQueryBuilder('c')
+            ->select('c', 'tire')
+            ->join('c.tire', 'tire')
+            ->andWhere('c.user = :val')
+            ->setParameter('val', $user)
             ->orderBy('c.id', 'ASC')
-            ->setMaxResults(10)
             ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+            ->getResult();
 
-    /*
-    public function findOneBySomeField($value): ?Cart
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        return new CartItemCollection($cartItem);
     }
-    */
+
+    public function findById(int $id): CartItem
+    {
+        $item = $this->find($id);
+
+        return $item;
+    }
+
+    public function delete(int $id): void
+    {
+        $item = $this->find($id);
+        $this->_em->remove($item);
+        $this->_em->flush();
+    }
 }

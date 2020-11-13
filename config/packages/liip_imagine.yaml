@@ -42,3 +42,12 @@ liip_imagine:
                 fixed:
                     width: 255
                     height: 370
+
+        cartItem:
+            # adjust the image quality to 75%
+            quality: 75
+            # list of transformations to apply (the "filters")
+            filters:
+                fixed:
+                    width: 70
+                    height: 100

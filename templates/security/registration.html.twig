@@ -1,0 +1,21 @@
+{% extends "base.html.twig" %}
+{% block title %}Регистрация | Wheels-shop{% endblock %}
+{% block Reg %}<li><a href="{{ path('user_registration')}}" class="active"><i class="fa fa-lock"></i>Регистрация</a></li>{% endblock %}
+{% block body %}
+    <div class="col-sm-4  col-sm-offset-4">
+    <div class="signup-form"><!--sign up form-->
+        <h2>Зарегистрироваться</h2>
+            {{ form_start(form) }}
+            {{ form_row(form.name) }}
+            {{ form_row(form.email) }}
+            {{ form_row(form.password) }}
+            {{ form_row(form.firstName) }}
+            {{ form_row(form.lastName) }}
+            {{ form_row(form.address) }}
+            {{ form_row(form.postalCode) }}
+            {{ form_row(form.phone) }}
+            <button type="submit" class="btn btn-default">Зарегистрироваться</button>
+            {{ form_end(form) }}
+    </div><!--/sign up form-->
+    </div>
+{% endblock %}
