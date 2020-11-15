@@ -62,4 +62,35 @@ class CartService implements CartServiceInterface
 
         return $item;
     }
+
+    public function getTotalPrice(CartItemCollection $collection): float
+    {
+        foreach ($collection as $elem) {
+            $totalPrice[] = $elem->getTire()->getPrice() * $elem->getQuantity();
+        }
+
+        $totalPrice = array_sum($totalPrice);
+
+        return $totalPrice;
+    }
+
+    public function getDiscount(CartItemCollection $collection): float
+    {
+        $totalPrice = $this->getTotalPrice($collection);
+        if($totalPrice > 400)
+        {
+            $discount = $totalPrice * 0.05;
+        }else{
+            $discount = 0;
+        }
+
+        return $discount;
+    }
+
+    public function getTotalCost(CartItemCollection $collection): float
+    {
+        $totalCost = $this->getTotalPrice($collection)-$this->getDiscount($collection)+15;
+
+        return $totalCost;
+    }
 }

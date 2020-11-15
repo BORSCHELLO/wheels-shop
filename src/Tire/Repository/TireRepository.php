@@ -117,4 +117,14 @@ class TireRepository extends ServiceEntityRepository implements TireRepositoryIn
             ->getResult()
         );
     }
+
+    public function getTiresForCartById(array $ids): TireCollection
+    {
+        $builder = $this->createQueryBuilder('t')
+            ->andWhere('t.enabled = 1')
+            ->andWhere('t.id IN (:ids)')
+            ->setParameter('ids', $ids);
+
+        return new TireCollection($builder->getQuery()->getResult());
+    }
 }

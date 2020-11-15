@@ -26,22 +26,21 @@ $(".cart_quantity_down").on("click",function () {
     let price = parseFloat($(idPriceItemHidden).text());
     let check = $(idForCheck).val();
     let currentPriceOrder = parseFloat($("#total-price-order").text());
-    console.log(currentPriceOrder);
     if(check > 1){
-    $.ajax({
-        url: 'cart/decrement',
-        type: 'POST',
-        data: {id:idForAjax},
-        dataType:'json',
-        success: function (data)
-        {
-            $(idForCheck).val(data);
-            let totalPriceForItem = (price*data);
-            $(idForPriceItem).text(totalPriceForItem+" p.");
-            let totalPriceOrder= currentPriceOrder - price;
-            $("#total-price-order").text(totalPriceOrder + " p.");
-        }
-    })}
+        $.ajax({
+            url: 'cart/decrement',
+            type: 'POST',
+            data: {id:idForAjax},
+            dataType:'json',
+            success: function (data)
+            {
+                $(idForCheck).val(data);
+                let totalPriceForItem = (price*data);
+                $(idForPriceItem).text(totalPriceForItem+" p.");
+                let totalPriceOrder= currentPriceOrder - price;
+                $("#total-price-order").text(totalPriceOrder + " p.");
+            }
+        })}
 })
 
 $(".cart_quantity_up").on("click",function () {
@@ -66,4 +65,3 @@ $(".cart_quantity_up").on("click",function () {
         }
     })
 })
-

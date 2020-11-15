@@ -22,4 +22,6 @@ interface TireRepositoryInterface
     public function getProductsForFilters(bool $enabled): TireCollection;
 
     public function getTiresForPaginator(bool $enabled): TireCollection;
+
+    public function getTiresForCartById(array $ids): TireCollection;
 }

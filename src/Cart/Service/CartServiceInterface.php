@@ -20,4 +20,10 @@ interface CartServiceInterface
     public function incrementItem(int $id, int $quantity): CartItem;
 
     public function decrementItem(int $id, int $quantity): CartItem;
+
+    public function getTotalPrice(CartItemCollection $collection): float;
+
+    public function getDiscount(CartItemCollection $collection): float;
+
+    public function getTotalCost(CartItemCollection $collection): float;
 }
