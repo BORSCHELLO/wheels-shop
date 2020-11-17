@@ -30,6 +30,13 @@ class CartItemRepository extends ServiceEntityRepository implements CartItemRepo
         return $cartItem;
     }
 
+    public function update(CartItem $cartItem): CartItem
+    {
+        $this->_em->flush();
+
+        return $cartItem;
+    }
+
     public function findByUserAndTire(User $user, Tire $tire): ?CartItem
     {
         return $this->findOneBy([

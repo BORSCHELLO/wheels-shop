@@ -8,6 +8,7 @@ use App\Cart\Collection\CartItemCollection;
 use App\Cart\Entity\CartItem;
 use App\Tire\Entity\Tire;
 use App\User\Entity\User;
+use App\User\Repository\UserRepositoryInterface;
 
 interface CartServiceInterface
 {
@@ -26,4 +27,6 @@ interface CartServiceInterface
     public function getDiscount(CartItemCollection $collection): float;
 
     public function getTotalCost(CartItemCollection $collection): float;
+
+    public function mergeCartsAnonymousAndUser(User $user, User $anonymousUser);
 }

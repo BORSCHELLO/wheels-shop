@@ -12,7 +12,6 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
- * @ORM\HasLifecycleCallbacks()
  * @UniqueEntity(fields={"email"}, message="Пользователь с данным email уже существует!")
  */
 class User implements UserInterface
@@ -207,16 +206,6 @@ class User implements UserInterface
         $this->roles = $roles;
 
         return $this;
-    }
-
-    /**
-     * @ORM\PrePersist
-     */
-    public function prePersist()
-    {
-        $roles[] = 'ROLE_USER';
-
-        $this->setRoles($roles);
     }
 
     /**

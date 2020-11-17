@@ -13,6 +13,8 @@ interface CartItemRepositoryInterface
 {
     public function create(CartItem $cartItem): CartItem;
 
+    public function update(CartItem $cartItem): CartItem;
+
     public function increaseQuantity(CartItem $cartItem, int $quantity = 1): CartItem;
 
     public function findByUserAndTire(User $user, Tire $tire): ?CartItem;

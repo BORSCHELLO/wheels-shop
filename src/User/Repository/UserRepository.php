@@ -31,4 +31,11 @@ class UserRepository extends ServiceEntityRepository implements UserRepositoryIn
     {
         return $this->find($id);
     }
+
+    public function delete(User $user): void
+    {
+        $item = $this->find($user);
+        $this->_em->remove($item);
+        $this->_em->flush();
+    }
 }

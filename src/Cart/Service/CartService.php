@@ -9,14 +9,20 @@ use App\Cart\Entity\CartItem;
 use App\Cart\Repository\CartItemRepositoryInterface;
 use App\Tire\Entity\Tire;
 use App\User\Entity\User;
+use App\User\Repository\UserRepositoryInterface;
+
 
 class CartService implements CartServiceInterface
 {
     private CartItemRepositoryInterface $cartItemRepository;
 
-    public function __construct(CartItemRepositoryInterface $cartRepository)
+    private UserRepositoryInterface $userRepository;
+
+    public function __construct(CartItemRepositoryInterface $cartRepository, UserRepositoryInterface $userRepository)
     {
         $this->cartItemRepository = $cartRepository;
+
+        $this->userRepository = $userRepository;
     }
 
     public function addToCart(User $user, Tire $tire): CartItem
@@ -92,5 +98,21 @@ class CartService implements CartServiceInterface
         $totalCost = $this->getTotalPrice($collection)-$this->getDiscount($collection)+15;
 
         return $totalCost;
+    }
+
+    public function mergeCartsAnonymousAndUser(User $user, User $anonymousUser)
+    {
+        $collection = $this->getItemFromCart($anonymousUser);
+        foreach ($collection as $item)
+        {
+            if($repeatItem = $this->cartItemRepository->findByUserAndTire($user, $item->getTire()))
+            {
+                $repeatItem->setQuantity($repeatItem->getQuantity()+$item->getQuantity()-1);
+                $this->cartItemRepository->update($repeatItem);
+            }
+            $this->addToCart($user, $item->getTire());
+            $this->deleteItem($item->getId());
+        }
+        $this->userRepository->delete($anonymousUser);
     }
 }

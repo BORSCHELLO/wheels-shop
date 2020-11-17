@@ -4,7 +4,7 @@
 {% block body %}
 	<section id="cart_items">
 		<div class="container">
-			{% if app.user %}
+			{% if app.user  and app.user.roles[0] != 'ANONYMOUS' %}
 
 			{% else %}
 			<div class="checkout-options">
@@ -19,7 +19,7 @@
 						<div class="shopper-info">
 							<p>Информация о покупателе</p>
 							<form>
-							{% if app.user %}
+							{% if app.user and app.user.roles[0] != 'ANONYMOUS' %}
 								<input type="text" id="firstname" placeholder="Имя" value="{{ userInfo.firstname }}">
 								<input type="text" id="lastname" placeholder="Фамилия" value="{{ userInfo.lastname }}">
 								<input type="text" id="address" placeholder="Адрес доставки" value="{{ userInfo.address }}">
@@ -106,34 +106,6 @@
 						</td>
 					</tr>
 					{% endfor %}
-					{% else %}
-						{% for tire in tires%}
-							<tr id="cart-item-{{ tire.id }}">
-								<td class="cart_product">
-									<a href=""><img src="{{ asset("images/shop/#{ tire.images[0].source }") | imagine_filter('cartItem') }}" alt=""/></a>
-								</td>
-								<td class="cart_description">
-									<h4><a href="{{ path('tire/details', {'id': tire.id}) }}">{{ tire.brand }}</h4>
-									<p>{{ tire.name }}</p></a>
-								</td>
-								<td class="cart_price">
-									<p id="price-item-{{ tire.id }}">{{ tire.price }} p.</p>
-								</td>
-								<td class="cart_quantity">
-									<div class="cart_quantity_button">
-										<a id="{{ tire.id }}" class="cart_quantity_down" href="#"> - </a>
-										<input id="input-{{ tire.id }}" class="cart_quantity_input" type="text" name="quantity" value="{{ quantity[tire.id]  }}" autocomplete="off" size="2">
-										<a id="{{ tire.id }}" class="cart_quantity_up" href="#"> + </a>
-									</div>
-								</td>
-								<td class="cart_total">
-									<p id="price-{{ tire.id }}" class="cart_total_price">{{ tire.price * quantity[tire.id] }} p.</p>
-								</td>
-								<td  id="{{ tire.id }}" class="cart_delete">
-									<a class="cart_quantity_delete" href="#"><i class="fa fa-times"></i></a>
-								</td>
-							</tr>
-						{% endfor %}
 					{% endif %}
 					<tr>
 						<td colspan="4">&nbsp;</td>
@@ -163,21 +135,21 @@
 								<table class="table table-condensed total-result">
 									<tr>
 										<td>Стоимость товаров</td>
-										<td><p id="total-price-order">{{ totalPrice }} p.</p></td>
+										<td><p id="total-price-order">0 p.</p></td>
 									</tr>
 									<tr>
 										<td>Скидка</td>
 										<td>
-											{{ discount }} p.
+											0 p.
 										</td>
 									</tr>
 									<tr class="shipping-cost">
 										<td>Доставка</td>
-										<td>15 р.</td>
+										<td>0 р.</td>
 									</tr>
 									<tr>
 										<td>Итого</td>
-										<td><span>{{ totalCost }} p.</span></td>
+										<td><span>0 p.</span></td>
 									</tr>
 								</table>
 							{% endif %}
@@ -199,9 +171,5 @@
 		<script src="js/jquery.scrollUp.min.js"></script>
 		<script src="js/jquery.prettyPhoto.js"></script>
 		<script src="js/main.js"></script>
-		{% if app.user %}
 		<script src="js/cart.js"></script>
-		{% else %}
-		<script src="js/cart-anonymous.js"></script>
-		{% endif %}
 	{% endblock %}
