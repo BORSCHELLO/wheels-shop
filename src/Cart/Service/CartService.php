@@ -11,7 +11,6 @@ use App\Tire\Entity\Tire;
 use App\User\Entity\User;
 use App\User\Repository\UserRepositoryInterface;
 
-
 class CartService implements CartServiceInterface
 {
     private CartItemRepositoryInterface $cartItemRepository;
@@ -46,33 +45,42 @@ class CartService implements CartServiceInterface
         return $this->cartItemRepository->getItemCollection($user);
     }
 
-    public function deleteItem(int $id): void
+    public function deleteItem(CartItem $cartItem): void
     {
-        $this->cartItemRepository->delete($id);
+        $this->cartItemRepository->delete($cartItem);
     }
 
-    public function incrementItem(int $id, int $quantity): CartItem
+    public function incrementItem(User $user, CartItem $cartItem, int $quantity): ?CartItem
     {
-        $item = $this->cartItemRepository->findById($id);
-        $item->increaseQuantity($quantity);
-        $this->cartItemRepository->create($item);
+        if ($cartItem->getUser() == $user) {
+            $cartItem->increaseQuantity($quantity);
+            $this->cartItemRepository->create($cartItem);
 
-        return $item;
+            return $cartItem;
+        }
+
+        return null;
     }
 
-    public function decrementItem(int $id, int $quantity): CartItem
+    public function decrementItem(User $user, CartItem $cartItem, int $quantity): ?CartItem
     {
-        $item = $this->cartItemRepository->findById($id);
-        $item->decreaseQuantity($quantity);
-        $this->cartItemRepository->create($item);
+        if ($cartItem->getUser() == $user) {
+            $cartItem->decreaseQuantity($quantity);
+            $this->cartItemRepository->create($cartItem);
 
-        return $item;
+            return $cartItem;
+        }
+
+        return null;
     }
 
     public function getTotalPrice(CartItemCollection $collection): float
     {
-        foreach ($collection as $elem) {
-            $totalPrice[] = $elem->getTire()->getPrice() * $elem->getQuantity();
+        $totalPrice = [];
+        if ($collection) {
+            foreach ($collection as $elem) {
+                $totalPrice[] = $elem->getTire()->getPrice() * $elem->getQuantity();
+            }
         }
 
         $totalPrice = array_sum($totalPrice);
@@ -83,10 +91,9 @@ class CartService implements CartServiceInterface
     public function getDiscount(CartItemCollection $collection): float
     {
         $totalPrice = $this->getTotalPrice($collection);
-        if($totalPrice > 400)
-        {
-            $discount = $totalPrice * 0.05;
-        }else{
+        if ($totalPrice > 400) {
+            $discount = (float)number_format($totalPrice * 0.05, 2);
+        } else {
             $discount = 0;
         }
 
@@ -95,7 +102,7 @@ class CartService implements CartServiceInterface
 
     public function getTotalCost(CartItemCollection $collection): float
     {
-        $totalCost = $this->getTotalPrice($collection)-$this->getDiscount($collection)+15;
+        $totalCost = $this->getTotalPrice($collection) - $this->getDiscount($collection) + 15;
 
         return $totalCost;
     }
@@ -103,15 +110,13 @@ class CartService implements CartServiceInterface
     public function mergeCartsAnonymousAndUser(User $user, User $anonymousUser)
     {
         $collection = $this->getItemFromCart($anonymousUser);
-        foreach ($collection as $item)
-        {
-            if($repeatItem = $this->cartItemRepository->findByUserAndTire($user, $item->getTire()))
-            {
-                $repeatItem->setQuantity($repeatItem->getQuantity()+$item->getQuantity()-1);
+        foreach ($collection as $item) {
+            if ($repeatItem = $this->cartItemRepository->findByUserAndTire($user, $item->getTire())) {
+                $repeatItem->setQuantity($repeatItem->getQuantity() + $item->getQuantity() - 1);
                 $this->cartItemRepository->update($repeatItem);
             }
             $this->addToCart($user, $item->getTire());
-            $this->deleteItem($item->getId());
+            $this->deleteItem($item);
         }
         $this->userRepository->delete($anonymousUser);
     }

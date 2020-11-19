@@ -118,9 +118,7 @@
 								</tr>
 								<tr>
 									<td>Скидка</td>
-									<td>
-										{{ discount }} p.
-									</td>
+									<td><p id="discount">{{ discount }} p.</p> </td>
 								</tr>
 								<tr class="shipping-cost">
 									<td>Доставка</td>
@@ -128,7 +126,7 @@
 								</tr>
 								<tr>
 									<td>Итого</td>
-									<td><span>{{ totalCost }} p.</span></td>
+									<td><span id="total-cost">{{ totalCost }} p.</span></td>
 								</tr>
 							</table>
 							{% else %}

@@ -21,7 +21,5 @@ interface CartItemRepositoryInterface
 
     public function getItemCollection(User $user): ?CartItemCollection;
 
-    public function findById(int $id): CartItem;
-
-    public function delete(int $id): void;
+    public function delete(CartItem $cartItem): void;
 }
