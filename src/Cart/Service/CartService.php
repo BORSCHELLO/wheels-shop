@@ -91,11 +91,7 @@ class CartService implements CartServiceInterface
     public function getDiscount(CartItemCollection $collection): float
     {
         $totalPrice = $this->getTotalPrice($collection);
-        if ($totalPrice > 400) {
-            $discount = (float)number_format($totalPrice * 0.05, 2);
-        } else {
-            $discount = 0;
-        }
+        $discount = $totalPrice > 400 ? (float)number_format($totalPrice * 0.05, 2) : 0;
 
         return $discount;
     }
@@ -107,16 +103,22 @@ class CartService implements CartServiceInterface
         return $totalCost;
     }
 
-    public function mergeCartsAnonymousAndUser(User $user, User $anonymousUser)
+    public function mergeCartsAnonymousAndUser(User $user, User $anonymousUser): void
     {
         $collection = $this->getItemFromCart($anonymousUser);
         foreach ($collection as $item) {
             if ($repeatItem = $this->cartItemRepository->findByUserAndTire($user, $item->getTire())) {
-                $repeatItem->setQuantity($repeatItem->getQuantity() + $item->getQuantity() - 1);
+                $repeatItem->setQuantity($repeatItem->getQuantity() + $item->getQuantity());
                 $this->cartItemRepository->update($repeatItem);
+                $this->deleteItem($item);
+            } else {
+                $cartItem = new CartItem();
+                $cartItem->setQuantity($item->getQuantity());
+                $cartItem->setTire($item->getTire());
+                $cartItem->setUser($user);
+                $this->deleteItem($item);
+                $this->cartItemRepository->create($cartItem);
             }
-            $this->addToCart($user, $item->getTire());
-            $this->deleteItem($item);
         }
         $this->userRepository->delete($anonymousUser);
     }

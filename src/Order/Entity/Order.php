@@ -33,6 +33,26 @@ class Order
     private $tire;
 
     /**
+     * @ORM\Column(type="integer", length=15)
+     */
+    private $quantity;
+
+    /**
+     * @ORM\Column(name="first_name", type="integer", length=15)
+     */
+    private $firstName;
+
+    /**
+     * @ORM\Column(name="last_name", type="integer", length=15)
+     */
+    private $lastName;
+
+    /**
+     * @ORM\Column(type="float", length=15)
+     */
+    private $costItem;
+
+    /**
      * @ORM\Column(type="string", length=255)
      */
     private $address;
@@ -43,9 +63,9 @@ class Order
     private $phone;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(name="total_cost", type="integer")
      */
-    private $total_cost;
+    private $totalCost;
 
     /**
      * @ORM\Column(type="string", length=30)
@@ -103,12 +123,12 @@ class Order
 
     public function getTotalCost(): ?int
     {
-        return $this->total_cost;
+        return $this->totalCost;
     }
 
-    public function setTotalCost(int $total_cost): self
+    public function setTotalCost(int $totalCost): self
     {
-        $this->total_cost = $total_cost;
+        $this->totalCost = $totalCost;
 
         return $this;
     }
@@ -193,6 +213,54 @@ class Order
     public function setStatus($status): self
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    public function getQuantity()
+    {
+        return $this->quantity;
+    }
+
+    public function setQuantity($quantity): self
+    {
+        $this->quantity = $quantity;
+
+        return $this;
+    }
+
+    public function getFirstName()
+    {
+        return $this->firstName;
+    }
+
+    public function setFirstName($firstName): self
+    {
+        $this->firstName = $firstName;
+
+        return $this;
+    }
+
+    public function getLastName()
+    {
+        return $this->lastName;
+    }
+
+    public function setLastName($lastName): self
+    {
+        $this->lastName = $lastName;
+
+        return $this;
+    }
+
+    public function getCostItem()
+    {
+        return $this->costItem;
+    }
+
+    public function setCostItem($costItem): self
+    {
+        $this->costItem = $costItem;
 
         return $this;
     }
