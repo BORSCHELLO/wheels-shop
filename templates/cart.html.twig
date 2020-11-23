@@ -18,18 +18,23 @@
 					<div class="col-sm-3">
 						<div class="shopper-info">
 							<p>Информация о покупателе</p>
-							<form>
+							<form id="user-info">
 							{% if app.user and app.user.roles[0] != 'ANONYMOUS' %}
-								<input type="text" id="firstname" placeholder="Имя" value="{{ userInfo.firstname }}">
-								<input type="text" id="lastname" placeholder="Фамилия" value="{{ userInfo.lastname }}">
+								<input type="text" id="firstName" placeholder="Имя" value="{{ userInfo.firstname }}">
+								<input type="text" id="lastName" placeholder="Фамилия" value="{{ userInfo.lastname }}">
 								<input type="text" id="address" placeholder="Адрес доставки" value="{{ userInfo.address }}">
 								<input type="number" id="postalCode" placeholder="Индекс" value="{{ userInfo.postalCode }}">
 								<input type="tel" id="phone" placeholder="Телефон" value="{{ userInfo.phone }}">
 							{% else %}
-								<input type="text" id="firstname" placeholder="Имя" value="">
-								<input type="text" id="lastname" placeholder="Фамилия" value="">
+								<span id="firstNameErrorValid" id="firstName" class="error-valid required hide">Введите имя</span>
+								<input type="text" id="firstName" placeholder="Имя" value="">
+								<span id="lastNameErrorValid" id="lastName" class="error-valid required hide">Введите Фамилию</span>
+								<input type="text" id="lastName" placeholder="Фамилия" value="">
+								<span id="addressErrorValid" id="address" class="error-valid required hide">Введите адрес</span>
 								<input type="text" id="address" placeholder="Адрес доставки" value="">
+								<span id="postalCodeErrorValid" id="postalCode" class="error-valid required hide">Введите Индекс</span>
 								<input type="number" id="postalCode" placeholder="Индекс" value="">
+								<span id="phoneErrorValid" id="phone" class="error-valid required hide">Введите номер телефона</span>
 								<input type="tel" id="phone" placeholder="Телефон" value="">
 							{% endif %}
 							</form>
@@ -38,7 +43,7 @@
 					<div class="col-sm-4">
 						<div class="order-message">
 							<p>Примечание к заказу</p>
-							<textarea name="message"  placeholder="Примечания к Вашему заказу" rows="16"></textarea>
+							<textarea name="message" id="noteOfOrder" placeholder="Примечания к Вашему заказу" rows="16"></textarea>
 						</div>
 					</div>
 
@@ -46,18 +51,20 @@
 						<div class="order-message">
 							<p>Доставка и оплата заказа</p>
 							<p>Доставка</p>
+							<span id="deliveryErrorValid" class="error-valid required hide">Выберите способ доставки</span>
 							<span>
-						<label><input id="pickup" type="checkbox"> Самовывоз</label>
+						<label><input id="pickup" name="pickup" type="checkbox" checked> Самовывоз</label>
 					</span>
 							<span>
-						<label><input id="courierDelivery" type="checkbox"> Доставка курьером</label>
+						<label><input id="courierDelivery" name="courierDelivery" type="checkbox"> Доставка курьером</label>
 					</span>
 							<p>Оплата</p>
+							<span id="payMethodErrorValid"  class="error-valid required hide">Выберите способ оплаты</span>
 							<span>
-						<label><input id="cash" type="checkbox"> Наличными при приеме заказа</label>
+						<label><input id="cash" name="cash" type="checkbox" checked> Наличными при приеме заказа</label>
 					</span>
 							<span>
-						<label><input id="card" type="checkbox"> Картой при приеме заказа</label>
+						<label><input id="card" name="card" type="checkbox"> Картой при приеме заказа</label>
 					</span>
 						</div>
 					</div>
@@ -118,11 +125,11 @@
 								</tr>
 								<tr>
 									<td>Скидка</td>
-									<td><p id="discount">{{ discount }} p.</p> </td>
+									<td><p id="discount">{{ discount }} p.</p></td>
 								</tr>
 								<tr class="shipping-cost">
 									<td>Доставка</td>
-									<td>15 р.</td>
+									<td><p id="delivery">0 p.</p></td>
 								</tr>
 								<tr>
 									<td>Итого</td>
@@ -143,7 +150,7 @@
 									</tr>
 									<tr class="shipping-cost">
 										<td>Доставка</td>
-										<td>0 р.</td>
+										<td><p id="delivery">0 p.</p></td>
 									</tr>
 									<tr>
 										<td>Итого</td>
@@ -151,7 +158,7 @@
 									</tr>
 								</table>
 							{% endif %}
-							<a class="btn btn-primary" href="">Оформить заказ</a>
+							<a class="btn btn-primary" id="checkout" href="#">Оформить заказ</a>
 						</td>
 					</tr>
 					</tbody>
@@ -159,7 +166,6 @@
 			</div>
 		</div>
 	</section> <!--/#cart_items-->
-
 {% endblock %}
 
 	{% block javascripts %}

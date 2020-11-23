@@ -98,7 +98,7 @@ class CartService implements CartServiceInterface
 
     public function getTotalCost(CartItemCollection $collection): float
     {
-        $totalCost = $this->getTotalPrice($collection) - $this->getDiscount($collection) + 15;
+        $totalCost = $this->getTotalPrice($collection) - $this->getDiscount($collection);
 
         return $totalCost;
     }
