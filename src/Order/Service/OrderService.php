@@ -17,6 +17,7 @@ class OrderService implements OrderServiceInterface
     {
         $this->orderRepository = $orderRepository;
     }
+
     public function createOrder(Request $request, User $user)
     {
         $order = new Order();
@@ -26,8 +27,11 @@ class OrderService implements OrderServiceInterface
         $order->setFirstName($request->get('firstName'));
         $order->setLastName($request->get('lastName'));
         $order->setNoteOfOrder($request->get('noteOfOrder'));
+        $order->setPostalCode($request->get('postalCode'));
+        $order->setTotalCost(3.4);
         $order->setPaymentMethod('card');
-        $order->setPaymentMethod('pickup');
+        $order->setDeliveryMethod('pickup');
+        $order->setStatus('processing');
 
         $this->orderRepository->create($order);
 

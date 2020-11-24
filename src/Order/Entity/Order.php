@@ -7,7 +7,7 @@ namespace App\Order\Entity;
 use App\Order\Repository\OrderRepository;
 use Doctrine\ORM\Mapping as ORM;
 use App\User\Entity\User;
-use Monolog\DateTimeImmutable;
+use DateTimeImmutable;
 
 /**
  * @ORM\Entity(repositoryClass=OrderRepository::class)
@@ -129,12 +129,12 @@ class Order
         return $this;
     }
 
-    public function getTotalCost(): ?int
+    public function getTotalCost(): ?float
     {
-        return $this->totalCost;
+        return (int) $this->totalCost;
     }
 
-    public function setTotalCost(int $totalCost): self
+    public function setTotalCost(float $totalCost): self
     {
         $this->totalCost = $totalCost;
 
@@ -260,5 +260,4 @@ class Order
 
         return $this;
     }
-
 }
