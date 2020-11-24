@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Order\Service\OrderServiceInterface;
+use App\User\Entity\User;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -17,7 +18,7 @@ class OrderController extends AbstractController
      */
     public function addToOrder(Request $request, OrderServiceInterface $orderService)
     {
-        $arr = $orderService->getOrder($request);
+        $arr = $orderService->createOrder($request, $this->getUser());
 
         return new JsonResponse($arr);
     }

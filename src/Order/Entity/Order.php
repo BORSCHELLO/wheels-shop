@@ -1,18 +1,37 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Order\Entity;
 
 use App\Order\Repository\OrderRepository;
 use Doctrine\ORM\Mapping as ORM;
-use App\Tire\Entity\Tire;
 use App\User\Entity\User;
+use Monolog\DateTimeImmutable;
 
 /**
  * @ORM\Entity(repositoryClass=OrderRepository::class)
  * @ORM\Table(name="`order`")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Order
 {
+    const STATUS_PROCESSING = 'processing';
+    const STATUS_APPROVED = 'approved';
+    const STATUS_COMPLITED = 'complited';
+
+    const STATUS = [
+        self::STATUS_PROCESSING,
+        self::STATUS_APPROVED,
+        self::STATUS_COMPLITED,
+    ];
+
+    const STATUS_LABELS = [
+        self::STATUS_PROCESSING => 'Обробатывается',
+        self::STATUS_APPROVED => 'Подтвержден',
+        self::STATUS_COMPLITED => 'Завершен'
+    ];
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -21,36 +40,25 @@ class Order
     private $id;
 
     /**
-     * @ORM\OneToOne(targetEntity=User::class)
+     * @ORM\ManyToOne(targetEntity=User::class)
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;
 
     /**
-     * @ORM\OneToOne(targetEntity=Tire::class)
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\Column(name="postal_code", type="integer", length=15)
      */
-    private $tire;
+    private $postalCode;
 
     /**
-     * @ORM\Column(type="integer", length=15)
-     */
-    private $quantity;
-
-    /**
-     * @ORM\Column(name="first_name", type="integer", length=15)
+     * @ORM\Column(name="first_name", type="string", length=30)
      */
     private $firstName;
 
     /**
-     * @ORM\Column(name="last_name", type="integer", length=15)
+     * @ORM\Column(name="last_name", type="string", length=30)
      */
     private $lastName;
-
-    /**
-     * @ORM\Column(type="float", length=15)
-     */
-    private $costItem;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -63,24 +71,24 @@ class Order
     private $phone;
 
     /**
-     * @ORM\Column(name="total_cost", type="integer")
+     * @ORM\Column(name="total_cost", type="decimal")
      */
     private $totalCost;
 
     /**
-     * @ORM\Column(type="string", length=30)
+     * @ORM\Column(name="payment_method", type="string", length=30)
      */
-    private $payment_method;
+    private $paymentMethod;
 
     /**
-     * @ORM\Column(type="string", length=30)
+     * @ORM\Column(name="delivery_method", type="string", length=30)
      */
-    private $delivery_method;
+    private $deliveryMethod;
 
     /**
-     * @ORM\Column(type="string", length=500)
+     * @ORM\Column(name="note_of_order", type="string", length=500, nullable=true)
      */
-    private $note_of_order;
+    private $noteOfOrder;
 
     /**
      * @ORM\Column(name="created_at", type="datetime_immutable", options={"default": "CURRENT_TIMESTAMP"})
@@ -88,7 +96,7 @@ class Order
     private $createdAt;
 
     /**
-     * @ORM\Column(type="string", length=30)
+     * @ORM\Column(nullable=false, options={"default": Order::STATUS_PROCESSING})
      */
     private $status;
 
@@ -135,36 +143,36 @@ class Order
 
     public function getPaymentMethod(): ?string
     {
-        return $this->payment_method;
+        return $this->paymentMethod;
     }
 
-    public function setPaymentMethod(string $payment_method): self
+    public function setPaymentMethod(string $paymentMethod): self
     {
-        $this->payment_method = $payment_method;
+        $this->paymentMethod = $paymentMethod;
 
         return $this;
     }
 
     public function getDeliveryMethod(): ?string
     {
-        return $this->delivery_method;
+        return $this->deliveryMethod;
     }
 
-    public function setDeliveryMethod(string $delivery_method): self
+    public function setDeliveryMethod(string $deliveryMethod): self
     {
-        $this->delivery_method = $delivery_method;
+        $this->deliveryMethod = $deliveryMethod;
 
         return $this;
     }
 
     public function getNoteOfOrder(): ?string
     {
-        return $this->note_of_order;
+        return $this->noteOfOrder;
     }
 
-    public function setNoteOfOrder(string $note_of_order): self
+    public function setNoteOfOrder(?string $noteOfOrder): self
     {
-        $this->note_of_order = $note_of_order;
+        $this->noteOfOrder = $noteOfOrder;
 
         return $this;
     }
@@ -181,18 +189,6 @@ class Order
         return $this;
     }
 
-    public function getTire()
-    {
-        return $this->tire;
-    }
-
-    public function setTire($tire): self
-    {
-        $this->tire = $tire;
-
-        return $this;
-    }
-
     public function getCreatedAt()
     {
         return $this->createdAt;
@@ -205,6 +201,14 @@ class Order
         return $this;
     }
 
+    /**
+     * @ORM\PrePersist
+     */
+    public function prePersist()
+    {
+        $this->setCreatedAt(new DateTimeImmutable());
+    }
+
     public function getStatus()
     {
         return $this->status;
@@ -212,19 +216,23 @@ class Order
 
     public function setStatus($status): self
     {
+        if (!in_array($status, self::STATUS)) {
+            throw new InvalidArgumentException();
+        }
+
         $this->status = $status;
 
         return $this;
     }
 
-    public function getQuantity()
+    public function getPostalCode()
     {
-        return $this->quantity;
+        return $this->postalCode;
     }
 
-    public function setQuantity($quantity): self
+    public function setPostalCode($postalCode): self
     {
-        $this->quantity = $quantity;
+        $this->postalCode = $postalCode;
 
         return $this;
     }
@@ -253,15 +261,4 @@ class Order
         return $this;
     }
 
-    public function getCostItem()
-    {
-        return $this->costItem;
-    }
-
-    public function setCostItem($costItem): self
-    {
-        $this->costItem = $costItem;
-
-        return $this;
-    }
 }
