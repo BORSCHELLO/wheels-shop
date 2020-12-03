@@ -7,6 +7,7 @@ use App\Cart\Entity\CartItem;
 use App\Category\Entity\Category;
 use App\Image\Entity\Image;
 use App\Order\Entity\Order;
+use App\OrderItem\Entity\OrderItem;
 use App\Tire\Entity\Tire;
 use App\User\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
@@ -44,7 +45,8 @@ class DashboardController extends AbstractDashboardController
             MenuItem::linkToCrud('Orders', 'fa fa-money', Order::class),
             MenuItem::linkToCrud('Users', 'fa fa-user', User::class),
             MenuItem::linkToCrud('Brands', 'fa fa-archive', Brand::class),
-            MenuItem::linkToCrud('Cart', 'fa fa-cart-plus', CartItem::class)
+            MenuItem::linkToCrud('Cart', 'fa fa-cart-plus', CartItem::class),
+            MenuItem::linkToCrud('OrderItem', 'fa fa-shopping-cart', OrderItem::class)
         ];
     }
 }

@@ -44,6 +44,11 @@ class OrderItem
      */
     private $cost;
 
+    public function __toString()
+    {
+        return $this->getTire() . ", Количество: " . $this->getQuantity() . ", Стоимость: " . $this->getCost();
+    }
+
     public function getId(): ?int
     {
         return $this->id;

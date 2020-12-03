@@ -122,4 +122,13 @@ class CartService implements CartServiceInterface
         }
         $this->userRepository->delete($anonymousUser);
     }
+
+    public function isNotEmpty(User $user): bool
+    {
+        if (count($this->cartItemRepository->getItemCollection($user))>0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

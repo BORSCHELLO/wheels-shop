@@ -5,9 +5,13 @@ declare(strict_types=1);
 namespace App\Order\Entity;
 
 use App\Order\Repository\OrderRepository;
+use App\OrderItem\Entity\OrderItem;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\User\Entity\User;
 use DateTimeImmutable;
+use InvalidArgumentException;
 
 /**
  * @ORM\Entity(repositoryClass=OrderRepository::class)
@@ -71,7 +75,7 @@ class Order
     private $phone;
 
     /**
-     * @ORM\Column(name="total_cost", type="decimal")
+     * @ORM\Column(name="total_cost", type="float")
      */
     private $totalCost;
 
@@ -99,6 +103,26 @@ class Order
      * @ORM\Column(nullable=false, options={"default": Order::STATUS_PROCESSING})
      */
     private $status;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\OrderItem\Entity\OrderItem", mappedBy="order")
+     */
+    private $orderItems;
+
+    public function __construct()
+    {
+        $this->orderItems = new ArrayCollection();
+    }
+
+    public function getOrderItems(): Collection
+    {
+        return $this->orderItems;
+    }
+
+    public function __toString()
+    {
+        return $this->getFirstName() . " " . $this->getLastName() . " №" . $this->getId();
+    }
 
     public function getId(): ?int
     {
@@ -131,7 +155,7 @@ class Order
 
     public function getTotalCost(): ?float
     {
-        return (int) $this->totalCost;
+        return $this->totalCost;
     }
 
     public function setTotalCost(float $totalCost): self

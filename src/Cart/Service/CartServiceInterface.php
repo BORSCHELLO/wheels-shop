@@ -28,4 +28,6 @@ interface CartServiceInterface
     public function getTotalCost(CartItemCollection $collection): float;
 
     public function mergeCartsAnonymousAndUser(User $user, User $anonymousUser): void;
+
+    public function isNotEmpty(User $user): bool;
 }

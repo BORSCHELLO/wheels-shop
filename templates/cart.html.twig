@@ -20,21 +20,26 @@
 							<p>Информация о покупателе</p>
 							<form id="user-info">
 							{% if app.user and app.user.roles[0] != 'ANONYMOUS' %}
+								<span id="firstNameErrorValid" class="error-valid required"></span>
 								<input type="text" id="firstName" placeholder="Имя" value="{{ userInfo.firstname }}">
+								<span id="lastNameErrorValid" class="error-valid required"></span>
 								<input type="text" id="lastName" placeholder="Фамилия" value="{{ userInfo.lastname }}">
+								<span id="addressErrorValid" class="error-valid required"></span>
 								<input type="text" id="address" placeholder="Адрес доставки" value="{{ userInfo.address }}">
+								<span id="postalCodeErrorValid" class="error-valid required"></span>
 								<input type="number" id="postalCode" placeholder="Индекс" value="{{ userInfo.postalCode }}">
+								<span id="phoneErrorValid" class="error-valid required"></span>
 								<input type="tel" id="phone" placeholder="Телефон" value="{{ userInfo.phone }}">
 							{% else %}
-								<span id="firstNameErrorValid" id="firstName" class="error-valid required hide">Введите имя</span>
+								<span id="firstNameErrorValid" class="error-valid required"></span>
 								<input type="text" id="firstName" placeholder="Имя" value="">
-								<span id="lastNameErrorValid" id="lastName" class="error-valid required hide">Введите Фамилию</span>
+								<span id="lastNameErrorValid" class="error-valid required"></span>
 								<input type="text" id="lastName" placeholder="Фамилия" value="">
-								<span id="addressErrorValid" id="address" class="error-valid required hide">Введите адрес</span>
+								<span id="addressErrorValid" class="error-valid required"></span>
 								<input type="text" id="address" placeholder="Адрес доставки" value="">
-								<span id="postalCodeErrorValid" id="postalCode" class="error-valid required hide">Введите Индекс</span>
+								<span id="postalCodeErrorValid" class="error-valid required"></span>
 								<input type="number" id="postalCode" placeholder="Индекс" value="">
-								<span id="phoneErrorValid" id="phone" class="error-valid required hide">Введите номер телефона</span>
+								<span id="phoneErrorValid" class="error-valid required"></span>
 								<input type="tel" id="phone" placeholder="Телефон" value="">
 							{% endif %}
 							</form>
@@ -43,6 +48,7 @@
 					<div class="col-sm-4">
 						<div class="order-message">
 							<p>Примечание к заказу</p>
+							<span id="noteOfOrderErrorValid" class="error-valid required hide">Примечание должно быть менее 500 символов</span>
 							<textarea name="message" id="noteOfOrder" placeholder="Примечания к Вашему заказу" rows="16"></textarea>
 						</div>
 					</div>
@@ -51,7 +57,7 @@
 						<div class="order-message">
 							<p>Доставка и оплата заказа</p>
 							<p>Доставка</p>
-							<span id="deliveryErrorValid" class="error-valid required hide">Выберите способ доставки</span>
+							<span id="deliveryErrorValid" class="error-valid required"></span>
 							<span>
 						<label><input id="pickup" name="pickup" type="checkbox" checked> Самовывоз</label>
 					</span>
@@ -59,7 +65,7 @@
 						<label><input id="courierDelivery" name="courierDelivery" type="checkbox"> Доставка курьером</label>
 					</span>
 							<p>Оплата</p>
-							<span id="payMethodErrorValid"  class="error-valid required hide">Выберите способ оплаты</span>
+							<span id="payMethodErrorValid"  class="error-valid required"></span>
 							<span>
 						<label><input id="cash" name="cash" type="checkbox" checked> Наличными при приеме заказа</label>
 					</span>
@@ -150,7 +156,7 @@
 									</tr>
 									<tr class="shipping-cost">
 										<td>Доставка</td>
-										<td><p id="delivery">0 p.</p></td>
+										<td>0 p.</td>
 									</tr>
 									<tr>
 										<td>Итого</td>
@@ -159,6 +165,7 @@
 								</table>
 							{% endif %}
 							<a class="btn btn-primary" id="checkout" href="#">Оформить заказ</a>
+							<div style="padding-top: 10px"><span id="cartEmptyErrorValid" class="error-valid required"></span></div>
 						</td>
 					</tr>
 					</tbody>
@@ -166,7 +173,17 @@
 			</div>
 		</div>
 	</section> <!--/#cart_items-->
+	<div id="containerOrder" class="container hide" style="box-shadow: 0 0 10px rgba(0,0,0,0.5);padding: 15px">
+		<img style="display: block;
+    margin-left: auto;
+    margin-right: auto" src="https://idb.lv/i/W9ofi8FdvsDu.png">
+		<h3 id="orderNumber" style="text-align: center;"></h3>
+		<h3 style="text-align: center;padding: 15px">В течении 45 минут с Вами свяжеться менеджер для уточнения деталей заказа.</h3>
+		<h3 id="orderCost" style="text-align: center;"></h3>
+		<h3 style="text-align: center;">Спасибо за заказ!</h3>
+	</div>
 {% endblock %}
+
 
 	{% block javascripts %}
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>

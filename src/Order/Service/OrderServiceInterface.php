@@ -4,12 +4,18 @@ declare(strict_types=1);
 
 namespace App\Order\Service;
 
-
-use App\Order\Repository\OrderRepositoryInterface;
+use App\Cart\Collection\CartItemCollection;
+use App\Order\Entity\Order;
+use App\Request\Dto\CreateOrderRequestDto;
 use App\User\Entity\User;
-use Symfony\Component\HttpFoundation\Request;
 
 interface OrderServiceInterface
 {
-    public function createOrder(Request $request, User $user);
+    const DELIVERY_COST = 15;
+
+    public function createOrder(
+        CreateOrderRequestDto $requestDto,
+        User $user,
+        int $deliveryCost = self::DELIVERY_COST
+    ): Order;
 }

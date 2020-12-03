@@ -3,42 +3,41 @@ let delivery = 0;
 
 /*Работа чекбоксов, исключения выбора 2 одновременно. СПОСОБ ДОСТАВКИ*/
 $('#courierDelivery').on("click", function () {
-    if($('#courierDelivery').prop('checked') == true & $('#pickup').prop('checked') == true){
+    if ($('#courierDelivery').prop('checked') == true & $('#pickup').prop('checked') == true) {
         $('#pickup').attr('checked', false);
     }
-  deliveryMethod();
+    DeliveryMethod();
 })
 
 $('#pickup').on("click", function () {
-    if($('#courierDelivery').prop('checked') == true & $('#pickup').prop('checked') == true){
+    if ($('#courierDelivery').prop('checked') == true & $('#pickup').prop('checked') == true) {
         $('#courierDelivery').attr('checked', false);
     }
-    deliveryMethod();
+    DeliveryMethod();
 })
 
 /*Работа чекбоксов, исключения выбора 2 одновременно. СПОСОБ ОПЛАТЫ*/
 $('#cash').on("click", function () {
-    if($('#card').prop('checked') == true & $('#cash').prop('checked') == true){
-    $('#card').attr('checked', false);
+    if ($('#card').prop('checked') == true & $('#cash').prop('checked') == true) {
+        $('#card').attr('checked', false);
     }
 })
 
 $('#card').on("click", function () {
-    if($('#card').prop('checked') == true & $('#cash').prop('checked') == true){
+    if ($('#card').prop('checked') == true & $('#cash').prop('checked') == true) {
         $('#cash').attr('checked', false);
     }
 })
 
 /*Функция рассчета стоимости доставки*/
-function deliveryMethod()
-{
-    if($('#courierDelivery').prop('checked') == true) {
-        let totalPriceOrder =parseFloat($("#total-price-order").text());
+function DeliveryMethod() {
+    if ($('#courierDelivery').prop('checked') == true) {
+        let totalPriceOrder = parseFloat($("#total-price-order").text());
         delivery = 15;
         $("#delivery").text(15 + ' p.');
         discountAndCost(totalPriceOrder, delivery);
     } else {
-        let totalPriceOrder =parseFloat($("#total-price-order").text());
+        let totalPriceOrder = parseFloat($("#total-price-order").text());
         delivery = 0;
         $("#delivery").text(0 + ' p.');
         discountAndCost(totalPriceOrder, delivery);
@@ -53,10 +52,10 @@ function discountAndCost(totalPriceOrder, delivery) {
     } else {
         $("#discount").text(0);
     }
-    if (totalPriceOrder <= 0){
+    if (totalPriceOrder <= 0) {
         $("#total-cost").text(0 + ' p.');
-    }else {
-    $("#total-cost").text((totalPriceOrder - (discount) + delivery).toFixed(2) + ' p.');
+    } else {
+        $("#total-cost").text((totalPriceOrder - (discount) + delivery).toFixed(2) + ' p.');
     }
 }
 
@@ -136,7 +135,7 @@ $(".cart_quantity_up").on("click", function () {
 })
 
 /*Оформление заказа*/
-$('#checkout').on("click", function (){
+$('#checkout').on("click", function () {
     let firstName = $('#firstName').val().trim();
     let lastName = $('#lastName').val().trim();
     let address = $('#address').val().trim();
@@ -147,54 +146,105 @@ $('#checkout').on("click", function (){
     let pickup = $('#pickup').prop('checked');
     let cash = $('#cash').prop('checked');
     let card = $('#card').prop('checked');
+    let paymentMethod;
+    let deliveryMethod;
 
-    if (firstName == ""){
-        $('#firstNameErrorValid').removeClass('hide');
-        return false;
-    }else {
-        $('#firstNameErrorValid').addClass('hide');
+    /* if (firstName == "") {
+         $('#firstNameErrorValid').text('Введите Имя');
+         return false;
+     } else if (firstName.length < 5) {
+         $('#firstNameErrorValid').text('Имя должно быть больше 5 символов');
+         return false;
+     } else if (firstName.length > 30) {
+         $('#firstNameErrorValid').text('Имя должно быть меньше 30 символов');
+         return false;
+     } else {
+         $('#firstNameErrorValid').text('');
+     }
+
+     if (lastName == "") {
+         $('#lastNameErrorValid').text('Введите Фамилию');
+         return false;
+     } else if (lastName.length < 5) {
+         $('#lastNameErrorValid').text('Фамилия должна быть больше 5 символов');
+         return false;
+     } else if (lastName.length > 30) {
+         $('#lastNameErrorValid').text('Фамилия должна быть меньше 30 символов');
+         return false;
+     } else {
+         $('#lastNameErrorValid').text('');
+     }
+
+     if (address == "") {
+         $('#addressErrorValid').text('Введите Адрес');
+         return false;
+     } else if (address.length < 5) {
+         $('#addressErrorValid').text('Адрес должен быть больше 5 символов');
+         return false;
+     } else if (address.length > 255) {
+         $('#addressErrorValid').text('Адрес должен быть меньше 255 символов');
+         return false;
+     } else {
+         $('#addressErrorValid').text('');
+     }
+
+     if (postalCode == "") {
+         $('#postalCodeErrorValid').text('Введите Индекс');
+         return false;
+     } else if (postalCode.length < 5) {
+         $('#postalCodeErrorValid').text('Индекс должен быть больше 5 символов');
+         return false;
+     } else if (postalCode.length > 15) {
+         $('#postalCodeErrorValid').text('Индекс должен быть меньше 15 символов');
+         return false;
+     } else {
+         $('#postalCodeErrorValid').text('');
+     }
+
+     if (phone == "") {
+         $('#phoneErrorValid').text('Введите Телефон');
+         return false;
+     } else if (phone.length < 5) {
+         $('#phoneErrorValid').text('Телефон должен быть больше 5 символов');
+         return false;
+     } else if (phone.length > 30) {
+         $('#phoneErrorValid').text('Телефон должен быть меньше 30 символов');
+         return false;
+     } else {
+         $('#phoneErrorValid').text('');
+     }
+
+     if (noteOfOrder.length > 500) {
+         $('#noteOfOrderErrorValid').text('Примечание к заказу должно быть меньше 500 символов');
+         return false;
+     } else {
+         $('#phoneErrorValid').text('');
+     }
+
+     if (courierDelivery != true & pickup != true) {
+         $('#deliveryErrorValid').text('Выберите способ доставки');
+         return false;
+     } else {
+         $('#deliveryErrorValid').text('');
+     }
+
+     if (cash != true & card != true) {
+         $('#payMethodErrorValid').text('Выберите способ оплаты');
+         return false;
+     } else {
+         $('#payMethodErrorValid').text('');
+     }*/
+
+    if (cash) {
+        paymentMethod = 'cash';
+    } else {
+        paymentMethod = 'card'
     }
 
-    if (lastName == ""){
-        $('#lastNameErrorValid').removeClass('hide');
-        return false;
-    }else {
-        $('#lastNameErrorValid').addClass('hide');
-    }
-
-    if (address == ""){
-        $('#addressErrorValid').removeClass('hide');
-        return false;
-    }else {
-        $('#addressErrorValid').addClass('hide');
-    }
-
-    if (postalCode == ""){
-        $('#postalCodeErrorValid').removeClass('hide');
-        return false;
-    }else {
-        $('#postalCodeErrorValid').addClass('hide');
-    }
-
-    if (phone == ""){
-        $('#phoneErrorValid').removeClass('hide');
-        return false;
-    }else {
-        $('#phoneErrorValid').addClass('hide');
-    }
-
-    if (courierDelivery != true & pickup != true){
-        $('#deliveryErrorValid').removeClass('hide');
-        return false;
-    }else {
-        $('#deliveryErrorValid').addClass('hide');
-    }
-
-    if (cash != true & card != true){
-        $('#payMethodErrorValid').removeClass('hide');
-        return false;
-    }else {
-        $('#payMethodErrorValid').addClass('hide');
+    if (courierDelivery) {
+        deliveryMethod = 'courierDelivery';
+    } else {
+        deliveryMethod = 'pickup'
     }
 
     $.ajax({
@@ -207,15 +257,44 @@ $('#checkout').on("click", function (){
             postalCode: postalCode,
             phone: phone,
             noteOfOrder: noteOfOrder,
-            courierDelivery: courierDelivery,
-            pickup: pickup,
-            cash: cash,
-            card: card
-            },
+            paymentMethod: paymentMethod,
+            deliveryMethod: deliveryMethod
+        },
         dataType: 'json',
         success: function (data) {
             $("#user-info").trigger("reset");
-            console.log(data);
+            if (data.path == "cartEmpty"){
+                let property = data.path;
+                let selector = '#' + property + 'ErrorValid';
+                let message = data.message;
+                if (property) {
+                    $(selector).text(message);
+                    return false;
+                } else {
+                    $(selector).text('');
+                }
+            }
+
+            if (data.length > 1){
+                data.forEach(function (item) {
+                    let property = item.path;
+                    let selector = '#' + property + 'ErrorValid';
+                    let message = item.message;
+                    if (property) {
+                        $(selector).text(message);
+                        return false;
+                    } else {
+                        $(selector).text('');
+                    }
+                })
+            }
+
+            $("#cart_items").remove();
+            let orderNumber = 'Ваш заказ № '+ data.id + ' принят в обработку!';
+            let orderCost = 'Итоговая стоимость: '+ data.price.toFixed(2) + ' р.';
+            $("#orderNumber").text(orderNumber);
+            $("#orderCost").text(orderCost);
+            $("#containerOrder").removeClass('hide');
         }
     })
 })
