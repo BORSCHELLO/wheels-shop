@@ -149,7 +149,7 @@ $('#checkout').on("click", function () {
     let paymentMethod;
     let deliveryMethod;
 
-    /* if (firstName == "") {
+     if (firstName == "") {
          $('#firstNameErrorValid').text('Введите Имя');
          return false;
      } else if (firstName.length < 5) {
@@ -233,7 +233,7 @@ $('#checkout').on("click", function () {
          return false;
      } else {
          $('#payMethodErrorValid').text('');
-     }*/
+     }
 
     if (cash) {
         paymentMethod = 'cash';
