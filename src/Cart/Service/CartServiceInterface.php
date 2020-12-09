@@ -11,15 +11,19 @@ use App\User\Entity\User;
 
 interface CartServiceInterface
 {
+    const MIN_DISCOUNT_PRICE = 400;
+
+    const DISCOUNT_RATE = 0.05;
+
     public function addToCart(User $user, Tire $tire): CartItem;
 
     public function getItemFromCart(User $user): ?CartItemCollection;
 
     public function deleteItem(CartItem $cartItem): void;
 
-    public function incrementItem(User $user, CartItem $cartItem, int $quantity): ?CartItem;
+    public function incrementQuantity(User $user, CartItem $cartItem, int $quantity): ?CartItem;
 
-    public function decrementItem(User $user, CartItem $cartItem, int $quantity): ?CartItem;
+    public function decrementQuantity(User $user, CartItem $cartItem, int $quantity): ?CartItem;
 
     public function getTotalPrice(CartItemCollection $collection): float;
 
@@ -27,7 +31,7 @@ interface CartServiceInterface
 
     public function getTotalCost(CartItemCollection $collection): float;
 
-    public function mergeCartsAnonymousAndUser(User $user, User $anonymousUser): void;
+    public function mergeUsersCart(User $user, User $anonymousUser): void;
 
-    public function isNotEmpty(User $user): bool;
+    public function isEmpty(User $user): bool;
 }

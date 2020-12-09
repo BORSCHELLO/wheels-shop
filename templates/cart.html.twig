@@ -4,7 +4,7 @@
 {% block body %}
 	<section id="cart_items">
 		<div class="container">
-			{% if app.user  and app.user.roles[0] != 'ANONYMOUS' %}
+			{% if app.user  and app.user.roles[0] != 'ROLE_ANONYMOUS' %}
 
 			{% else %}
 			<div class="checkout-options">
@@ -19,7 +19,7 @@
 						<div class="shopper-info">
 							<p>Информация о покупателе</p>
 							<form id="user-info">
-							{% if app.user and app.user.roles[0] != 'ANONYMOUS' %}
+							{% if app.user and app.user.roles[0] != 'ROLE_ANONYMOUS' %}
 								<span id="firstNameErrorValid" class="error-valid required"></span>
 								<input type="text" id="firstName" placeholder="Имя" value="{{ userInfo.firstname }}">
 								<span id="lastNameErrorValid" class="error-valid required"></span>

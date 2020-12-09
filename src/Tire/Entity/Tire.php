@@ -133,7 +133,7 @@ class Tire
     private $marketLaunchDate;
 
     /**
-     * @ORM\Column(type="float")
+     * @ORM\Column(type="decimal")
      */
     private $price;
 
@@ -143,7 +143,7 @@ class Tire
     private $quantity;
 
     /**
-     * @ORM\Column(type="float")
+     * @ORM\Column(type="decimal")
      */
     private $rating;
 
@@ -331,7 +331,7 @@ class Tire
 
     public function getPrice(): ?float
     {
-        return $this->price;
+        return (float) $this->price;
     }
 
     public function setPrice(float $price): self
@@ -355,7 +355,7 @@ class Tire
 
     public function getRating(): ?float
     {
-        return $this->rating;
+        return (float) $this->rating;
     }
 
     public function setRating(float $rating): self

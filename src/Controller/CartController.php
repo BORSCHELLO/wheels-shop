@@ -40,8 +40,8 @@ class CartController extends AbstractController
      */
     public function getCartElements(CartServiceInterface $cartService)
     {
-        if ($this->getUser() and $this->get('session')->get('anonymousUser')) {
-            $cartService->mergeCartsAnonymousAndUser($this->getUser(), $this->get('session')->get('anonymousUser'));
+        if ($this->getUser() && $this->get('session')->get('anonymousUser')) {
+            $cartService->mergeUsersCart($this->getUser(), $this->get('session')->get('anonymousUser'));
             $this->get('session')->remove('anonymousUser');
         }
 
@@ -80,7 +80,7 @@ class CartController extends AbstractController
      */
     public function incrementQuantity(CartItem $cartItem, CartServiceInterface $cartService)
     {
-        $item = $cartService->incrementItem($this->getUser(), $cartItem, 1);
+        $item = $cartService->incrementQuantity($this->getUser(), $cartItem, 1);
         if ($item) {
             $quantity = $item->getQuantity();
 
@@ -95,7 +95,7 @@ class CartController extends AbstractController
      */
     public function decrementQuantity(CartItem $cartItem, CartServiceInterface $cartService)
     {
-        $item = $cartService->decrementItem($this->getUser(), $cartItem, 1);
+        $item = $cartService->decrementQuantity($this->getUser(), $cartItem, 1);
         if ($item) {
             $quantity = $item->getQuantity();
 

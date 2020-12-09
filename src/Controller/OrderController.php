@@ -18,20 +18,22 @@ class OrderController extends AbstractController
     /**
      * @Route("order/add", name="order")
      */
-    public function addToOrder(CreateOrderRequestDto $requestDto, OrderServiceInterface $orderService, CartServiceInterface $cartService)
-    {
+    public function addToOrder(
+        CreateOrderRequestDto $requestDto,
+        OrderServiceInterface $orderService,
+        CartServiceInterface $cartService
+    ) {
         if (count($requestDto->constraintViolations) > 0) {
             return new OrderValidationJsonResponse($requestDto->constraintViolations);
         }
 
-        if ($cartService->isNotEmpty($this->getUser())){
+        if ($cartService->isEmpty($this->getUser())) {
+            $error = ['path' => 'cartEmpty', 'message' => 'Корзина пуста!'];
+
+            return new JsonResponse($error);
+        }
         $arr = $orderService->createOrder($requestDto, $this->getUser());
 
         return new OrderJsonResponse($arr);
-        }
-
-        $error = ['path' => 'cartEmpty', 'message' => 'Корзина пуста!'];
-
-        return new JsonResponse($error);
     }
 }

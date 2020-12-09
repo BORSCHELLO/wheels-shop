@@ -50,7 +50,7 @@ class Order
     private $user;
 
     /**
-     * @ORM\Column(name="postal_code", type="integer", length=15)
+     * @ORM\Column(name="postal_code", type="string", length=15)
      */
     private $postalCode;
 
@@ -75,7 +75,7 @@ class Order
     private $phone;
 
     /**
-     * @ORM\Column(name="total_cost", type="float")
+     * @ORM\Column(name="total_cost", type="decimal")
      */
     private $totalCost;
 
@@ -155,7 +155,7 @@ class Order
 
     public function getTotalCost(): ?float
     {
-        return $this->totalCost;
+        return (float) $this->totalCost;
     }
 
     public function setTotalCost(float $totalCost): self

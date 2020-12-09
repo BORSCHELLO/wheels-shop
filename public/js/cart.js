@@ -1,5 +1,8 @@
 let discount = 0;
 let delivery = 0;
+const MIN_DISCOUNT_PRICE = 400;
+const DISCOUNT_RATE = 0.05;
+const DELIVERY_COST = 15;
 
 /*Работа чекбоксов, исключения выбора 2 одновременно. СПОСОБ ДОСТАВКИ*/
 $('#courierDelivery').on("click", function () {
@@ -33,8 +36,8 @@ $('#card').on("click", function () {
 function DeliveryMethod() {
     if ($('#courierDelivery').prop('checked') == true) {
         let totalPriceOrder = parseFloat($("#total-price-order").text());
-        delivery = 15;
-        $("#delivery").text(15 + ' p.');
+        delivery = DELIVERY_COST;
+        $("#delivery").text(DELIVERY_COST + ' p.');
         discountAndCost(totalPriceOrder, delivery);
     } else {
         let totalPriceOrder = parseFloat($("#total-price-order").text());
@@ -46,8 +49,8 @@ function DeliveryMethod() {
 
 /*Функция рассчета конечной стоимости*/
 function discountAndCost(totalPriceOrder, delivery) {
-    if (totalPriceOrder > 400) {
-        discount = totalPriceOrder.toFixed(2) * 0.05;
+    if (totalPriceOrder > MIN_DISCOUNT_PRICE) {
+        discount = totalPriceOrder.toFixed(2) * DISCOUNT_RATE;
         $("#discount").text((discount).toFixed(2) + ' p.');
     } else {
         $("#discount").text(0);

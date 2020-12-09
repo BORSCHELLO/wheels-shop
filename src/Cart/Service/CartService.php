@@ -9,19 +9,19 @@ use App\Cart\Entity\CartItem;
 use App\Cart\Repository\CartItemRepositoryInterface;
 use App\Tire\Entity\Tire;
 use App\User\Entity\User;
-use App\User\Repository\UserRepositoryInterface;
+use App\User\Service\UserServiceInterface;
 
 class CartService implements CartServiceInterface
 {
     private CartItemRepositoryInterface $cartItemRepository;
 
-    private UserRepositoryInterface $userRepository;
+    private UserServiceInterface $userService;
 
-    public function __construct(CartItemRepositoryInterface $cartRepository, UserRepositoryInterface $userRepository)
+    public function __construct(CartItemRepositoryInterface $cartRepository, UserServiceInterface $userService)
     {
         $this->cartItemRepository = $cartRepository;
 
-        $this->userRepository = $userRepository;
+        $this->userService = $userService;
     }
 
     public function addToCart(User $user, Tire $tire): CartItem
@@ -50,7 +50,7 @@ class CartService implements CartServiceInterface
         $this->cartItemRepository->delete($cartItem);
     }
 
-    public function incrementItem(User $user, CartItem $cartItem, int $quantity): ?CartItem
+    public function incrementQuantity(User $user, CartItem $cartItem, int $quantity): ?CartItem
     {
         if ($cartItem->getUser() == $user) {
             $cartItem->increaseQuantity($quantity);
@@ -62,7 +62,7 @@ class CartService implements CartServiceInterface
         return null;
     }
 
-    public function decrementItem(User $user, CartItem $cartItem, int $quantity): ?CartItem
+    public function decrementQuantity(User $user, CartItem $cartItem, int $quantity): ?CartItem
     {
         if ($cartItem->getUser() == $user) {
             $cartItem->decreaseQuantity($quantity);
@@ -91,7 +91,7 @@ class CartService implements CartServiceInterface
     public function getDiscount(CartItemCollection $collection): float
     {
         $totalPrice = $this->getTotalPrice($collection);
-        $discount = $totalPrice > 400 ? (float)number_format($totalPrice * 0.05, 2) : 0;
+        $discount = $totalPrice > self::MIN_DISCOUNT_PRICE ? (float)number_format($totalPrice * self::DISCOUNT_RATE, 2) : 0;
 
         return $discount;
     }
@@ -103,7 +103,7 @@ class CartService implements CartServiceInterface
         return $totalCost;
     }
 
-    public function mergeCartsAnonymousAndUser(User $user, User $anonymousUser): void
+    public function mergeUsersCart(User $user, User $anonymousUser): void
     {
         $collection = $this->getItemFromCart($anonymousUser);
         foreach ($collection as $item) {
@@ -120,15 +120,15 @@ class CartService implements CartServiceInterface
                 $this->cartItemRepository->create($cartItem);
             }
         }
-        $this->userRepository->delete($anonymousUser);
+        $this->userService->deleteUser($anonymousUser);
     }
 
-    public function isNotEmpty(User $user): bool
+    public function isEmpty(User $user): bool
     {
         if (count($this->cartItemRepository->getItemCollection($user))>0) {
-            return true;
-        } else {
             return false;
+        } else {
+            return true;
         }
     }
 }

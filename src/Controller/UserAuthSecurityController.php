@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Cart\Service\CartServiceInterface;
 use App\User\Entity\User;
 use App\User\Form\UserForm;
 use App\User\Repository\UserRepositoryInterface;
@@ -24,8 +23,7 @@ class UserAuthSecurityController extends AbstractController
         // if ($this->getUser()) {
         //     return $this->redirectToRoute('target_path');
         // }
-        if($this->getUser() and $userService->checkUserOnAnonymous($this->getUser()))
-        {
+        if ($this->getUser() and $userService->checkUserOnAnonymous($this->getUser())) {
             $user = $userService->checkUserOnAnonymous($this->getUser());
             $this->get('session')->set('anonymousUser', $user);
             $this->get('security.token_storage')->setToken(null);
@@ -35,23 +33,26 @@ class UserAuthSecurityController extends AbstractController
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 
-        return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error ]);
+        return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
     }
 
     /**
      * @Route("/register", name="user_registration")
      */
-    public function registerAction(Request $request, UserPasswordEncoderInterface $passwordEncoder, UserRepositoryInterface $userRepository, UserServiceInterface $userService)
-    {
+    public function registerAction(
+        Request $request,
+        UserPasswordEncoderInterface $passwordEncoder,
+        UserRepositoryInterface $userRepository,
+        UserServiceInterface $userService
+    ) {
         $user = new User();
         $user->setRoles(["ROLE_USER"]);
         $form = $this->createForm(UserForm::class, $user);
 
         $form->handleRequest($request);
 
-      if ($form->isSubmitted() && $form->isValid())
-        {
-          $userService->registration($user, $passwordEncoder, $userRepository);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $userService->registration($user, $passwordEncoder, $userRepository);
 
             return $this->redirectToRoute('home');
         }

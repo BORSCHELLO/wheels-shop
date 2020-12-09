@@ -14,4 +14,6 @@ interface UserServiceInterface
     public function anonymousRegistration(): User;
 
     public function checkUserOnAnonymous(User $user): ?User;
+
+    public function deleteUser(User $user): void;
 }

@@ -36,7 +36,7 @@ class UserService implements UserServiceInterface
             ->setAddress('anonymous')
             ->setFirstName('Anonymous')
             ->setLastName('Anonymous')
-            ->setRoles(['ANONYMOUS'])
+            ->setRoles(['ROLE_ANONYMOUS'])
             ->setPassword('$2y$13$vLqXHDKlbB0QKaC6SX0gTO9VK/PwusIkEBCID3DM7cjr08sCA4fCy');
 
         $this->userRepository->create($user);
@@ -46,9 +46,14 @@ class UserService implements UserServiceInterface
 
     public function checkUserOnAnonymous(User $user): ?User
     {
-        if($user->getRoles()[0] == 'ANONYMOUS')
+        if($user->getRoles()[0] == 'ROLE_ANONYMOUS')
         {
             return $user;
         }
+    }
+
+    public function deleteUser(User $user): void
+    {
+        $this->userRepository->delete($user);
     }
 }
