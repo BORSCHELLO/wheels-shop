@@ -27,7 +27,7 @@
 								<span id="addressErrorValid" class="error-valid required"></span>
 								<input type="text" id="address" placeholder="Адрес доставки" value="{{ userInfo.address }}">
 								<span id="postalCodeErrorValid" class="error-valid required"></span>
-								<input type="number" id="postalCode" placeholder="Индекс" value="{{ userInfo.postalCode }}">
+								<input type="text" id="postalCode" placeholder="Индекс" value="{{ userInfo.postalCode }}">
 								<span id="phoneErrorValid" class="error-valid required"></span>
 								<input type="tel" id="phone" placeholder="Телефон" value="{{ userInfo.phone }}">
 							{% else %}
@@ -38,7 +38,7 @@
 								<span id="addressErrorValid" class="error-valid required"></span>
 								<input type="text" id="address" placeholder="Адрес доставки" value="">
 								<span id="postalCodeErrorValid" class="error-valid required"></span>
-								<input type="number" id="postalCode" placeholder="Индекс" value="">
+								<input type="text" id="postalCode" placeholder="Индекс" value="">
 								<span id="phoneErrorValid" class="error-valid required"></span>
 								<input type="tel" id="phone" placeholder="Телефон" value="">
 							{% endif %}
@@ -183,7 +183,6 @@
 		<h3 style="text-align: center;">Спасибо за заказ!</h3>
 	</div>
 {% endblock %}
-
 
 	{% block javascripts %}
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>

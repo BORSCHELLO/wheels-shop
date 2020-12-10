@@ -53,8 +53,9 @@ class UserAuthSecurityController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $userService->registration($user, $passwordEncoder, $userRepository);
+            $request->getSession()->getFlashBag()->add('success', 'Вы успешно зарегистрировались!');
 
-            return $this->redirectToRoute('home');
+            return $this->redirectToRoute('app_login');
         }
 
         return $this->render(

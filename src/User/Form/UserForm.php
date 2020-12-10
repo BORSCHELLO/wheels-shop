@@ -68,7 +68,7 @@ class UserForm extends AbstractType
                     ])
                 ]
             ])
-            ->add('postalCode', NumberType::class, [
+            ->add('postalCode', TextType::class, [
                 'label' => 'Почтовый индекс',
                 'constraints' => [
                     new Length([

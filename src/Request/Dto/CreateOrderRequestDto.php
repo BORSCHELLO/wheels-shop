@@ -50,7 +50,7 @@ class CreateOrderRequestDto
      * @Assert\NotBlank(message="Введите почтовый индекс")
      * @Assert\Length(minMessage="Индекс должен быть больше 5 символов", maxMessage="Индекс должен быть меньше 15 символов", min="5", max="15")
      *
-     * @var integer
+     * @var string
      */
     public $postalCode;
 

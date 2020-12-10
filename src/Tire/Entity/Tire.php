@@ -133,7 +133,7 @@ class Tire
     private $marketLaunchDate;
 
     /**
-     * @ORM\Column(type="decimal")
+     * @ORM\Column(type="decimal", precision=10, scale=2)
      */
     private $price;
 
@@ -143,7 +143,7 @@ class Tire
     private $quantity;
 
     /**
-     * @ORM\Column(type="decimal")
+     * @ORM\Column(type="decimal", precision=2, scale=1)
      */
     private $rating;
 

@@ -32,7 +32,7 @@ class UserService implements UserServiceInterface
         $user->setName('Anonymous')
             ->setEmail($mail)
             ->setPhone('anonymous')
-            ->setPostalCode(1)
+            ->setPostalCode('anonymous')
             ->setAddress('anonymous')
             ->setFirstName('Anonymous')
             ->setLastName('Anonymous')
