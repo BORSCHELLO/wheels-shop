@@ -4,37 +4,52 @@
 {% block body %}
 	<section id="cart_items">
 		<div class="container">
-			{% if app.user %}
+			{% if app.user  and app.user.roles[0] != 'ROLE_ANONYMOUS' %}
 
 			{% else %}
 			<div class="checkout-options">
 						<h3>Вы можете продолжить как Гость или Зарегистрироваться, если Вы зарегистрированы, можете авторизаваться:</h3>
 						<a class="btn btn-primary" href="{{ path('user_registration')}}">Регистрация</a>
 						<a class="btn btn-primary" href="{{ path('app_login')}}">Авторизация</a>
-			</div><!--/checkout-options-->
+			</div></br><!--/checkout-options-->
 			{% endif %}
-			<div class="register-req">
-				<p>Заполните пожалуйста все необходимые поля</p>
-			</div><!--/register-req-->
-
 			<div class="shopper-informations">
 				<div class="row">
 					<div class="col-sm-3">
 						<div class="shopper-info">
 							<p>Информация о покупателе</p>
-							<form>
-								<input type="text" id="firstname" placeholder="Имя" value="{{ userInfo.firstname }}">
-								<input type="text" id="lastname" placeholder="Фамилия" value="{{ userInfo.lastname }}">
+							<form id="user-info">
+							{% if app.user and app.user.roles[0] != 'ROLE_ANONYMOUS' %}
+								<span id="firstNameErrorValid" class="error-valid required"></span>
+								<input type="text" id="firstName" placeholder="Имя" value="{{ userInfo.firstname }}">
+								<span id="lastNameErrorValid" class="error-valid required"></span>
+								<input type="text" id="lastName" placeholder="Фамилия" value="{{ userInfo.lastname }}">
+								<span id="addressErrorValid" class="error-valid required"></span>
 								<input type="text" id="address" placeholder="Адрес доставки" value="{{ userInfo.address }}">
-								<input type="number" id="postalCode" placeholder="Индекс" value="{{ userInfo.postalCode }}">
+								<span id="postalCodeErrorValid" class="error-valid required"></span>
+								<input type="text" id="postalCode" placeholder="Индекс" value="{{ userInfo.postalCode }}">
+								<span id="phoneErrorValid" class="error-valid required"></span>
 								<input type="tel" id="phone" placeholder="Телефон" value="{{ userInfo.phone }}">
+							{% else %}
+								<span id="firstNameErrorValid" class="error-valid required"></span>
+								<input type="text" id="firstName" placeholder="Имя" value="">
+								<span id="lastNameErrorValid" class="error-valid required"></span>
+								<input type="text" id="lastName" placeholder="Фамилия" value="">
+								<span id="addressErrorValid" class="error-valid required"></span>
+								<input type="text" id="address" placeholder="Адрес доставки" value="">
+								<span id="postalCodeErrorValid" class="error-valid required"></span>
+								<input type="text" id="postalCode" placeholder="Индекс" value="">
+								<span id="phoneErrorValid" class="error-valid required"></span>
+								<input type="tel" id="phone" placeholder="Телефон" value="">
+							{% endif %}
 							</form>
 						</div>
 					</div>
 					<div class="col-sm-4">
 						<div class="order-message">
 							<p>Примечание к заказу</p>
-							<textarea name="message"  placeholder="Примечания к Вашему заказу" rows="16"></textarea>
+							<span id="noteOfOrderErrorValid" class="error-valid required hide">Примечание должно быть менее 500 символов</span>
+							<textarea name="message" id="noteOfOrder" placeholder="Примечания к Вашему заказу" rows="16"></textarea>
 						</div>
 					</div>
 
@@ -42,18 +57,20 @@
 						<div class="order-message">
 							<p>Доставка и оплата заказа</p>
 							<p>Доставка</p>
+							<span id="deliveryErrorValid" class="error-valid required"></span>
 							<span>
-						<label><input id="pickup" type="checkbox"> Самовывоз</label>
+						<label><input id="pickup" name="pickup" type="checkbox" checked> Самовывоз</label>
 					</span>
 							<span>
-						<label><input id="courierDelivery" type="checkbox"> Доставка курьером</label>
+						<label><input id="courierDelivery" name="courierDelivery" type="checkbox"> Доставка курьером</label>
 					</span>
 							<p>Оплата</p>
+							<span id="payMethodErrorValid"  class="error-valid required"></span>
 							<span>
-						<label><input id="cash" type="checkbox">Наличными при приеме заказа</label>
+						<label><input id="cash" name="cash" type="checkbox" checked> Наличными при приеме заказа</label>
 					</span>
 							<span>
-						<label><input id="card" type="checkbox">Картой при приеме заказа</label>
+						<label><input id="card" name="card" type="checkbox"> Картой при приеме заказа</label>
 					</span>
 						</div>
 					</div>
@@ -74,6 +91,7 @@
 					</tr>
 					</thead>
 					<tbody>
+					{% if app.user %}
 					{% for item in items%}
 					<tr id="cart-item-{{ item.id }}">
 						<td class="cart_product">
@@ -84,7 +102,7 @@
 							<p>{{ item.tire.name }}</p></a>
 						</td>
 						<td class="cart_price">
-							<p>{{ item.tire.price }} p.</p>
+							<p id="price-item-{{ item.id }}">{{ item.tire.price }} p.</p>
 						</td>
 						<td class="cart_quantity">
 							<div class="cart_quantity_button">
@@ -94,7 +112,6 @@
 							</div>
 						</td>
 						<td class="cart_total">
-							{#Цена товара для передачи в JS#}<p id="price-item-{{ item.id }}" class="hide">{{ item.tire.price}}</p>
 							<p id="price-{{ item.id }}" class="cart_total_price">{{ item.tire.price * item.quantity }} p.</p>
 						</td>
 						<td  id="{{ item.id }}" class="cart_delete">
@@ -102,28 +119,53 @@
 						</td>
 					</tr>
 					{% endfor %}
+					{% endif %}
 					<tr>
 						<td colspan="4">&nbsp;</td>
 						<td colspan="2">
+							{% if app.user and totalPrice  %}
 							<table class="table table-condensed total-result">
 								<tr>
 									<td>Стоимость товаров</td>
-									<td>$59</td>
+									<td><p id="total-price-order">{{ totalPrice }} p.</p></td>
 								</tr>
 								<tr>
 									<td>Скидка</td>
-									<td>$2</td>
+									<td><p id="discount">{{ discount }} p.</p></td>
 								</tr>
 								<tr class="shipping-cost">
 									<td>Доставка</td>
-									<td>15 р.</td>
+									<td><p id="delivery">0 p.</p></td>
 								</tr>
 								<tr>
 									<td>Итого</td>
-									<td><span>$61</span></td>
+									<td><span id="total-cost">{{ totalCost }} p.</span></td>
 								</tr>
 							</table>
-							<a class="btn btn-primary" href="">Оформить заказ</a>
+							{% else %}
+								<table class="table table-condensed total-result">
+									<tr>
+										<td>Стоимость товаров</td>
+										<td><p id="total-price-order">0 p.</p></td>
+									</tr>
+									<tr>
+										<td>Скидка</td>
+										<td>
+											0 p.
+										</td>
+									</tr>
+									<tr class="shipping-cost">
+										<td>Доставка</td>
+										<td>0 p.</td>
+									</tr>
+									<tr>
+										<td>Итого</td>
+										<td><span>0 p.</span></td>
+									</tr>
+								</table>
+							{% endif %}
+							<a class="btn btn-primary" id="checkout" href="#">Оформить заказ</a>
+							<div style="padding-top: 10px"><span id="cartEmptyErrorValid" class="error-valid required"></span></div>
 						</td>
 					</tr>
 					</tbody>
@@ -131,7 +173,15 @@
 			</div>
 		</div>
 	</section> <!--/#cart_items-->
-
+	<div id="containerOrder" class="container hide" style="box-shadow: 0 0 10px rgba(0,0,0,0.5);padding: 15px">
+		<img style="display: block;
+    margin-left: auto;
+    margin-right: auto" src="https://idb.lv/i/W9ofi8FdvsDu.png">
+		<h3 id="orderNumber" style="text-align: center;"></h3>
+		<h3 style="text-align: center;padding: 15px">В течении 45 минут с Вами свяжеться менеджер для уточнения деталей заказа.</h3>
+		<h3 id="orderCost" style="text-align: center;"></h3>
+		<h3 style="text-align: center;">Спасибо за заказ!</h3>
+	</div>
 {% endblock %}
 
 	{% block javascripts %}

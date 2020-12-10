@@ -30,6 +30,13 @@ class CartItemRepository extends ServiceEntityRepository implements CartItemRepo
         return $cartItem;
     }
 
+    public function update(CartItem $cartItem): CartItem
+    {
+        $this->_em->flush();
+
+        return $cartItem;
+    }
+
     public function findByUserAndTire(User $user, Tire $tire): ?CartItem
     {
         return $this->findOneBy([
@@ -60,17 +67,9 @@ class CartItemRepository extends ServiceEntityRepository implements CartItemRepo
         return new CartItemCollection($cartItem);
     }
 
-    public function findById(int $id): CartItem
+    public function delete(CartItem $cartItem): void
     {
-        $item = $this->find($id);
-
-        return $item;
-    }
-
-    public function delete(int $id): void
-    {
-        $item = $this->find($id);
-        $this->_em->remove($item);
+        $this->_em->remove($cartItem);
         $this->_em->flush();
     }
 }

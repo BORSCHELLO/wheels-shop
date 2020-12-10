@@ -12,7 +12,6 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
- * @ORM\HasLifecycleCallbacks()
  * @UniqueEntity(fields={"email"}, message="Пользователь с данным email уже существует!")
  */
 class User implements UserInterface
@@ -62,7 +61,7 @@ class User implements UserInterface
     private $address;
 
     /**
-     * @ORM\Column(name="postal_code", type="integer")
+     * @ORM\Column(name="postal_code", type="string", length=15)
      */
     private $postalCode;
 
@@ -156,12 +155,12 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getPostalCode(): ?int
+    public function getPostalCode(): ?string
     {
         return $this->postalCode;
     }
 
-    public function setPostalCode(int $postalCode): self
+    public function setPostalCode(string $postalCode): self
     {
         $this->postalCode = $postalCode;
 
@@ -207,16 +206,6 @@ class User implements UserInterface
         $this->roles = $roles;
 
         return $this;
-    }
-
-    /**
-     * @ORM\PrePersist
-     */
-    public function prePersist()
-    {
-        $roles[] = 'ROLE_USER';
-
-        $this->setRoles($roles);
     }
 
     /**

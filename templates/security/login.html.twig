@@ -7,6 +7,14 @@
             <div class="row">
                 <div class="col-sm-4 col-sm-offset-4">
                     <div class="login-form"><!--login form-->
+                        {% for message in app.flashes('success') %}
+                            <div class="alert alert-success alert-dismissible show" role="alert">
+                                {{ message }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        {% endfor %}
                         <h2>Войти в свой аккаунт</h2>
                         <form method="post">
                             {% if error %}

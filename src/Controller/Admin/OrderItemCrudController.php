@@ -2,7 +2,7 @@
 
 namespace App\Controller\Admin;
 
-use App\Cart\Entity\CartItem;
+use App\OrderItem\Entity\OrderItem;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
@@ -10,13 +10,12 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
-class CartItemCrudController extends AbstractCrudController
+class OrderItemCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
-        return CartItem::class;
+        return OrderItem::class;
     }
 
 
@@ -24,9 +23,10 @@ class CartItemCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id'),
-            NumberField::new('quantity'),
+            AssociationField::new('order'),
             AssociationField::new('tire'),
-            AssociationField::new('user')
+            NumberField::new('quantity'),
+            NumberField::new('cost')
         ];
     }
 

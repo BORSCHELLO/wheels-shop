@@ -2,7 +2,6 @@
 
 namespace App\Controller\Admin;
 
-
 use App\Tire\Entity\Tire;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
